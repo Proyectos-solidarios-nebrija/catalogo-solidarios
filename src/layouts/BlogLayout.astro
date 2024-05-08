@@ -1,11 +1,11 @@
 ---
-import Head from "../components/Head.astro";
-const { lang, title } = Astro.props;
+import BaseLayout from "./BaseLayout.astro";
 ---
 
-<html lang={lang}>
-  <Head title={title} />
-  <body>
-    <slot />
-  </body>
-</html>
+<BaseLayout {...Astro.props}>
+  <slot />
+</BaseLayout>
+
+<style>
+  /* TODO */
+</style>
