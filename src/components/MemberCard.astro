@@ -1,0 +1,110 @@
+---
+import { Image } from "astro:assets";
+import { ICON_NAMES } from "../constants/icons";
+import Github from "./icons/Github.astro";
+import LinkedIn from "./icons/Linkedin.astro";
+
+const { name, links, isManager } = Astro.props;
+const imagePath = `/src/images/${name}.png`;
+const images = import.meta.glob("/src/images/*.png");
+const image = images[imagePath];
+
+if (!image) {
+  throw new Error(`"${imagePath}" does not exist in glob "/src/images/*.png"`);
+}
+---
+
+<li class="card">
+  <div class="card-img">
+    <Image src={image()} alt={`Foto de ${name}`} width={280} height={300} />
+    {isManager && <span>Encargado</span>}
+  </div>
+  <h3>{name}</h3>
+  <ul class="card-links">
+    {
+      Object.keys(links)
+        .sort()
+        .map((linkName) => (
+          <li>
+            <a href={links[linkName]} target="_blank">
+              {ICON_NAMES.github === linkName && <Github />}
+              {ICON_NAMES.linkedin === linkName && <LinkedIn />}
+            </a>
+          </li>
+        ))
+    }
+  </ul>
+</li>
+
+<style>
+  h3 {
+    font-weight: 400;
+    font-size: 24px;
+  }
+
+  .card-links :global(svg) {
+    width: 40px;
+    height: 40px;
+    color: var(--secondary-color);
+    transition: transform 0.1s ease-in-out;
+  }
+
+  a {
+    text-decoration: none;
+  }
+
+  a:hover :global(svg) {
+    transform: scale(1.1);
+  }
+
+  a:active :global(svg) {
+    transform: scale(0.9);
+  }
+
+  .card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .card-img img {
+    object-fit: cover;
+    width: 100%;
+    height: 300px;
+    aspect-ratio: 5/6;
+    transition: transform 0.2s ease-in-out;
+  }
+
+  .card-img img:hover {
+    transform: scale(1.1);
+  }
+
+  .card-img {
+    border-radius: 15px;
+    position: relative;
+    overflow: hidden;
+    width: 100%;
+  }
+
+  .card-img span {
+    position: absolute;
+    font-size: 2rem;
+    padding: 10px 30px;
+    background-color: var(--primary-color);
+    border-radius: 10px;
+    box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+    bottom: -10px;
+    right: -10px;
+  }
+
+  .card-links {
+    gap: 20px;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: row;
+    list-style: none;
+    align-items: center;
+  }
+</style>
