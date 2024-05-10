@@ -1,30 +1,22 @@
 ---
 import MemberCard from "./MemberCard.astro";
+import Link from "./icons/Link.astro";
 const { year, members } = Astro.props;
 ---
 
-<div class="container">
-  <div class="year-container">
+<div class="content container">
+  <div class="container-year">
     <h2>{year}</h2>
-    <a href="#">
-      <img src="/icons/link.svg" alt="Icono de una cadena" />
+    <a href={`#${year}`}>
+      <Link />
     </a>
   </div>
-  <ul>
+  <ul class="container-members">
     {
       members
-        .sort((el) => el.isManager)
+        ?.sort((el) => el.isManager)
         .map((member) => <MemberCard {...member} />)
     }
-    <MemberCard
-      name="test"
-      links={{ github: "https://github.com/Waxer59", linkedin: "#" }}
-    />
-    <MemberCard name="test" links={{}} />
-    <MemberCard name="test" links={{}} />
-    <MemberCard name="test" links={{}} />
-    <MemberCard name="test" links={{}} />
-    <MemberCard name="test" links={{}} />
   </ul>
 </div>
 
@@ -33,25 +25,17 @@ const { year, members } = Astro.props;
     display: flex;
     flex-direction: column;
     gap: 100px;
-    max-width: 950px;
-    width: 90%;
-    margin: 0 auto;
-  }
-
-  img {
-    width: 50px;
-    height: 40px;
   }
 
   h2 {
     margin: 0;
-    font-size: 64px;
+    font-size: 8rem;
     display: flex;
     align-items: center;
     font-weight: 400;
   }
 
-  .year-container {
+  .container-year {
     display: flex;
     align-items: center;
     gap: 50px;
@@ -59,14 +43,67 @@ const { year, members } = Astro.props;
     border-bottom: 1px solid rgba(0, 0, 0, 0.3);
   }
 
-  ul {
+  .container-year a:hover :global(svg) {
+    transform: scale(1.1);
+  }
+
+  .container-year a:active :global(svg) {
+    transform: scale(0.9);
+  }
+
+  .container-year :global(svg) {
+    width: 50px;
+    height: 40px;
+    opacity: 0;
+    transition:
+      opacity 0.1s ease-in,
+      transform 0.1s ease-in-out;
+  }
+
+  .container-year:hover :global(svg) {
+    opacity: 1;
+  }
+
+  .container-members {
     margin: 0;
     list-style: none;
     padding: 0;
-    display: flex;
+    display: grid;
     gap: 45px;
-    flex-wrap: wrap;
+    grid-template-columns: repeat(6, 1fr);
     align-items: start;
     justify-content: center;
+  }
+
+  .container-members :global(li) {
+    grid-column: span 2;
+  }
+
+  @media (width <= 1200px) {
+    .container-members {
+      display: flex;
+      flex-wrap: wrap;
+    }
+
+    :global(.card){
+      width: 250px;
+    }
+
+    .container-year {
+      gap: 25px;
+    }
+
+    .container-year :global(svg) {
+      width: 30px;
+      height: 20px;
+    }
+
+    h2 {
+      font-size: 4rem;
+    }
+
+    .container {
+      gap: 50px;
+    }
   }
 </style>

@@ -1,5 +1,4 @@
 ---
-import "normalize.css/normalize.css";
 const { title = "Proyectos Solidarios" } = Astro.props;
 ---
 
@@ -39,8 +38,15 @@ const { title = "Proyectos Solidarios" } = Astro.props;
     --secondary-color: #fff6e0;
   }
 
+  .content {
+    max-width: 950px;
+    width: 90%;
+    margin: 0 auto;
+  }
+
   html {
     font-family: "Montserrat", Arial, Helvetica, sans-serif;
+    font-size: 8px;
   }
 
   h1,
