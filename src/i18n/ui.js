@@ -5,6 +5,13 @@ export const languages = {
 export const showDefaultLang = false
 export const defaultLang = 'es'
 export const ui = {
-  es: {},
+  es: {
+    'header.desc': '',
+    'header.scroll': '',
+    'nav.projects': '',
+    'nav.galery': '',
+    'nav.whoWeAre': '',
+    'post.partnerCompanies': '  '
+  },
   en: {}
 }

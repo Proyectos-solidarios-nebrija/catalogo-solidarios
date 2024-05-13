@@ -15,10 +15,11 @@ export async function getStaticPaths() {
 }
 
 const page = Astro.props
+const { title, imgPath, year } = page.data
 // @ts-ignore
 const { Content } = await page.render()
 ---
 
-<BlogLayout>
+<BlogLayout postTitle={title} imgPath={imgPath} year={year}>
   <Content />
 </BlogLayout>

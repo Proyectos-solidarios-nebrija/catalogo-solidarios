@@ -4,7 +4,7 @@ const proyectosCollection = defineCollection({
     title: z.string(),
     year: z.string(),
     webLink: z.optional(z.string()),
-    img: z.string()
+    imgPath: z.string()
   })
 })
 export const collections = {
