@@ -1,30 +1,28 @@
 module.exports = {
   globals: {
-		NodeJS: true,
-		NodeListOf: true,
-	},
+    NodeJS: true,
+    NodeListOf: true
+  },
   env: {
     browser: true,
     es2022: true,
     node: true
   },
-  extends: ['standard', "plugin:astro/recommended","prettier"],
+  extends: ['standard', 'plugin:astro/recommended', 'prettier'],
   overrides: [
     {
-      files: ["*.astro"],
-      parser: "astro-eslint-parser",
+      files: ['*.astro'],
+      parser: 'astro-eslint-parser',
       parserOptions: {
-        parser: "@typescript-eslint/parser",
-        extraFileExtensions: [".astro"],
+        parser: '@typescript-eslint/parser',
+        extraFileExtensions: ['.astro']
       },
-      rules: {
-      },
-    },
+      rules: {}
+    }
   ],
   parserOptions: {
     ecmaVersion: 'latest',
     sourceType: 'module'
   },
-  rules: {
-  }
+  rules: {}
 }
