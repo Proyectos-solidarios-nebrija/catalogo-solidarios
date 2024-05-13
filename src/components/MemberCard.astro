@@ -1,21 +1,22 @@
 ---
-import { Image } from "astro:assets";
-import { ICON_NAMES } from "../constants/icons";
-import Github from "./icons/Github.astro";
-import LinkedIn from "./icons/Linkedin.astro";
+import { Image } from 'astro:assets'
+import { ICON_NAMES } from '../constants/icons'
+import Github from './icons/Github.astro'
+import LinkedIn from './icons/Linkedin.astro'
 
-const { name, links, isManager } = Astro.props;
-const imagePath = `/src/images/${name}.png`;
-const images = import.meta.glob("/src/images/*.png");
-const image = images[imagePath];
+const { name, links, isManager } = Astro.props
+const imagePath = `/src/images/${name}.png`
+const images = import.meta.glob('/src/images/*.png')
+const image = images[imagePath]
 
 if (!image) {
-  throw new Error(`"${imagePath}" does not exist in glob "/src/images/*.png"`);
+  throw new Error(`"${imagePath}" does not exist in glob "/src/images/*.png"`)
 }
 ---
 
 <li class="card">
   <div class="card-img">
+    <!-- @ts-ignore -->
     <Image src={image()} alt={`Foto de ${name}`} width={280} height={300} />
     {isManager && <span>Encargado</span>}
   </div>
