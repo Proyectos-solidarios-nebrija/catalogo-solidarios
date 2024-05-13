@@ -1,7 +1,7 @@
 ---
-import MemberCard from "./MemberCard.astro";
-import Link from "./icons/Link.astro";
-const { year, members } = Astro.props;
+import MemberCard from './MemberCard.astro'
+import Link from './icons/Link.astro'
+const { year, members } = Astro.props
 ---
 
 <div class="content container">
@@ -85,7 +85,7 @@ const { year, members } = Astro.props;
       flex-wrap: wrap;
     }
 
-    :global(.card){
+    :global(.card) {
       width: 250px;
     }
 
@@ -96,10 +96,6 @@ const { year, members } = Astro.props;
     .container-year :global(svg) {
       width: 30px;
       height: 20px;
-    }
-
-    h2 {
-      font-size: 4rem;
     }
 
     .container {

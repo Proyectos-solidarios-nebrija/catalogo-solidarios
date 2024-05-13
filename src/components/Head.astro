@@ -63,4 +63,16 @@ const { title = 'Proyectos Solidarios' } = Astro.props
     max-width: 1200px;
     width: 90%;
   }
+
+  @media (width <= 1200px) {
+    html {
+      font-size: 6px;
+    }
+  }
+
+  @media (width <= 800px) {
+    html {
+      font-size: 4px;
+    }
+  }
 </style>
