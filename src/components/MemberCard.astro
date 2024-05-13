@@ -6,11 +6,13 @@ import LinkedIn from './icons/Linkedin.astro'
 
 const { name, links, isManager } = Astro.props
 const imagePath = `/src/images/${name}.png`
-const images = import.meta.glob('/src/images/*.png')
+const images = import.meta.glob('/src/images/members/*.png')
 const image = images[imagePath]
 
 if (!image) {
-  throw new Error(`"${imagePath}" does not exist in glob "/src/images/*.png"`)
+  throw new Error(
+    `"${imagePath}" does not exist in glob "/src/images/members/*.png"`
+  )
 }
 ---
 
