@@ -1,11 +1,143 @@
 ---
-import BaseLayout from "./BaseLayout.astro";
+import { Image } from 'astro:assets'
+import BaseLayout from './BaseLayout.astro'
+import Link from '../components/icons/Link.astro'
+const { title, imgPath, year, webLink } = Astro.props
+
+const fullImgPath = `/src/images/projects/${imgPath}`
+const images = import.meta.glob('/src/images/projects/**/*.{png,jpg,jpeg}')
+const image = images[fullImgPath]
+
+if (!image) {
+  throw new Error(
+    `"${fullImgPath}" does not exist in glob "/src/images/projects/**/*.{png,jpg,jpeg}"`
+  )
+}
 ---
 
-<BaseLayout {...Astro.props}>
-  <slot />
+<BaseLayout title={`Proyectos Solidarios | ${title}`}>
+  <div class="content">
+    <header>
+      <h2>{year}</h2>
+      {/* @ts-ignore */}
+      <Image src={image()} alt={`Foto del proyecto ${title}`} />
+      <div class="header-title">
+        <h1>{title}</h1>
+        <a href={webLink} target="_blank">
+          <Link />
+        </a>
+      </div>
+    </header>
+    <slot />
+  </div>
 </BaseLayout>
 
-<style>
-  /* TODO */
+<style is:global>
+  .content header h2 {
+    text-align: center;
+    font-weight: 500;
+  }
+
+  .content header {
+    display: flex;
+    flex-direction: column;
+    gap: 50px;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .content header h2 {
+    margin: 0;
+    font-weight: 400;
+    font-size: 8rem;
+  }
+
+  .content header img {
+    box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+    width: 100%;
+    object-fit: cover;
+    border-radius: 15px;
+    height: 375px;
+    margin: 0;
+  }
+
+  .content img {
+    box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+    margin: 50px auto;
+    border-radius: 20px;
+    object-fit: cover;
+    height: 500px;
+    width: 100%;
+  }
+
+  .header-title {
+    position: relative;
+    display: flex;
+    align-items: center;
+  }
+
+  .header-title h1 {
+    margin: 0;
+    font-weight: 400;
+    text-align: center;
+    font-size: 8rem;
+  }
+
+  .header-title a {
+    position: absolute;
+    right: -80px;
+  }
+
+  .header-title svg {
+    height: 48px;
+    width: 48px;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    font-weight: 400;
+    text-align: center;
+  }
+
+  h1,
+  h2 {
+    font-size: 10rem;
+  }
+
+  h3 {
+    font-size: 8rem;
+  }
+
+  h4 {
+    font-size: 6rem;
+  }
+
+  h5 {
+    font-size: 6rem;
+  }
+
+  h6 {
+    font-size: 4rem;
+  }
+
+  ul,
+  ol,
+  p {
+    text-wrap: pretty;
+    font-size: 3rem;
+  }
+
+  blockquote {
+    margin-left: 0;
+    padding-left: 20px;
+    border-left: 5px solid var(--secondary-color);
+  }
+
+  blockquote p {
+    opacity: 0.7;
+  }
 </style>

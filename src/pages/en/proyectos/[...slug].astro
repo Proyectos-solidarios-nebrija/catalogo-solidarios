@@ -1,0 +1,24 @@
+---
+import { getCollection } from 'astro:content'
+import BlogLayout from '@layouts/BlogLayout.astro'
+
+export async function getStaticPaths() {
+  const pages = await getCollection('proyectos', ({ id }) =>
+    id.startsWith('es/')
+  )
+
+  const paths = pages.map((page) => {
+    const [lang, ...slug] = page.slug.split('/')
+    return { params: { slug: slug.join('/') || undefined }, props: page }
+  })
+  return paths
+}
+
+const page = Astro.props
+const { title, imgPath, year } = page.data
+const { Content } = await page.render()
+---
+
+<BlogLayout postTitle={title} imgPath={imgPath} year={year}>
+  <Content />
+</BlogLayout>

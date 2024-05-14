@@ -24,6 +24,10 @@ const { title = 'Proyectos Solidarios' } = Astro.props
     font-style: italic;
   }
 
+  * {
+    box-sizing: border-box;
+  }
+
   :root {
     --primary-color: #eeeeee;
     --secondary-color: #31363f;
@@ -32,6 +36,10 @@ const { title = 'Proyectos Solidarios' } = Astro.props
   .dark:root {
     --primary-color: #222324;
     --secondary-color: #fff6e0;
+  }
+
+  svg {
+    color: var(--secondary-color);
   }
 
   .content {
@@ -62,5 +70,17 @@ const { title = 'Proyectos Solidarios' } = Astro.props
     margin: 0 auto;
     max-width: 1200px;
     width: 90%;
+  }
+
+  @media (width <= 1200px) {
+    html {
+      font-size: 6px;
+    }
+  }
+
+  @media (width <= 800px) {
+    html {
+      font-size: 4px;
+    }
   }
 </style>
