@@ -33,6 +33,8 @@ metus dignissim porta a in lorem. Lorem ipsum dolor sit amet, consectetur
 adipiscing elit. Nulla eu purus dictum, tristique erat nec, lacinia ex.
 Pellentesque nec sollicitudin leo.
 
+![](../../../images/projects/test.jpg)
+
 Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed vitae odio ac
 metus dignissim porta a in lorem. Lorem ipsum dolor sit amet, consectetur
 adipiscing elit. Nulla eu purus dictum, tristique erat nec, lacinia ex.
