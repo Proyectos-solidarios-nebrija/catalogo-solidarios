@@ -8,7 +8,14 @@ module.exports = {
     es2022: true,
     node: true
   },
-  extends: ['standard', 'plugin:astro/recommended', 'prettier'],
+  parser: '@typescript-eslint/parser',
+  plugins: ['@typescript-eslint'],
+  extends: [
+    'eslint:recommended',
+    'plugin:@typescript-eslint/recommended',
+    'plugin:astro/recommended',
+    'prettier'
+  ],
   overrides: [
     {
       files: ['*.astro'],
@@ -25,6 +32,6 @@ module.exports = {
     sourceType: 'module'
   },
   rules: {
-    "no-unused-vars": "warn"
+    'no-unused-vars': 'warn'
   }
 }

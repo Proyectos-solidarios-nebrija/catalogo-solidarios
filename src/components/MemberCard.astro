@@ -1,12 +1,15 @@
 ---
+import type { ImageMetadata } from 'astro'
 import { Image } from 'astro:assets'
-import { ICON_NAMES } from '../constants/icons'
+import { SOCIAL_ICONS_NAMES } from '../constants/icons'
 import Github from './icons/Github.astro'
 import LinkedIn from './icons/Linkedin.astro'
 const { name, imgPath, links, isManager } = Astro.props
 
 const fullImgPath = `/src/images/members/${imgPath}`
-const images = import.meta.glob('/src/images/members/**/*.{png,jpg,jpeg}')
+const images = import.meta.glob<{ default: ImageMetadata }>(
+  '/src/images/members/**/*.{png,jpg,jpeg}'
+)
 const image = images[fullImgPath]
 
 if (!image) {
@@ -18,7 +21,6 @@ if (!image) {
 
 <li class="card">
   <div class="card-img">
-    {/* @ts-ignore */}
     <Image src={image()} alt={`Foto de ${name}`} width={280} height={300} />
     {isManager && <span>Encargado</span>}
   </div>
@@ -30,8 +32,8 @@ if (!image) {
         .map((linkName) => (
           <li>
             <a href={links[linkName]} target="_blank">
-              {ICON_NAMES.github === linkName && <Github />}
-              {ICON_NAMES.linkedin === linkName && <LinkedIn />}
+              {SOCIAL_ICONS_NAMES.github === linkName && <Github />}
+              {SOCIAL_ICONS_NAMES.linkedin === linkName && <LinkedIn />}
             </a>
           </li>
         ))

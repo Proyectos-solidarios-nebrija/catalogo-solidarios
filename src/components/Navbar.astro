@@ -1,0 +1,171 @@
+---
+import { languages, defaultLang } from 'src/i18n/ui'
+import { Image } from 'astro:assets'
+import Moon from '@components/icons/Moon.astro'
+import logoNebrija from '@images/assets/logoNebrija.png'
+
+const currentLang = Astro.currentLocale
+---
+
+<nav>
+  <a href="/" id="link-home">
+    <Image src={logoNebrija} alt="Imagen del logo de nebrija" width={70} />
+  </a>
+  <ul>
+    <li><a href="#">Proyectos</a></li>
+    <li><a href="#">Galería</a></li>
+    <li><a href="#">¿Quienes somos?</a></li>
+    <li class="config">
+      <button id="btn-theme-toggler">
+        <Moon />
+      </button>
+      <div class="languages">
+        {
+          Object.keys(languages).map((lang, idx, arr) => (
+            <>
+              <a
+                href={lang === defaultLang ? '/' : `/${lang}/`}
+                style={currentLang === lang ? 'font-weight: 600;' : ''}>
+                {lang}
+              </a>
+              {idx < arr.length - 1 && <span>|</span>}
+            </>
+          ))
+        }
+      </div>
+    </li>
+  </ul>
+</nav>
+
+<script>
+  const btnThemeToggler = document.querySelector(
+    '#btn-theme-toggler'
+  ) as HTMLButtonElement
+
+  const html = document.querySelector('html') as HTMLElement
+  const LOCAL_STORAGE_THEME_KEY = 'theme'
+  const selectedTheme = localStorage.getItem(LOCAL_STORAGE_THEME_KEY)
+
+  const THEMES = {
+    dark: 'dark',
+    light: 'light'
+  }
+
+  // Set up the select theme
+  if (selectedTheme === THEMES.dark) {
+    html.classList.add('dark')
+  }
+
+  // Config the preferred theme
+  const systemSettingDark = window.matchMedia('(prefers-color-scheme: dark)')
+
+  if (systemSettingDark && !selectedTheme) {
+    localStorage.setItem(LOCAL_STORAGE_THEME_KEY, THEMES.dark)
+    html.classList.add(THEMES.dark)
+  } else if (!selectedTheme) {
+    localStorage.setItem(LOCAL_STORAGE_THEME_KEY, THEMES.light)
+  }
+
+  btnThemeToggler.addEventListener('click', () => {
+    const currentTheme = localStorage.getItem(LOCAL_STORAGE_THEME_KEY)
+    const isDarkTheme = currentTheme === THEMES.dark
+
+    if (isDarkTheme) {
+      localStorage.setItem(LOCAL_STORAGE_THEME_KEY, THEMES.light)
+      html.classList.remove(THEMES.dark)
+    } else {
+      localStorage.setItem(LOCAL_STORAGE_THEME_KEY, THEMES.dark)
+      html.classList.add(THEMES.dark)
+    }
+  })
+</script>
+
+<style>
+  nav {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: 25px;
+    margin-bottom: 50px;
+  }
+
+  #link-home {
+    transition: transform 0.2s ease-in-out;
+  }
+
+  #link-home:hover {
+    transform: scale(1.1);
+  }
+
+  #link-home:active {
+    transform: scale(0.9);
+  }
+
+  ul {
+    list-style: none;
+    font-size: 3rem;
+    display: flex;
+    text-align: end;
+    flex-direction: column;
+    gap: 15px;
+    padding: 0;
+  }
+
+  a {
+    text-decoration: none;
+  }
+
+  .config {
+    display: flex;
+    gap: 15px;
+    justify-content: end;
+    align-items: center;
+  }
+
+  img {
+    width: 60px;
+    height: auto;
+  }
+
+  html[class='dark'] img {
+    filter: invert(1);
+  }
+
+  button {
+    padding: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: transparent;
+  }
+
+  .config :global(svg) {
+    width: 3rem;
+    height: 3rem;
+  }
+
+  #btn-theme-toggler {
+    border: none;
+    cursor: pointer;
+  }
+
+  .languages {
+    display: flex;
+    gap: 5px;
+  }
+
+  .languages {
+    text-transform: uppercase;
+  }
+
+  @media (width <= 800px) {
+    ul {
+      gap: 10px;
+    }
+
+    img {
+      width: 40px;
+    }
+  }
+</style>
