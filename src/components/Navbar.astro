@@ -1,0 +1,55 @@
+---
+import { Image } from 'astro:assets'
+import logoNebrija from '@images/assets/logoNebrija.png'
+---
+
+<nav>
+  <Image src={logoNebrija} alt="Imagen del logo de nebrija" />
+  <ul>
+    <li><a href="">Proyectos</a></li>
+    <li><a href="">Galería</a></li>
+    <li><a href="">¿Quienes somos?</a></li>
+    <li id="idiomas">
+      <a href="">EN</a> | <a href="">ES</a>
+    </li>
+  </ul>
+</nav>
+
+<style>
+  nav {
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+    justify-content: space-between;
+    width: 90%;
+    height: 10%;
+    margin: 3% 5%;
+  }
+
+  nav img {
+    width: 7%;
+    height: 7%;
+  }
+
+  .textoNav {
+    width: 20%;
+    text-align: right;
+  }
+
+  .listaNav {
+    width: 100%;
+  }
+
+  .listaNav li {
+    list-style: none;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 400;
+    font-size: 100%;
+    line-height: 175%;
+  }
+
+  .enlacesNav {
+    text-decoration: none;
+    color: #000;
+  }
+</style>

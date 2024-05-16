@@ -1,11 +1,13 @@
 ---
-import Head from "../components/Head.astro";
-const { lang, title } = Astro.props;
+import Navbar from '@components/Navbar.astro'
+import Head from '../components/Head.astro'
+const { lang, title } = Astro.props
 ---
 
 <html lang={lang}>
   <Head title={title} />
   <body>
+    <Navbar />
     <slot />
   </body>
 </html>
