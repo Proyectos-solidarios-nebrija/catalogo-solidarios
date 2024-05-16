@@ -3,30 +3,45 @@ import { languages, defaultLang } from 'src/i18n/ui'
 import { Image } from 'astro:assets'
 import Moon from '@components/icons/Moon.astro'
 import logoNebrija from '@images/assets/logoNebrija.png'
+import {
+  getLangFromUrl,
+  useTranslatedPath,
+  useTranslations
+} from 'src/i18n/utils'
 
-const currentLang = Astro.currentLocale
+let { pathname } = Astro.url
+const currentLang = getLangFromUrl(Astro.url)
+const t = useTranslations(currentLang)
+const translatePath = useTranslatedPath(currentLang)
+
+if (currentLang !== defaultLang) {
+  // Firt position: empty space
+  // Second position: route lang
+  const [, , ...path] = pathname.split('/')
+  pathname = `/${path.join('/')}`
+}
 ---
 
 <nav>
-  <a href="/" id="link-home">
+  <a href={translatePath('/')} id="link-home">
     <Image src={logoNebrija} alt="Imagen del logo de nebrija" width={70} />
   </a>
   <ul>
-    <li><a href="#">Proyectos</a></li>
-    <li><a href="#">Galería</a></li>
-    <li><a href="#">¿Quienes somos?</a></li>
+    <li><a href={`/#${t('nav.projects')}`}>{t('nav.projects')}</a></li>
+    <li><a href={`/#${t('nav.galery')}`}>{t('nav.galery')}</a></li>
+    <li><a href="quienes-somos">{t('nav.whoWeAre')}</a></li>
     <li class="config">
       <button id="btn-theme-toggler">
         <Moon />
       </button>
       <div class="languages">
         {
-          Object.keys(languages).map((lang, idx, arr) => (
+          Object.entries(languages).map(([lang, label], idx, arr) => (
             <>
               <a
-                href={lang === defaultLang ? '/' : `/${lang}/`}
+                href={translatePath(pathname, lang)}
                 style={currentLang === lang ? 'font-weight: 600;' : ''}>
-                {lang}
+                {label}
               </a>
               {idx < arr.length - 1 && <span>|</span>}
             </>

@@ -1,17 +1,16 @@
 ---
 import ChevronDown from './icons/ChevronDown.astro'
 import { courses } from '../constants/courses'
+import { useTranslations, getLangFromUrl } from 'src/i18n/utils'
+
+const lang = getLangFromUrl(Astro.url)
+const t = useTranslations(lang)
 ---
 
 <header>
-  <h1>Proyectos Solidarios</h1>
+  <h1>{t('header.title')}</h1>
   <div class="header-content">
-    <p>
-      Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed vitae odio ac
-      metus dignissim porta a in lorem. Lorem ipsum dolor sit amet, consectetur
-      adipiscing elit. Nulla eu purus dictum, tristique erat nec, lacinia ex.
-      Pellentesque nec sollicitudin leo.
-    </p>
+    <p>{t('header.desc')}</p>
     <span>
       {
         courses.map((course, idx) => (
@@ -23,7 +22,7 @@ import { courses } from '../constants/courses'
       }
     </span>
     <div class="header-content-scroll">
-      <p>Scroll down</p>
+      <p>{t('header.scroll')}</p>
       <ChevronDown />
     </div>
   </div>
