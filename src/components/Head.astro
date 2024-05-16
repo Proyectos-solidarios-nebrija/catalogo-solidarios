@@ -38,10 +38,6 @@ const { title = 'Proyectos Solidarios' } = Astro.props
     --secondary-color: #fff6e0;
   }
 
-  svg {
-    color: var(--secondary-color);
-  }
-
   .content {
     max-width: 950px;
     width: 90%;
@@ -50,7 +46,7 @@ const { title = 'Proyectos Solidarios' } = Astro.props
 
   html {
     font-family: 'Montserrat', Arial, Helvetica, sans-serif;
-    font-size: 8px;
+    font-size: 6px;
   }
 
   h1,
@@ -61,7 +57,8 @@ const { title = 'Proyectos Solidarios' } = Astro.props
   h6,
   p,
   span,
-  a {
+  a,
+  svg {
     color: var(--secondary-color);
   }
 
@@ -70,12 +67,6 @@ const { title = 'Proyectos Solidarios' } = Astro.props
     margin: 0 auto;
     max-width: 1200px;
     width: 90%;
-  }
-
-  @media (width <= 1200px) {
-    html {
-      font-size: 6px;
-    }
   }
 
   @media (width <= 800px) {

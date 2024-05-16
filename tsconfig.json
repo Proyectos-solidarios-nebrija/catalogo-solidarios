@@ -7,6 +7,11 @@
       "@layouts/*": ["src/layouts/*"],
       "@images/*": ["src/images/*"]
     },
+    "plugins": [
+      {
+        "name": "@astrojs/ts-plugin"
+      }
+    ],
     "strictNullChecks": true,
     "allowJs": true
   }

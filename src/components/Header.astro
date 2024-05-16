@@ -50,13 +50,15 @@ import { courses } from '../constants/courses'
     flex-direction: column;
     text-align: center;
     align-content: center;
-    gap: 50px;
+    gap: 25px;
   }
 
   p {
     margin: 0;
     font-size: 3rem;
-    max-width: 750px;
+    max-width: 600px;
+    text-wrap: pretty;
+    width: 90%;
     text-align: center;
   }
 
@@ -78,9 +80,19 @@ import { courses } from '../constants/courses'
   }
 
   .header-content-scroll :global(svg) {
-    width: 64px;
-    height: 64px;
+    width: 8rem;
+    height: 8rem;
     animation: falling infinite 2s;
+  }
+
+  @media (width <= 800px) {
+    p {
+      max-width: 400px;
+    }
+
+    .header-content {
+      gap: 15px;
+    }
   }
 
   @keyframes falling {

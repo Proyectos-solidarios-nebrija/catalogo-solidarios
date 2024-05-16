@@ -1,11 +1,14 @@
 ---
 import { Image } from 'astro:assets'
+import type { ImageMetadata } from 'astro'
 import BaseLayout from './BaseLayout.astro'
 import Link from '../components/icons/Link.astro'
 const { title, imgPath, year, webLink } = Astro.props
 
 const fullImgPath = `/src/images/projects/${imgPath}`
-const images = import.meta.glob('/src/images/projects/**/*.{png,jpg,jpeg}')
+const images = import.meta.glob<{ default: ImageMetadata }>(
+  '/src/images/projects/**/*.{png,jpg,jpeg}'
+)
 const image = images[fullImgPath]
 
 if (!image) {
@@ -19,7 +22,6 @@ if (!image) {
   <div class="content">
     <header>
       <h2>{year}</h2>
-      {/* @ts-ignore */}
       <Image src={image()} alt={`Foto del proyecto ${title}`} />
       <div class="header-title">
         <h1>{title}</h1>

@@ -1,4 +1,4 @@
-export const ICON_NAMES = {
-  github: "github",
-  linkedin: "linkedin"
-};
+export const SOCIAL_ICONS_NAMES = {
+  github: 'github',
+  linkedin: 'linkedin'
+}
