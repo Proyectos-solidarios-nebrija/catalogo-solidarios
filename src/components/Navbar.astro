@@ -8,6 +8,7 @@ import {
   useTranslatedPath,
   useTranslations
 } from 'src/i18n/utils'
+import Sun from './icons/Sun.astro'
 
 let { pathname } = Astro.url
 const currentLang = getLangFromUrl(Astro.url)
@@ -32,7 +33,12 @@ if (currentLang !== defaultLang) {
     <li><a href="quienes-somos">{t('nav.whoWeAre')}</a></li>
     <li class="config">
       <button id="btn-theme-toggler">
-        <Moon />
+        <span id="theme-toggler-dark-icon">
+          <Moon />
+        </span>
+        <span id="theme-toggler-light-icon">
+          <Sun />
+        </span>
       </button>
       <div class="languages">
         {
@@ -66,6 +72,16 @@ if (currentLang !== defaultLang) {
     light: 'light'
   }
 
+  const setThemePreference = (theme) => {
+    if (theme === THEMES.dark) {
+      localStorage.setItem(LOCAL_STORAGE_THEME_KEY, THEMES.dark)
+      html.classList.add(THEMES.dark)
+    } else {
+      localStorage.setItem(LOCAL_STORAGE_THEME_KEY, THEMES.light)
+      html.classList.remove(THEMES.dark)
+    }
+  }
+
   // Set up the select theme
   if (selectedTheme === THEMES.dark) {
     html.classList.add('dark')
@@ -75,10 +91,9 @@ if (currentLang !== defaultLang) {
   const systemSettingDark = window.matchMedia('(prefers-color-scheme: dark)')
 
   if (systemSettingDark && !selectedTheme) {
-    localStorage.setItem(LOCAL_STORAGE_THEME_KEY, THEMES.dark)
-    html.classList.add(THEMES.dark)
+    setThemePreference(THEMES.dark)
   } else if (!selectedTheme) {
-    localStorage.setItem(LOCAL_STORAGE_THEME_KEY, THEMES.light)
+    setThemePreference(THEMES.light)
   }
 
   btnThemeToggler.addEventListener('click', () => {
@@ -86,11 +101,9 @@ if (currentLang !== defaultLang) {
     const isDarkTheme = currentTheme === THEMES.dark
 
     if (isDarkTheme) {
-      localStorage.setItem(LOCAL_STORAGE_THEME_KEY, THEMES.light)
-      html.classList.remove(THEMES.dark)
+      setThemePreference(THEMES.light)
     } else {
-      localStorage.setItem(LOCAL_STORAGE_THEME_KEY, THEMES.dark)
-      html.classList.add(THEMES.dark)
+      setThemePreference(THEMES.dark)
     }
   })
 </script>
@@ -145,6 +158,22 @@ if (currentLang !== defaultLang) {
 
   html[class='dark'] img {
     filter: invert(1);
+  }
+
+  html #theme-toggler-light-icon {
+    display: none;
+  }
+
+  html[class='dark'] #theme-toggler-dark-icon {
+    display: none;
+  }
+
+  html[class='dark'] #theme-toggler-light-icon {
+    display: block;
+  }
+
+  html #theme-toggler-dark-icon {
+    display: block;
   }
 
   button {
