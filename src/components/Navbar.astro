@@ -28,9 +28,13 @@ if (currentLang !== defaultLang) {
     <Image src={logoNebrija} alt="Imagen del logo de nebrija" width={70} />
   </a>
   <ul>
-    <li><a href={`/#${t('nav.projects')}`}>{t('nav.projects')}</a></li>
-    <li><a href={`/#${t('nav.galery')}`}>{t('nav.galery')}</a></li>
-    <li><a href="quienes-somos">{t('nav.whoWeAre')}</a></li>
+    <li>
+      <a href={translatePath(`/#${t('nav.projects')}`)}>{t('nav.projects')}</a>
+    </li>
+    <li>
+      <a href={translatePath(`/#${t('nav.galery')}`)}>{t('nav.galery')}</a>
+    </li>
+    <li><a href={translatePath('/quienes-somos')}>{t('nav.whoWeAre')}</a></li>
     <li class="config">
       <button id="btn-theme-toggler">
         <span id="theme-toggler-dark-icon">
