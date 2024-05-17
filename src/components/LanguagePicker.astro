@@ -1,0 +1,56 @@
+---
+import { languages, defaultLang } from 'src/i18n/ui'
+import {
+  getLangFromUrl,
+  getRouteFromUrl,
+  useTranslatedPath
+} from 'src/i18n/utils'
+
+let { pathname } = Astro.url
+const currentLang = getLangFromUrl(Astro.url)
+const translatePath = useTranslatedPath(currentLang)
+
+const route = getRouteFromUrl(Astro.url)
+
+if (currentLang !== defaultLang) {
+  // Firt position: empty space
+  // Second position: route lang
+  const [, , ...path] = pathname.split('/')
+  pathname = `/${path.join('/')}`
+}
+---
+
+<ul>
+  {
+    Object.entries(languages).map(([lang, label], idx, arr) => (
+      <>
+        <li>
+          <a
+            href={translatePath(`/${route ?? ''}`, lang)}
+            style={currentLang === lang ? 'font-weight: 600;' : ''}>
+            {label}
+          </a>
+        </li>
+        {idx < arr.length - 1 && (
+          <li>
+            <span>|</span>
+          </li>
+        )}
+      </>
+    ))
+  }
+</ul>
+
+<style>
+  a {
+    text-decoration: none;
+  }
+
+  ul {
+    padding: 0;
+    list-style: none;
+    display: flex;
+    gap: 5px;
+    text-transform: uppercase;
+  }
+</style>

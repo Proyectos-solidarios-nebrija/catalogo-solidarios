@@ -1,7 +1,7 @@
 import { defineConfig } from 'astro/config'
 
 import mdx from '@astrojs/mdx'
-import { defaultLang, languages } from './src/i18n/ui'
+import { defaultLang, languages, showDefaultLang } from './src/i18n/ui'
 
 // https://astro.build/config
 export default defineConfig({
@@ -12,8 +12,8 @@ export default defineConfig({
   i18n: {
     defaultLocale: defaultLang,
     locales: Object.keys(languages),
-    fallback: {
-      en: 'es'
+    routing: {
+      prefixDefaultLocale: showDefaultLang
     }
   }
 })

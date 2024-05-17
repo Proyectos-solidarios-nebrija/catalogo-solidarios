@@ -1,38 +1,53 @@
 ---
-import { languages, defaultLang } from 'src/i18n/ui'
-import { Image } from 'astro:assets'
 import Moon from '@components/icons/Moon.astro'
+import LanguagePicker from '@components/LanguagePicker.astro'
 import logoNebrija from '@images/assets/logoNebrija.png'
+import { defaultLang } from 'src/i18n/ui'
+import { Image } from 'astro:assets'
+import {
+  getLangFromUrl,
+  useTranslatedPath,
+  useTranslations
+} from 'src/i18n/utils'
+import Sun from './icons/Sun.astro'
 
-const currentLang = Astro.currentLocale
+let { pathname } = Astro.url
+const currentLang = getLangFromUrl(Astro.url)
+const t = useTranslations(currentLang)
+const translatePath = useTranslatedPath(currentLang)
+
+if (currentLang !== defaultLang) {
+  // Firt position: empty space
+  // Second position: route lang
+  const [, , ...path] = pathname.split('/')
+  pathname = `/${path.join('/')}`
+}
 ---
 
 <nav>
-  <a href="/" id="link-home">
-    <Image src={logoNebrija} alt="Imagen del logo de nebrija" width={70} />
+  <a href={translatePath('/')} id="link-home">
+    <Image src={logoNebrija} alt={t('alt.logoImg')} width={70} />
   </a>
   <ul>
-    <li><a href="#">Proyectos</a></li>
-    <li><a href="#">Galería</a></li>
-    <li><a href="#">¿Quienes somos?</a></li>
+    <li>
+      <a href={translatePath(`/#${t('nav.projects')}`)}>{t('nav.projects')}</a>
+    </li>
+    <li>
+      <a href={translatePath(`/#${t('nav.galery')}`)}>{t('nav.galery')}</a>
+    </li>
+    <li>
+      <a href={translatePath('/quienes-somos')}>{t('nav.whoWeAre')}</a>
+    </li>
     <li class="config">
       <button id="btn-theme-toggler">
-        <Moon />
+        <span id="theme-toggler-dark-icon">
+          <Moon />
+        </span>
+        <span id="theme-toggler-light-icon">
+          <Sun />
+        </span>
       </button>
-      <div class="languages">
-        {
-          Object.keys(languages).map((lang, idx, arr) => (
-            <>
-              <a
-                href={lang === defaultLang ? '/' : `/${lang}/`}
-                style={currentLang === lang ? 'font-weight: 600;' : ''}>
-                {lang}
-              </a>
-              {idx < arr.length - 1 && <span>|</span>}
-            </>
-          ))
-        }
-      </div>
+      <LanguagePicker />
     </li>
   </ul>
 </nav>
@@ -51,6 +66,16 @@ const currentLang = Astro.currentLocale
     light: 'light'
   }
 
+  const setThemePreference = (theme) => {
+    if (theme === THEMES.dark) {
+      localStorage.setItem(LOCAL_STORAGE_THEME_KEY, THEMES.dark)
+      html.classList.add(THEMES.dark)
+    } else {
+      localStorage.setItem(LOCAL_STORAGE_THEME_KEY, THEMES.light)
+      html.classList.remove(THEMES.dark)
+    }
+  }
+
   // Set up the select theme
   if (selectedTheme === THEMES.dark) {
     html.classList.add('dark')
@@ -60,10 +85,9 @@ const currentLang = Astro.currentLocale
   const systemSettingDark = window.matchMedia('(prefers-color-scheme: dark)')
 
   if (systemSettingDark && !selectedTheme) {
-    localStorage.setItem(LOCAL_STORAGE_THEME_KEY, THEMES.dark)
-    html.classList.add(THEMES.dark)
+    setThemePreference(THEMES.dark)
   } else if (!selectedTheme) {
-    localStorage.setItem(LOCAL_STORAGE_THEME_KEY, THEMES.light)
+    setThemePreference(THEMES.light)
   }
 
   btnThemeToggler.addEventListener('click', () => {
@@ -71,11 +95,9 @@ const currentLang = Astro.currentLocale
     const isDarkTheme = currentTheme === THEMES.dark
 
     if (isDarkTheme) {
-      localStorage.setItem(LOCAL_STORAGE_THEME_KEY, THEMES.light)
-      html.classList.remove(THEMES.dark)
+      setThemePreference(THEMES.light)
     } else {
-      localStorage.setItem(LOCAL_STORAGE_THEME_KEY, THEMES.dark)
-      html.classList.add(THEMES.dark)
+      setThemePreference(THEMES.dark)
     }
   })
 </script>
@@ -132,6 +154,22 @@ const currentLang = Astro.currentLocale
     filter: invert(1);
   }
 
+  html #theme-toggler-light-icon {
+    display: none;
+  }
+
+  html[class='dark'] #theme-toggler-dark-icon {
+    display: none;
+  }
+
+  html[class='dark'] #theme-toggler-light-icon {
+    display: block;
+  }
+
+  html #theme-toggler-dark-icon {
+    display: block;
+  }
+
   button {
     padding: 0;
     display: flex;
@@ -148,15 +186,6 @@ const currentLang = Astro.currentLocale
   #btn-theme-toggler {
     border: none;
     cursor: pointer;
-  }
-
-  .languages {
-    display: flex;
-    gap: 5px;
-  }
-
-  .languages {
-    text-transform: uppercase;
   }
 
   @media (width <= 800px) {
