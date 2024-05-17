@@ -1,0 +1,36 @@
+---
+import { getLangFromUrl, useTranslations } from 'src/i18n/utils'
+import Proyect from './Project.astro'
+
+const currentLang = getLangFromUrl(Astro.url)
+const t = useTranslations(currentLang)
+---
+
+<main>
+  <h2>{t('nav.projects')}</h2>
+  <ol>
+    <Proyect year="2020 - asdasd" title="Lorem ipsum" imgPath="test.jpg" />
+    <Proyect year="2020 - asdasd" title="Lorem ipsum" imgPath="test.jpg" />
+    <Proyect year="2020 - asdasd" title="Lorem ipsum" imgPath="test.jpg" />
+    <Proyect year="2020 - asdasd" title="Lorem ipsum" imgPath="test.jpg" />
+  </ol>
+</main>
+
+<style>
+  h2 {
+    font-size: 8rem;
+    font-weight: 400;
+    text-align: center;
+    margin: 0;
+  }
+
+  ol {
+    padding: 0;
+    position: relative;
+    margin-top: 100px;
+  }
+
+  main {
+    margin-top: 150px;
+  }
+</style>

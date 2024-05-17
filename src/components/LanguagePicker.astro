@@ -1,23 +1,15 @@
 ---
-import { languages, defaultLang } from 'src/i18n/ui'
+import { languages } from 'src/i18n/ui'
 import {
   getLangFromUrl,
   getRouteFromUrl,
   useTranslatedPath
 } from 'src/i18n/utils'
 
-let { pathname } = Astro.url
 const currentLang = getLangFromUrl(Astro.url)
 const translatePath = useTranslatedPath(currentLang)
 
 const route = getRouteFromUrl(Astro.url)
-
-if (currentLang !== defaultLang) {
-  // Firt position: empty space
-  // Second position: route lang
-  const [, , ...path] = pathname.split('/')
-  pathname = `/${path.join('/')}`
-}
 ---
 
 <ul>
