@@ -4,7 +4,11 @@ import { Image } from 'astro:assets'
 import { SOCIAL_ICONS_NAMES } from '../constants/icons'
 import Github from './icons/Github.astro'
 import LinkedIn from './icons/Linkedin.astro'
+import { getLangFromUrl, useTranslations } from 'src/i18n/utils'
 const { name, imgPath, links, isManager } = Astro.props
+
+const currentLang = getLangFromUrl(Astro.url)
+const t = useTranslations(currentLang)
 
 const fullImgPath = `/src/images/members/${imgPath}`
 const images = import.meta.glob<{ default: ImageMetadata }>(
@@ -21,7 +25,12 @@ if (!image) {
 
 <li class="card">
   <div class="card-img">
-    <Image src={image()} alt={`Foto de ${name}`} width={280} height={300} />
+    <Image
+      src={image()}
+      alt={`${t('alt.memberImg')} ${name}`}
+      width={280}
+      height={300}
+    />
     {isManager && <span>Encargado</span>}
   </div>
   <h3>{name}</h3>

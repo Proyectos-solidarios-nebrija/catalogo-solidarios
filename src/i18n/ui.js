@@ -15,7 +15,10 @@ export const ui = {
     'nav.projects': 'Proyectos',
     'nav.galery': 'Galería',
     'nav.whoWeAre': '¿Quiénes somos?',
-    'post.partnerCompanies': ''
+    'post.partnerCompanies': 'Empresas Colaboradoras',
+    'alt.memberImg': 'Foto de',
+    'alt.logoImg': 'Logo de instituto Nebrija de formación profesional',
+    'alt.projectImg': 'Foto del proyecto'
   },
   en: {
     'header.title': 'Solidarity Projects',
@@ -27,6 +30,19 @@ export const ui = {
     'nav.projects': 'Projects',
     'nav.galery': 'Galery',
     'nav.whoWeAre': 'Who we are?',
-    'post.partnerCompanies': ''
+    'post.partnerCompanies': 'Partner Companies',
+    'alt.memberImg': 'Picture of',
+    'alt.logoImg': 'Nebrija vocational training institute logo',
+    'alt.projectImg': 'Project photo'
+  }
+}
+export const routes = {
+  es: {
+    'quienes-somos': 'quienes-somos',
+    proyectos: 'proyectos'
+  },
+  en: {
+    'quienes-somos': 'who-we-are',
+    proyectos: 'projects'
   }
 }

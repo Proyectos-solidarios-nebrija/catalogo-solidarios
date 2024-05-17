@@ -3,7 +3,11 @@ import { Image } from 'astro:assets'
 import type { ImageMetadata } from 'astro'
 import BaseLayout from './BaseLayout.astro'
 import Link from '../components/icons/Link.astro'
+import { getLangFromUrl, useTranslations } from 'src/i18n/utils'
 const { title, imgPath, year, webLink } = Astro.props
+
+const currentLang = getLangFromUrl(Astro.url)
+const t = useTranslations(currentLang)
 
 const fullImgPath = `/src/images/projects/${imgPath}`
 const images = import.meta.glob<{ default: ImageMetadata }>(
@@ -22,7 +26,7 @@ if (!image) {
   <div class="content">
     <header>
       <h2>{year}</h2>
-      <Image src={image()} alt={`Foto del proyecto ${title}`} />
+      <Image src={image()} alt={`${t('alt.projectImg')} ${title}`} />
       <div class="header-title">
         <h1>{title}</h1>
         <a href={webLink} target="_blank">

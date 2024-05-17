@@ -1,8 +1,9 @@
 ---
-import { languages, defaultLang } from 'src/i18n/ui'
-import { Image } from 'astro:assets'
 import Moon from '@components/icons/Moon.astro'
+import LanguagePicker from '@components/LanguagePicker.astro'
 import logoNebrija from '@images/assets/logoNebrija.png'
+import { defaultLang } from 'src/i18n/ui'
+import { Image } from 'astro:assets'
 import {
   getLangFromUrl,
   useTranslatedPath,
@@ -25,7 +26,7 @@ if (currentLang !== defaultLang) {
 
 <nav>
   <a href={translatePath('/')} id="link-home">
-    <Image src={logoNebrija} alt="Imagen del logo de nebrija" width={70} />
+    <Image src={logoNebrija} alt={t('alt.logoImg')} width={70} />
   </a>
   <ul>
     <li>
@@ -34,7 +35,9 @@ if (currentLang !== defaultLang) {
     <li>
       <a href={translatePath(`/#${t('nav.galery')}`)}>{t('nav.galery')}</a>
     </li>
-    <li><a href={translatePath('/quienes-somos')}>{t('nav.whoWeAre')}</a></li>
+    <li>
+      <a href={translatePath('/quienes-somos')}>{t('nav.whoWeAre')}</a>
+    </li>
     <li class="config">
       <button id="btn-theme-toggler">
         <span id="theme-toggler-dark-icon">
@@ -44,20 +47,7 @@ if (currentLang !== defaultLang) {
           <Sun />
         </span>
       </button>
-      <div class="languages">
-        {
-          Object.entries(languages).map(([lang, label], idx, arr) => (
-            <>
-              <a
-                href={translatePath(pathname, lang)}
-                style={currentLang === lang ? 'font-weight: 600;' : ''}>
-                {label}
-              </a>
-              {idx < arr.length - 1 && <span>|</span>}
-            </>
-          ))
-        }
-      </div>
+      <LanguagePicker />
     </li>
   </ul>
 </nav>
@@ -196,15 +186,6 @@ if (currentLang !== defaultLang) {
   #btn-theme-toggler {
     border: none;
     cursor: pointer;
-  }
-
-  .languages {
-    display: flex;
-    gap: 5px;
-  }
-
-  .languages {
-    text-transform: uppercase;
   }
 
   @media (width <= 800px) {
