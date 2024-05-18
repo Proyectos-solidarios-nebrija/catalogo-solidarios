@@ -1,15 +1,24 @@
 ---
+import { Head } from 'astro-capo'
+import { cannonicalURL } from '@constants/seo'
 const { title = 'Proyectos Solidarios' } = Astro.props
 ---
 
-<head>
+<Head>
   <meta charset="utf-8" />
 
   <link rel="icon" type="image/png" href="/images/favicon.png" />
   <meta name="viewport" content="width=device-width" />
   <meta name="generator" content={Astro.generator} />
   <title>{title}</title>
-</head>
+
+  <link rel="sitemap" href="/sitemap-index.xml" />
+  <link rel="canonical" href={cannonicalURL} />
+  <meta
+    name="keywords"
+    content="nebrija, fp, fp nebrija, proyectos solidarios, dam, daw, asir"
+  />
+</Head>
 
 <style is:global>
   @font-face {
