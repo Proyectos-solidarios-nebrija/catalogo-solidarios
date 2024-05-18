@@ -102,4 +102,30 @@ if (!image) {
     width: 500px;
     box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
   }
+
+  @media (width <= 1200px) {
+    li {
+      flex-direction: column;
+      align-items: center;
+      gap: 50px;
+      padding: 0;
+    }
+
+    .circle {
+      display: none;
+    }
+
+    .year-container {
+      display: block;
+      position: relative;
+    }
+
+    .year-container > span {
+      font-size: 5rem;
+    }
+
+    .year-container::before {
+      content: none;
+    }
+  }
 </style>
