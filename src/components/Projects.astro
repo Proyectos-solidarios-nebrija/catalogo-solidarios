@@ -1,38 +1,26 @@
 ---
 import { getLangFromUrl, useTranslations } from 'src/i18n/utils'
 import Proyect from './Project.astro'
+import { getCollection } from 'astro:content'
 
 const currentLang = getLangFromUrl(Astro.url)
 const t = useTranslations(currentLang)
+const projects = await getCollection('proyectos')
 ---
 
 <main>
   <h2>{t('nav.projects')}</h2>
   <ol>
-    <Proyect
-      yearStart="2020"
-      yearEnd="2024"
-      title="Lorem ipsum"
-      imgPath="test.jpg"
-    />
-    <Proyect
-      yearStart="2020"
-      yearEnd="2024"
-      title="Lorem ipsum"
-      imgPath="test.jpg"
-    />
-    <Proyect
-      yearStart="2020"
-      yearEnd="2024"
-      title="Lorem ipsum"
-      imgPath="test.jpg"
-    />
-    <Proyect
-      yearStart="2020"
-      yearEnd="2024"
-      title="Lorem ipsum"
-      imgPath="test.jpg"
-    />
+    {
+      projects.map(({ data }) => (
+        <Proyect
+          yearStart={data.yearStart}
+          yearEnd={data.yearEnd}
+          title={data.title}
+          imgPath={data.imgPath}
+        />
+      ))
+    }
   </ol>
 </main>
 

@@ -1,13 +1,13 @@
 ---
 import MemberCard from './MemberCard.astro'
 import Link from './icons/Link.astro'
-const { year, members } = Astro.props
+const { projectName, members } = Astro.props
 ---
 
 <div class="content container">
-  <div class="container-year">
-    <h2>{year}</h2>
-    <a href={`#${year}`}>
+  <div class="container-projectName">
+    <h2>{projectName}</h2>
+    <a href={`#${projectName}`}>
       <Link />
     </a>
   </div>
@@ -35,7 +35,7 @@ const { year, members } = Astro.props
     font-weight: 400;
   }
 
-  .container-year {
+  .container-projectName {
     display: flex;
     align-items: center;
     gap: 50px;
@@ -43,15 +43,15 @@ const { year, members } = Astro.props
     border-bottom: 1px solid var(--secondary-color);
   }
 
-  .container-year a:hover :global(svg) {
+  .container-projectName a:hover :global(svg) {
     transform: scale(1.1);
   }
 
-  .container-year a:active :global(svg) {
+  .container-projectName a:active :global(svg) {
     transform: scale(0.9);
   }
 
-  .container-year :global(svg) {
+  .container-projectName :global(svg) {
     width: 50px;
     height: 40px;
     opacity: 0;
@@ -60,7 +60,7 @@ const { year, members } = Astro.props
       transform 0.1s ease-in-out;
   }
 
-  .container-year:hover :global(svg) {
+  .container-projectName:hover :global(svg) {
     opacity: 1;
   }
 
@@ -89,11 +89,11 @@ const { year, members } = Astro.props
       width: 250px;
     }
 
-    .container-year {
+    .container-projectName {
       gap: 25px;
     }
 
-    .container-year :global(svg) {
+    .container-projectName :global(svg) {
       width: 30px;
       height: 20px;
     }
