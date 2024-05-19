@@ -18,7 +18,8 @@ export const ui = {
     'post.partnerCompanies': 'Empresas Colaboradoras',
     'alt.memberImg': 'Foto de',
     'alt.logoImg': 'Logo de instituto Nebrija de formación profesional',
-    'alt.projectImg': 'Foto del proyecto'
+    'alt.projectImg': 'Foto del proyecto',
+    'timeline.present': 'Presente'
   },
   en: {
     'header.title': 'Solidarity Projects',
@@ -33,7 +34,8 @@ export const ui = {
     'post.partnerCompanies': 'Partner Companies',
     'alt.memberImg': 'Picture of',
     'alt.logoImg': 'Nebrija vocational training institute logo',
-    'alt.projectImg': 'Project photo'
+    'alt.projectImg': 'Project photo',
+    'timeline.presente': 'Present'
   }
 }
 export const routes = {
