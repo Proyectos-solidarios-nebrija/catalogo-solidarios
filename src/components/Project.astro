@@ -21,6 +21,10 @@ if (!image) {
 ---
 
 <li>
+  <div class="proyect-container">
+    <h3>{title}</h3>
+    <Image src={image()} alt={`${t('alt.projectImg')} ${title}`} />
+  </div>
   <div class="year-container">
     <span
       >{yearStart} - <span class="year-end"
@@ -29,13 +33,14 @@ if (!image) {
     >
     <div class="circle"></div>
   </div>
-  <div class="proyect-container">
-    <h3>{title}</h3>
-    <Image src={image()} alt={`${t('alt.projectImg')} ${title}`} />
-  </div>
 </li>
 
 <style>
+  img {
+    width: 80%;
+    max-width: 100%;
+  }
+
   li {
     position: relative;
     list-style: none;
@@ -107,7 +112,7 @@ if (!image) {
     li {
       flex-direction: column;
       align-items: center;
-      gap: 50px;
+      gap: 15px;
       padding: 0;
     }
 
