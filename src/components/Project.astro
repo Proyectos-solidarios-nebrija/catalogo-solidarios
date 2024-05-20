@@ -1,8 +1,10 @@
 ---
 import { Image } from 'astro:assets'
 import { getLangFromUrl, useTranslations } from 'src/i18n/utils'
+import ChevronRight from './icons/ChevronRight.astro'
 
-const { yearStart, yearEnd, title, isLastProject, imgPath } = Astro.props
+const { yearStart, yearEnd, title, isLastProject, articleLink, imgPath } =
+  Astro.props
 
 const fullImgPath = `/src/images/projects/${imgPath}`
 const images = import.meta.glob<{ default: ImageMetadata }>(
@@ -21,10 +23,15 @@ if (!image) {
 ---
 
 <li>
-  <div class="proyect-container">
-    <h3>{title}</h3>
-    <Image src={image()} alt={`${t('alt.projectImg')} ${title}`} />
-  </div>
+  <a href={articleLink}>
+    <div class="project-container">
+      <h3>{title}</h3>
+      <div class="project-container-image">
+        <Image src={image()} alt={`${t('alt.projectImg')} ${title}`} />
+        <ChevronRight />
+      </div>
+    </div>
+  </a>
   <div class="year-container">
     <span
       >{yearStart} - <span class="year-end"
@@ -41,6 +48,34 @@ if (!image) {
     max-width: 100%;
   }
 
+  a {
+    text-decoration: none;
+    display: block;
+  }
+
+  .year-end {
+    text-transform: lowercase;
+  }
+
+  a:hover .project-container-image :global(svg) {
+    display: block;
+    animation: slide infinite 2s;
+  }
+
+  .project-container-image {
+    display: flex;
+    align-items: center;
+    position: relative;
+  }
+
+  .project-container-image :global(svg) {
+    height: 11rem;
+    width: 11rem;
+    stroke-width: 1;
+    position: absolute;
+    display: none;
+  }
+
   li {
     position: relative;
     list-style: none;
@@ -49,10 +84,6 @@ if (!image) {
     align-items: center;
     gap: 20px;
     padding-bottom: 150px;
-  }
-
-  .year-end {
-    text-transform: lowercase;
   }
 
   .circle {
@@ -85,6 +116,7 @@ if (!image) {
     font-size: 3rem;
     font-style: italic;
     opacity: 0.7;
+    width: 12ch;
   }
 
   h3 {
@@ -94,7 +126,7 @@ if (!image) {
     text-align: center;
   }
 
-  .proyect-container {
+  .project-container {
     display: flex;
     flex-direction: column;
     gap: 25px;
@@ -131,6 +163,18 @@ if (!image) {
 
     .year-container::before {
       content: none;
+    }
+  }
+
+  @keyframes slide {
+    0% {
+      right: -100px;
+      opacity: 1;
+    }
+
+    100% {
+      opacity: 0;
+      right: -125px;
     }
   }
 </style>

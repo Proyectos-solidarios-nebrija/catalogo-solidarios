@@ -1,37 +1,39 @@
 ---
-import type { ImageMetadata } from 'astro'
-import { Image } from 'astro:assets'
+// import type { ImageMetadata } from 'astro'
+// import { Image } from 'astro:assets'
 import { SOCIAL_ICONS_NAMES } from '../constants/icons'
 import Github from './icons/Github.astro'
 import LinkedIn from './icons/Linkedin.astro'
-import { getLangFromUrl, useTranslations } from 'src/i18n/utils'
-const { name, imgPath, links, isManager } = Astro.props
+// import { getLangFromUrl } from 'src/i18n/utils'
+const { name, links, isManager } = Astro.props
+// const { name, imgPath, links, isManager } = Astro.props
 
-const currentLang = getLangFromUrl(Astro.url)
-const t = useTranslations(currentLang)
+// const currentLang = getLangFromUrl(Astro.url)
+// const t = useTranslations(currentLang)
 
-const fullImgPath = `/src/images/members/${imgPath}`
-const images = import.meta.glob<{ default: ImageMetadata }>(
-  '/src/images/members/**/*.{png,jpg,jpeg}'
-)
-const image = images[fullImgPath]
+// const fullImgPath = `/src/images/members/${imgPath}`
+// const images = import.meta.glob<{ default: ImageMetadata }>(
+//   '/src/images/members/**/*.{png,jpg,jpeg}'
+// )
+// const image = images[fullImgPath]
 
-if (!image) {
-  throw new Error(
-    `"${fullImgPath}" does not exist in glob "/src/images/members/**/*.{png,jpg,jpeg}"`
-  )
-}
-console.log(name)
+// TODO: uncomment this
+// if (!image) {
+//   throw new Error(
+//     `"${fullImgPath}" does not exist in glob "/src/images/members/**/*.{png,jpg,jpeg}"`
+//   )
+// }
 ---
 
 <li class="card">
   <div class="card-img">
-    <Image
+    <!-- Uncomment this -->
+    <!-- <Image
       src={image()}
       alt={`${t('alt.memberImg')} ${name}`}
       width={280}
       height={300}
-    />
+    /> -->
     {isManager && <span>Encargado</span>}
   </div>
   <h3>{name}</h3>

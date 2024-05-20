@@ -1,23 +1,35 @@
 ---
-import { getLangFromUrl, useTranslations } from 'src/i18n/utils'
-import Proyect from './Project.astro'
+import {
+  getLangFromUrl,
+  useTranslatedPath,
+  useTranslations
+} from 'src/i18n/utils'
+import Project from './Project.astro'
 import { getCollection } from 'astro:content'
 
 const currentLang = getLangFromUrl(Astro.url)
 const t = useTranslations(currentLang)
-const projects = await getCollection('proyectos')
+const translatePath = useTranslatedPath(currentLang)
+
+const projects = await getCollection('proyectos', ({ id }) =>
+  id.startsWith(`${currentLang}/`)
+)
+
+projects.sort((a, b) => b.data.yearStart - a.data.yearStart) // Sort in descending order
 ---
 
 <main>
-  <h2>{t('nav.projects')}</h2>
+  <h2 id={t('nav.projects')}>{t('nav.projects')}</h2>
   <ol>
     {
-      projects.map(({ data }) => (
-        <Proyect
+      projects.map(({ data, slug }, idx) => (
+        <Project
           yearStart={data.yearStart}
           yearEnd={data.yearEnd}
           title={data.title}
           imgPath={data.imgPath}
+          isLastProject={idx === 0}
+          articleLink={`${translatePath('/proyectos')}/${slug.split('/')[1]}`}
         />
       ))
     }
@@ -45,7 +57,7 @@ const projects = await getCollection('proyectos')
 
   @media (width <= 1200px) {
     ol {
-      gap: 50px;
+      gap: 100px;
     }
   }
 </style>

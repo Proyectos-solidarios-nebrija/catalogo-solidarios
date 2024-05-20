@@ -1,7 +1,7 @@
 ---
 title: "Nebrija's Adventure"
-yearStart: 2023
-yearEnd: 2024
+yearStart: 2022
+yearEnd: 2023
 webLink: 'https://solidarios.nebrijanos.com/'
-imgPath: 'nebrijasadventure.png'
+imgPath: 'logoNebrijasAdventure.png'
 ---
