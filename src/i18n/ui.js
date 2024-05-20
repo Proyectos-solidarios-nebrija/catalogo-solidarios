@@ -18,7 +18,8 @@ export const ui = {
     'alt.logoImg': 'Logo de instituto Nebrija de formación profesional',
     'alt.projectImg': 'Foto del proyecto',
     'meta.desc':
-      'Explora las solidarias que hemos creado en el instituto Nebrija, donde fusionamos educación, entretenimiento y solidaridad para beneficiar a la comunidad.'
+      'Explora las solidarias que hemos creado en el instituto Nebrija, donde fusionamos educación, entretenimiento y solidaridad para beneficiar a la comunidad.',
+    'timeline.present': 'Presente'
   },
   en: {
     'header.title': 'Solidarity Projects',
@@ -33,7 +34,8 @@ export const ui = {
     'alt.logoImg': 'Nebrija vocational training institute logo',
     'alt.projectImg': 'Project photo',
     'meta.desc':
-      'Explore the solidarity activities we have created at Nebrija High School, where we merge education, entertainment and solidarity to benefit the community'
+      'Explore the solidarity activities we have created at Nebrija High School, where we merge education, entertainment and solidarity to benefit the community',
+    'timeline.presente': 'Present'
   }
 }
 export const routes = {
