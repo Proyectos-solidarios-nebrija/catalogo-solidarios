@@ -1,7 +1,11 @@
 ---
 import { Head } from 'astro-capo'
 import { cannonicalURL } from '@constants/seo'
-const { title = 'Proyectos Solidarios' } = Astro.props
+import { getLangFromUrl, useTranslations } from 'src/i18n/utils'
+const currentLang = getLangFromUrl(Astro.url)
+const t = useTranslations(currentLang)
+
+const { title = t('header.title') } = Astro.props
 ---
 
 <Head>
@@ -16,8 +20,9 @@ const { title = 'Proyectos Solidarios' } = Astro.props
   <link rel="canonical" href={cannonicalURL} />
   <meta
     name="keywords"
-    content="nebrija, fp, fp nebrija, proyectos solidarios, dam, daw, asir"
+    content="nebrija, fp, fp nebrija, proyectos solidarios, dam, daw, asir, solidarity projects, metaemocion, nebrijas adventure, 3dom"
   />
+  <meta name="description" content={t('meta.desc')} />
 </Head>
 
 <style is:global>
