@@ -192,10 +192,41 @@
     "yearEnd": "",
     "members": [
       {
-        "name": "",
+        "name": "Francisco Albiar Jimenez",
         "imgPath": "",
-        "links": {}
+        "links": {
+          "linkedin":"https://www.linkedin.com/in/francisco-albiar-jim%C3%A9nez-74a06223a/"
+        }        
+      },
+      {
+        "name": "Miriam González Barrio",
+        "imgPath": "",
+        "links": {
+          "linkedin":"https://www.linkedin.com/in/miriam-gonz%C3%A1lez-barrio-66579321b/"
+        }        
+      },
+      {
+        "name": "Andrés Marin Bellostas",
+        "imgPath": "",
+        "links": {
+          "linkedin":"https://www.linkedin.com/in/andresmarinbellostas/"
+        }        
+      },
+      {
+        "name": "Gabriel Salvatore Costanza Martinez",
+        "imgPath": "",
+        "links": {
+          "linkedin":"https://www.linkedin.com/in/gabrielscm/"
+        }        
+      },
+      {
+        "name": "Jaime Romero Calabrese",
+        "imgPath": "",
+        "links": {
+          "linkedin":"https://www.linkedin.com/in/jaime-romero-calabrese/"
+        }        
       }
+
     ]
   }
 }
