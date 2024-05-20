@@ -2,7 +2,6 @@
 import Moon from '@components/icons/Moon.astro'
 import LanguagePicker from '@components/LanguagePicker.astro'
 import logoNebrija from '@images/assets/logoNebrija.png'
-import { defaultLang } from 'src/i18n/ui'
 import { Image } from 'astro:assets'
 import {
   getLangFromUrl,
@@ -11,17 +10,9 @@ import {
 } from 'src/i18n/utils'
 import Sun from './icons/Sun.astro'
 
-let { pathname } = Astro.url
 const currentLang = getLangFromUrl(Astro.url)
 const t = useTranslations(currentLang)
 const translatePath = useTranslatedPath(currentLang)
-
-if (currentLang !== defaultLang) {
-  // Firt position: empty space
-  // Second position: route lang
-  const [, , ...path] = pathname.split('/')
-  pathname = `/${path.join('/')}`
-}
 ---
 
 <nav>
