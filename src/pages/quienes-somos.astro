@@ -1,8 +1,26 @@
 ---
 import MemberCards from '@components/MemberCards.astro'
 import BaseLayout from '@layouts/BaseLayout.astro'
+import projects from 'src/data/projects.json'
 ---
 
 <BaseLayout>
-  <MemberCards />
+  <div class="projects">
+    {
+      Object.keys(projects).map((project) => (
+        <MemberCards
+          projectName={project}
+          members={projects[project].members}
+        />
+      ))
+    }
+  </div>
 </BaseLayout>
+
+<style>
+  .projects {
+    display: flex;
+    flex-direction: column;
+    gap: 100px;
+  }
+</style>

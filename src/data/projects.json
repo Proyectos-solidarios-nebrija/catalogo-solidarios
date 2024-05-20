@@ -1,0 +1,201 @@
+{
+  "Met@emoción": {
+    "imgPath": "",
+    "yearStart": "",
+    "yearEnd": "",
+    "members": [
+      {
+        "name": "Pablo Hermida Gómez",
+        "imgPath": "",
+        "links": {
+          "github": "https://github.com/7FULL",
+          "linkedin": "https://www.linkedin.com/in/pablo-hermida-gómez"
+        }
+      },
+      {
+        "name": "Diego Arroyo Portela",
+        "imgPath": "",
+        "links": {
+          "linkedin": "https://www.linkedin.com/in/diego-arroyo-portela-b2318a278/"
+        }
+      },
+      {
+        "name": "Hugo López Fernández",
+        "imgPath": "",
+        "links": {
+          "linkedin": "https://www.linkedin.com/in/hugo-l%C3%B3pez-fern%C3%A1ndez-b208a717b/"
+        }
+      },
+      {
+        "name": "Verónica de Antonio Filippova",
+        "imgPath": "",
+        "links": {
+          "linkedin": "https://www.linkedin.com/in/ver%C3%B3nica-de-antonio-filippova-491306274/"
+        }
+      },
+      {
+        "name": "Luna Arteaga Toro",
+        "imgPath": "",
+        "links": {
+          "linkedin": "https://www.linkedin.com/in/luna-arteaga-toro-921745222/"
+        }
+      },
+      {
+        "name": "Luis Alfonso Luengo Pascual",
+        "imgPath": "",
+        "links": {
+          "linkedin": "https://www.linkedin.com/in/luis-alfonso-luengo-pascual-8167a3223/"
+        }
+      },
+      {
+        "name": "Christian Milanés Rodríguez",
+        "imgPath": "",
+        "links": {
+          "linkedin": "https://www.linkedin.com/in/christianmilnesrodriguez/"
+        }
+      },
+      {
+        "name": "Juan Burillo Retuerto",
+        "imgPath": "",
+        "links": {
+          "linkedin": "https://www.linkedin.com/in/juan-burillo/"
+        }
+      },
+      {
+        "name": "Daniel Sánchez De Arribas",
+        "imgPath": "",
+        "links": {
+          "linkedin": "https://www.linkedin.com/in/dsancheza/"
+        }
+      },
+      {
+        "name": "Marina Esteban Salvador",
+        "imgPath": "",
+        "links": {
+          "linkedin": "https://www.linkedin.com/in/marinaesteban/"
+        }
+      }
+    ]
+  },
+  "Nebrija's Adventure": {
+    "imgPath": "",
+    "yearStart": "",
+    "yearEnd": "",
+    "members": [
+      {
+        "name": "Pablo Hermida Gómez",
+        "imgPath": "",
+        "links": {
+          "github": "https://github.com/7FULL",
+          "linkedin": "https://www.linkedin.com/in/pablo-hermida-gómez"
+        }
+      },
+      {
+        "name": "Juan David Nova Soto",
+        "imgPath": "",
+        "links": {
+          "linkedin": "https://www.linkedin.com/in/juan-david-nova-soto/"
+        }
+      },
+      {
+        "name": "Hugo López Fernández",
+        "imgPath": "",
+        "links": {
+          "linkedin": "https://www.linkedin.com/in/hugo-l%C3%B3pez-fern%C3%A1ndez-b208a717b/"
+        }
+      },
+      {
+        "name": "Daniel Martínez Huete",
+        "imgPath": "",
+        "links": {
+          "linkedin": "https://www.linkedin.com/in/daniel-martinez-huete-166416277/"
+        }
+      },
+      {
+        "name": "Alonso Calleja Garces",
+        "imgPath": "",
+        "links": {
+          "linkedin": "https://www.linkedin.com/in/alonso-calleja-garces/"
+        }
+      },
+      {
+        "name": "Diego Arroyo Portela",
+        "imgPath": "",
+        "links": {
+          "linkedin": "https://www.linkedin.com/in/diego-arroyo-portela-b2318a278/"
+        }
+      },
+      {
+        "name": "Jose Javier Suárez Jaramillo",
+        "imgPath": "",
+        "links": {}
+      },
+      {
+        "name": "Luis Alfonso Luengo Pascual",
+        "imgPath": "",
+        "links": {
+          "linkedin": "https://www.linkedin.com/in/luis-alfonso-luengo-pascual-8167a3223/"
+        }
+      },
+      {
+        "name": "Álvaro Diago de Aguilar",
+        "imgPath": "",
+        "links": {
+          "linkedin": "https://www.linkedin.com/in/azdev/"
+        }
+      },
+      {
+        "name": "Luna Arteaga Toro",
+        "imgPath": "",
+        "links": {
+          "linkedin": "https://www.linkedin.com/in/luna-arteaga-toro-921745222/"
+        }
+      },
+      {
+        "name": "Jaime González Belaire",
+        "imgPath": "",
+        "links": {
+          "linkedin": "https://www.linkedin.com/in/jaime-gonbel/"
+        }
+      },
+      {
+        "name": "Verónica de Antonio Filippova",
+        "imgPath": "",
+        "links": {
+          "linkedin": "https://www.linkedin.com/in/ver%C3%B3nica-de-antonio-filippova-491306274/"
+        }
+      },
+      {
+        "name": "Jesús Sanchez Nadela",
+        "imgPath": "",
+        "links": {
+          "linkedin": "https://www.linkedin.com/in/jes%C3%BAs-s%C3%A1nchez-nadela-823121274/"
+        }
+      },
+      {
+        "name": "Javier Pardo Martínez",
+        "imgPath": "",
+        "links": {}
+      },
+      {
+        "name": "Johannes Isturiz Riccardi",
+        "imgPath": "",
+        "links": {
+          "linkedin": "https://www.linkedin.com/in/johannes-isturiz-riccardi-53754264/"
+        }
+      }
+    ]
+  },
+  "3Dom": {
+    "imgPath": "",
+    "yearStart": "",
+    "yearEnd": "",
+    "members": [
+      {
+        "name": "",
+        "imgPath": "",
+        "links": {}
+      }
+    ]
+  }
+}
