@@ -17,7 +17,8 @@ export const ui = {
     'nav.whoWeAre': '¿Quiénes somos?',
     'post.partnerCompanies': 'Empresas Colaboradoras',
     'alt.memberImg': 'Foto de',
-    'alt.logoImg': 'Logo de instituto Nebrija de formación profesional',
+    'alt.nebrijaLogoImg': 'Logo de instituto Nebrija de formación profesional',
+    'alt.solidariosLogoImg': 'Logo de proyectos solidarios',
     'alt.projectImg': 'Foto del proyecto',
     'timeline.present': 'Presente'
   },
@@ -33,7 +34,8 @@ export const ui = {
     'nav.whoWeAre': 'Who we are?',
     'post.partnerCompanies': 'Partner Companies',
     'alt.memberImg': 'Picture of',
-    'alt.logoImg': 'Nebrija vocational training institute logo',
+    'alt.nebrijaLogoImg': 'Nebrija vocational training institute logo',
+    'alt.solidariosLogoImg': 'Solidarity projects logo',
     'alt.projectImg': 'Project photo',
     'timeline.presente': 'Present'
   }
