@@ -1,12 +1,12 @@
 ---
 import Navbar from '@components/Navbar.astro'
-import Head from '../components/Head.astro'
+import CommonHead from '@components/CommonHead.astro'
 import Footer from '@components/Footer.astro'
 const { lang, title } = Astro.props
 ---
 
 <html lang={lang}>
-  <Head title={title} />
+  <CommonHead title={title} />
   <body>
     <div class="page-width">
       <Navbar />
