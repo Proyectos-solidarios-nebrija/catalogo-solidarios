@@ -19,7 +19,7 @@ export const ui = {
     'alt.solidariosLogoImg': 'Logo de proyectos solidarios',
     'alt.projectImg': 'Foto del proyecto',
     'meta.desc':
-      'Explora las solidarias que hemos creado en el instituto Nebrija, donde fusionamos educación, entretenimiento y solidaridad para beneficiar a la comunidad.',
+      'Explora las iniciativas solidarias que hemos creado en el instituto Nebrija, donde fusionamos educación, entretenimiento y solidaridad para beneficiar a la comunidad.',
     'timeline.present': 'Presente'
   },
   en: {
