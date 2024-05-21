@@ -51,23 +51,19 @@ const translatePath = useTranslatedPath(currentLang)
     light: 'light'
   }
 
-  document.addEventListener('astro:page-load', () => {
-    const btnThemeToggler = document.querySelector(
-      '#btn-theme-toggler'
-    ) as HTMLButtonElement
-
-    const html = document.querySelector('html') as HTMLElement
-    const selectedTheme = localStorage.getItem(LOCAL_STORAGE_THEME_KEY)
-
-    const setThemePreference = (theme) => {
-      if (theme === THEMES.dark) {
-        localStorage.setItem(LOCAL_STORAGE_THEME_KEY, THEMES.dark)
-        html.classList.add(THEMES.dark)
-      } else {
-        localStorage.setItem(LOCAL_STORAGE_THEME_KEY, THEMES.light)
-        html.classList.remove(THEMES.dark)
-      }
+  const setThemePreference = (html, theme) => {
+    if (theme === THEMES.dark) {
+      localStorage.setItem(LOCAL_STORAGE_THEME_KEY, THEMES.dark)
+      html.classList.add(THEMES.dark)
+    } else {
+      localStorage.setItem(LOCAL_STORAGE_THEME_KEY, THEMES.light)
+      html.classList.remove(THEMES.dark)
     }
+  }
+
+  document.addEventListener('astro:after-swap', () => {
+    const selectedTheme = localStorage.getItem(LOCAL_STORAGE_THEME_KEY)
+    const html = document.querySelector('html') as HTMLElement
 
     // Set up the select theme
     if (selectedTheme === THEMES.dark) {
@@ -78,19 +74,27 @@ const translatePath = useTranslatedPath(currentLang)
     const systemSettingDark = window.matchMedia('(prefers-color-scheme: dark)')
 
     if (systemSettingDark && !selectedTheme) {
-      setThemePreference(THEMES.dark)
+      setThemePreference(html, THEMES.dark)
     } else if (!selectedTheme) {
-      setThemePreference(THEMES.light)
+      setThemePreference(html, THEMES.light)
     }
+  })
+
+  document.addEventListener('astro:page-load', () => {
+    const btnThemeToggler = document.querySelector(
+      '#btn-theme-toggler'
+    ) as HTMLButtonElement
+
+    const html = document.querySelector('html') as HTMLElement
 
     btnThemeToggler.addEventListener('click', () => {
       const currentTheme = localStorage.getItem(LOCAL_STORAGE_THEME_KEY)
       const isDarkTheme = currentTheme === THEMES.dark
 
       if (isDarkTheme) {
-        setThemePreference(THEMES.light)
+        setThemePreference(html, THEMES.light)
       } else {
-        setThemePreference(THEMES.dark)
+        setThemePreference(html, THEMES.dark)
       }
     })
   })
