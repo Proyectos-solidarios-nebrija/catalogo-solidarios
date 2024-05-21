@@ -58,7 +58,8 @@
         "name": "Juan Burillo Retuerto",
         "imgPath": "",
         "links": {
-          "linkedin": "https://www.linkedin.com/in/juan-burillo/"
+          "linkedin": "https://www.linkedin.com/in/juan-burillo/",
+          "github":"https://github.com/juanburillo"
         }
       },
       {
@@ -225,7 +226,28 @@
         "links": {
           "linkedin":"https://www.linkedin.com/in/jaime-romero-calabrese/"
         }        
-      }
+      },
+      {
+        "name": "Guillermo Alonso Delgado",
+        "imgPath": "",
+        "links": {
+          "linkedin":"https://www.linkedin.com/in/guillermojad/"
+        }        
+      },
+      {
+        "name": "Raul Guirao Requena",
+        "imgPath": "",
+        "links": {
+          "linkedin":"https://www.linkedin.com/in/raulguiraorequena/"
+        }        
+      },
+      {
+        "name": "Andrés Sanchez Ramos Gabaldon",
+        "imgPath": "",
+        "links": {
+          "linkedin":"https://www.linkedin.com/in/andr%C3%A9s-sanchez-ramos-gabaldon/"
+        }        
+      },
 
     ]
   }
