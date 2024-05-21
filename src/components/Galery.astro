@@ -147,6 +147,17 @@ const t = useTranslations(currentLang)
   .reverse.uncomplete-last-photos-3-2 {
     grid-column: 1 / span 4 !important;
   }
+
+  @media (width <= 800px) {
+    #photos {
+      display: flex;
+      flex-direction: column;
+    }
+
+    #photos a {
+      height: 300px;
+    }
+  }
 </style>
 
 <script>
