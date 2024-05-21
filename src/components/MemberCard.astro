@@ -85,6 +85,10 @@ if (!image) {
     align-self: stretch;
   }
 
+  .card:has(:not(:nth-child(3))) {
+    justify-content: normal;
+  }
+
   .card-img img {
     object-fit: cover;
     width: 100%;
