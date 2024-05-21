@@ -1,0 +1,62 @@
+---
+import logoNebrija from '@images/assets/logoNebrija.png'
+import logoSolidarios from '@images/assets/logoSolidarios.png'
+import { Image } from 'astro:assets'
+import { getLangFromUrl, useTranslations } from 'src/i18n/utils'
+
+const currentLang = getLangFromUrl(Astro.url)
+const t = useTranslations(currentLang)
+---
+
+<footer>
+  <Image src={logoNebrija} alt={t('alt.nebrijaLogoImg')} id="imgNebrija" />
+  <div class="vertical-line"></div>
+  <Image
+    src={logoSolidarios}
+    alt={t('alt.solidariosLogoImg')}
+    id="imgSolidarios"
+  />
+</footer>
+
+<style>
+  footer {
+    padding: 10px 0;
+    margin-top: 100px;
+    display: flex;
+    gap: 10px;
+    align-items: center;
+    justify-content: center;
+    background-color: #00000005;
+  }
+
+  html[class='dark'] footer {
+    background-color: #00000026;
+  }
+
+  .vertical-line {
+    padding: 35px 0;
+    margin: 0 20px;
+    width: 1px;
+    background-color: var(--secondary-color);
+  }
+
+  img {
+    height: 10rem;
+    width: auto;
+  }
+
+  html[class='dark'] #imgNebrija {
+    filter: invert(1);
+  }
+
+  #imgSolidarios {
+    border-radius: 15px;
+  }
+
+  @media (width <= 800px) {
+    .vertical-line {
+      padding: 35px 0;
+      margin: 0 10px;
+    }
+  }
+</style>

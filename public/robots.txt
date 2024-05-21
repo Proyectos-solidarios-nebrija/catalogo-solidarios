@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://proyectos-solidarios.nebrijanos.com/sitemap-index.xml

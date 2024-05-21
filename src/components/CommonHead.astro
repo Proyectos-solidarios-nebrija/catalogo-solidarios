@@ -1,0 +1,26 @@
+---
+import { Head } from 'astro-capo'
+import { cannonicalURL } from '@constants/seo'
+import { getLangFromUrl, useTranslations } from 'src/i18n/utils'
+const currentLang = getLangFromUrl(Astro.url)
+const t = useTranslations(currentLang)
+
+const { title = t('header.title') } = Astro.props
+---
+
+<Head>
+  <meta charset="utf-8" />
+
+  <link rel="icon" type="image/png" href="/images/favicon.png" />
+  <meta name="viewport" content="width=device-width" />
+  <meta name="generator" content={Astro.generator} />
+  <title>{title}</title>
+
+  <link rel="sitemap" href="/sitemap-index.xml" />
+  <link rel="canonical" href={cannonicalURL} />
+  <meta
+    name="keywords"
+    content="nebrija, fp, fp nebrija, proyectos solidarios, dam, daw, asir, solidarity projects, metaemocion, nebrijas adventure, 3dom"
+  />
+  <meta name="description" content={t('meta.desc')} />
+</Head>
