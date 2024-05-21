@@ -16,8 +16,10 @@ const t = useTranslations(currentLang)
   <h2 id={t('nav.galery')}>{t('nav.galery')}</h2>
   <div id="photos">
     {
-      Array.from({ length: 13 }).map((_, idx, arr) => (
+      Array.from({ length: 10 }).map((_, idx, arr) => (
         <a
+          data-pswp-width={test.width}
+          data-pswp-height={test.height}
           href={test.src}
           class={`${idx % 8 >= 4 ? '' : 'reverse'} ${arr.length % 4 !== 0 && arr.length - 1 - idx < arr.length % 4 ? `uncomplete-last-photos-${arr.length % 4}-${idx % 4}` : ''}`}>
           <Image src={test} alt="smth" />
@@ -53,6 +55,22 @@ const t = useTranslations(currentLang)
     display: grid;
     grid-template-columns: repeat(10, 1fr);
     grid-auto-rows: 140px;
+  }
+
+  a {
+    transition:
+      filter 0.2s ease-in-out,
+      transform 0.2s ease-in-out;
+    cursor: zoom-in;
+  }
+
+  a:hover {
+    transform: scale(1.05);
+    filter: drop-shadow(rgba(0, 0, 0, 0.2) 0px 5px 15px);
+  }
+
+  html[class='dark'] a:hover {
+    filter: drop-shadow(rgba(99, 99, 99, 0.2) 0px 5px 15px);
   }
 
   a:nth-child(2n) {
@@ -99,20 +117,23 @@ const t = useTranslations(currentLang)
     grid-column: 5 / span 6;
   }
 
+  .uncomplete-last-photos-1-0,
+  .uncomplete-last-photos-2-0,
+  .uncomplete-last-photos-2-1 {
+    height: 300px !important;
+  }
+
   .uncomplete-last-photos-1-0 {
-    height: 300px;
     width: auto;
     grid-column: 1 / span 10 !important;
   }
 
   .uncomplete-last-photos-2-0 {
-    height: 300px !important;
     grid-row: span 2;
     grid-column: 1 / span 5 !important;
   }
 
   .uncomplete-last-photos-2-1 {
-    height: 300px !important;
     grid-row: span 2;
     grid-column: 6 / span 5 !important;
   }
@@ -134,7 +155,8 @@ const t = useTranslations(currentLang)
   const lightbox = new PhotoSwipeLightbox({
     gallery: '#photos',
     children: 'a',
-    pswpModule: () => import('photoswipe')
+    pswpModule: () => import('photoswipe'),
+    wheelToZoom: true
   })
 
   lightbox.init()
