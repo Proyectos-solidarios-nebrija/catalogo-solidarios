@@ -1,6 +1,6 @@
 ---
 import { getLangFromUrl, useTranslations } from 'src/i18n/utils'
-import test from '@images/galery/test.jpg'
+import test from '@images/gallery/test.jpg'
 import { Image } from 'astro:assets'
 import 'photoswipe/style.css'
 
@@ -8,12 +8,12 @@ const currentLang = getLangFromUrl(Astro.url)
 const t = useTranslations(currentLang)
 
 // const images = import.meta.glob<{ default: ImageMetadata }>(
-//   '/src/images/galery/**/*.{png,jpg,jpeg}'
+//   '/src/images/gallery/**/*.{png,jpg,jpeg}'
 // )
 ---
 
 <section class="content">
-  <h2 id={t('nav.galery')}>{t('nav.galery')}</h2>
+  <h2 id={t('nav.gallery')}>{t('nav.gallery')}</h2>
   <div id="photos">
     {
       Array.from({ length: 10 }).map((_, idx, arr) => (
@@ -31,7 +31,7 @@ const t = useTranslations(currentLang)
 
 <style>
   section {
-    margin-top: 150px;
+    margin-top: 100px;
   }
 
   h2 {
