@@ -1,0 +1,81 @@
+---
+import { ViewTransitions } from 'astro:transitions'
+const { title = 'Proyectos Solidarios' } = Astro.props
+---
+
+<head>
+  <meta charset="utf-8" />
+
+  <link rel="icon" type="image/png" href="/images/favicon.png" />
+  <meta name="viewport" content="width=device-width" />
+  <meta name="generator" content={Astro.generator} />
+  <title>{title}</title>
+
+  <ViewTransitions />
+</head>
+
+<style is:global>
+  @font-face {
+    font-family: 'Montserrat';
+    src: url('/fonts/Montserrat-VariableFont_wght.woff2') format('woff2');
+    font-style: normal;
+  }
+
+  @font-face {
+    font-family: 'Montserrat';
+    src: url('/fonts/Montserrat-Italic-VariableFont_wght.woff2') format('woff2');
+    font-style: italic;
+  }
+
+  * {
+    box-sizing: border-box;
+  }
+
+  :root {
+    --primary-color: #eeeeee;
+    --secondary-color: #31363f;
+  }
+
+  .dark:root {
+    --primary-color: #222324;
+    --secondary-color: #fff6e0;
+  }
+
+  .content {
+    max-width: 950px;
+    width: 90%;
+    margin: 0 auto;
+  }
+
+  html {
+    font-family: 'Montserrat', Arial, Helvetica, sans-serif;
+    font-size: 6px;
+    scroll-behavior: smooth;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6,
+  p,
+  span,
+  a,
+  svg {
+    color: var(--secondary-color);
+  }
+
+  body {
+    background-color: var(--primary-color);
+    margin: 0 auto;
+    max-width: 1200px;
+    width: 90%;
+  }
+
+  @media (width <= 800px) {
+    html {
+      font-size: 5px;
+    }
+  }
+</style>

@@ -81,7 +81,7 @@ const t = useTranslations(lang)
   .header-content-scroll :global(svg) {
     width: 8rem;
     height: 8rem;
-    animation: falling infinite 2s;
+    animation: fall infinite 2s;
   }
 
   @media (width <= 800px) {
@@ -94,7 +94,7 @@ const t = useTranslations(lang)
     }
   }
 
-  @keyframes falling {
+  @keyframes fall {
     0% {
       transform: translateY(0px);
       opacity: 1;

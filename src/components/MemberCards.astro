@@ -6,7 +6,7 @@ const { projectName, members } = Astro.props
 
 <div class="content container">
   <div class="container-projectName">
-    <h2>{projectName}</h2>
+    <h2 id={projectName}>{projectName}</h2>
     <a href={`#${projectName}`}>
       <Link />
     </a>
@@ -52,8 +52,8 @@ const { projectName, members } = Astro.props
   }
 
   .container-projectName :global(svg) {
-    width: 50px;
-    height: 40px;
+    width: 6rem;
+    height: 6rem;
     opacity: 0;
     transition:
       opacity 0.1s ease-in,
@@ -91,11 +91,6 @@ const { projectName, members } = Astro.props
 
     .container-projectName {
       gap: 25px;
-    }
-
-    .container-projectName :global(svg) {
-      width: 30px;
-      height: 20px;
     }
 
     .container {

@@ -8,16 +8,17 @@ export async function getStaticPaths() {
   )
 
   const paths = pages.map((page) => {
-    const [lang, ...slug] = page.slug.split('/')
+    const [, ...slug] = page.slug.split('/')
     return { params: { slug: slug.join('/') || undefined }, props: page }
   })
   return paths
 }
 
 const page = Astro.props
+const { title, imgPath, yearStart, yearEnd } = page.data
 const { Content } = await page.render()
 ---
 
-<BlogLayout {...page.data}>
+<BlogLayout title={title} imgPath={imgPath} year={`${yearStart}/${yearEnd}`}>
   <Content />
 </BlogLayout>

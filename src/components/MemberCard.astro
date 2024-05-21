@@ -54,6 +54,8 @@ if (!image) {
   h3 {
     font-weight: 400;
     font-size: 24px;
+    margin: 0;
+    text-wrap: pretty;
   }
 
   .card-links :global(svg) {
@@ -75,10 +77,12 @@ if (!image) {
   }
 
   .card {
+    justify-content: space-between;
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: center;
+    gap: 20px;
+    align-self: stretch;
   }
 
   .card-img img {
@@ -118,6 +122,5 @@ if (!image) {
     display: flex;
     flex-direction: row;
     list-style: none;
-    align-items: center;
   }
 </style>

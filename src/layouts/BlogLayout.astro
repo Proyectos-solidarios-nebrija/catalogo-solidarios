@@ -25,10 +25,14 @@ if (!image) {
 <BaseLayout title={`${t('header.title')} | ${title}`}>
   <div class="content">
     <header>
-      <h2>{year}</h2>
-      <Image src={image()} alt={`${t('alt.projectImg')} ${title}`} />
+      <h2 transition:name={`project-year-${title}`}>{year}</h2>
+      <Image
+        src={image()}
+        alt={`${t('alt.projectImg')} ${title}`}
+        transition:name={`project-img-${title}`}
+      />
       <div class="header-title">
-        <h1>{title}</h1>
+        <h1 transition:name={`project-title-${title}`}>{title}</h1>
         <a href={webLink} target="_blank">
           <Link />
         </a>
