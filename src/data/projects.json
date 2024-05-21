@@ -196,7 +196,8 @@
         "name": "Francisco Albiar Jimenez",
         "imgPath": "",
         "links": {
-          "linkedin":"https://www.linkedin.com/in/francisco-albiar-jim%C3%A9nez-74a06223a/"
+          "linkedin":"https://www.linkedin.com/in/francisco-albiar-jim%C3%A9nez-74a06223a/",
+          "github":""
         }        
       },
       {
@@ -246,6 +247,13 @@
         "imgPath": "",
         "links": {
           "linkedin":"https://www.linkedin.com/in/andr%C3%A9s-sanchez-ramos-gabaldon/"
+        }        
+      },
+      {
+        "name": "Martin Vilasanchez Freijomil",
+        "imgPath": "",
+        "links": {
+          "linkedin":"https://www.linkedin.com/in/mvilasanchezf/"
         }        
       }
 
