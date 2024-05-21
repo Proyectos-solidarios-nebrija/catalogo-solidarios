@@ -16,8 +16,10 @@ const t = useTranslations(currentLang)
   <h2 id={t('nav.galery')}>{t('nav.galery')}</h2>
   <div id="photos">
     {
-      Array.from({ length: 100 }).map((_, idx) => (
-        <a href={test.src} class={idx % 8 < 4 ? '' : 'reverse'}>
+      Array.from({ length: 13 }).map((_, idx, arr) => (
+        <a
+          href={test.src}
+          class={`${idx % 8 >= 4 ? '' : 'reverse'} ${arr.length % 4 !== 0 && arr.length - 1 - idx < arr.length % 4 ? `uncomplete-last-photos-${arr.length % 4}-${idx % 4}` : ''}`}>
           <Image src={test} alt="smth" />
         </a>
       ))
@@ -97,10 +99,32 @@ const t = useTranslations(currentLang)
     grid-column: 5 / span 6;
   }
 
-  a:nth-last-child(1):nth-child(odd) {
-    width: auto;
+  .uncomplete-last-photos-1-0 {
     height: 300px;
-    grid-column: 1 / 11;
+    width: auto;
+    grid-column: 1 / span 10 !important;
+  }
+
+  .uncomplete-last-photos-2-0 {
+    height: 300px !important;
+    grid-row: span 2;
+    grid-column: 1 / span 5 !important;
+  }
+
+  .uncomplete-last-photos-2-1 {
+    height: 300px !important;
+    grid-row: span 2;
+    grid-column: 6 / span 5 !important;
+  }
+
+  .uncomplete-last-photos-3-1,
+  .uncomplete-last-photos-3-2 {
+    grid-column: 7 / span 4 !important;
+  }
+
+  .reverse.uncomplete-last-photos-3-1,
+  .reverse.uncomplete-last-photos-3-2 {
+    grid-column: 1 / span 4 !important;
   }
 </style>
 
@@ -112,5 +136,6 @@ const t = useTranslations(currentLang)
     children: 'a',
     pswpModule: () => import('photoswipe')
   })
+
   lightbox.init()
 </script>
