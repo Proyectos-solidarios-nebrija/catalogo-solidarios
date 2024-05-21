@@ -145,6 +145,10 @@ if (!image) {
   }
 
   @media (width <= 1200px) {
+    a:hover .project-container-image :global(svg) {
+      display: none;
+    }
+
     li {
       flex-direction: column;
       align-items: center;
