@@ -25,15 +25,19 @@ if (!image) {
 <li>
   <a href={articleLink}>
     <div class="project-container">
-      <h3>{title}</h3>
+      <h3 transition:name={`project-title-${title}`}>{title}</h3>
       <div class="project-container-image">
-        <Image src={image()} alt={`${t('alt.projectImg')} ${title}`} />
+        <Image
+          src={image()}
+          alt={`${t('alt.projectImg')} ${title}`}
+          transition:name={`project-img-${title}`}
+        />
         <ChevronRight />
       </div>
     </div>
   </a>
   <div class="year-container">
-    <span
+    <span transition:name={`project-year-${title}`}
       >{yearStart} - <span class="year-end"
         >{isLastProject ? t('timeline.present') : yearEnd}</span
       ></span

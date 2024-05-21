@@ -50,7 +50,6 @@ const translatePath = useTranslatedPath(currentLang)
 
   const html = document.querySelector('html') as HTMLElement
   const LOCAL_STORAGE_THEME_KEY = 'theme'
-  const selectedTheme = localStorage.getItem(LOCAL_STORAGE_THEME_KEY)
 
   const THEMES = {
     dark: 'dark',
@@ -67,29 +66,33 @@ const translatePath = useTranslatedPath(currentLang)
     }
   }
 
-  // Set up the select theme
-  if (selectedTheme === THEMES.dark) {
-    html.classList.add('dark')
-  }
+  document.addEventListener('astro:page-load', () => {
+    const selectedTheme = localStorage.getItem(LOCAL_STORAGE_THEME_KEY)
 
-  // Config the preferred theme
-  const systemSettingDark = window.matchMedia('(prefers-color-scheme: dark)')
-
-  if (systemSettingDark && !selectedTheme) {
-    setThemePreference(THEMES.dark)
-  } else if (!selectedTheme) {
-    setThemePreference(THEMES.light)
-  }
-
-  btnThemeToggler.addEventListener('click', () => {
-    const currentTheme = localStorage.getItem(LOCAL_STORAGE_THEME_KEY)
-    const isDarkTheme = currentTheme === THEMES.dark
-
-    if (isDarkTheme) {
-      setThemePreference(THEMES.light)
-    } else {
-      setThemePreference(THEMES.dark)
+    // Set up the select theme
+    if (selectedTheme === THEMES.dark) {
+      html.classList.add('dark')
     }
+
+    // Config the preferred theme
+    const systemSettingDark = window.matchMedia('(prefers-color-scheme: dark)')
+
+    if (systemSettingDark && !selectedTheme) {
+      setThemePreference(THEMES.dark)
+    } else if (!selectedTheme) {
+      setThemePreference(THEMES.light)
+    }
+
+    btnThemeToggler.addEventListener('click', () => {
+      const currentTheme = localStorage.getItem(LOCAL_STORAGE_THEME_KEY)
+      const isDarkTheme = currentTheme === THEMES.dark
+
+      if (isDarkTheme) {
+        setThemePreference(THEMES.light)
+      } else {
+        setThemePreference(THEMES.dark)
+      }
+    })
   })
 </script>
 

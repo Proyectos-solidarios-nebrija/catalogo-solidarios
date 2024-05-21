@@ -68,6 +68,7 @@
         "name": "Daniel Sánchez De Arribas",
         "imgPath": "daniel_sanchez_de_arribas.jpg",
         "links": {
+          "github": "https://github.com/Sylk0x",
           "linkedin": "https://www.linkedin.com/in/dsancheza/"
         }
       },
@@ -215,7 +216,6 @@
         "name": "Andrés Marin Bellostas",
         "imgPath": "andres_marin_bellostas.jpg",
         "links": {
-          "github": "https://github.com/AndresNebrijano",
           "linkedin": "https://www.linkedin.com/in/andresmarinbellostas/"
         }
       },
@@ -260,8 +260,8 @@
       {
         "name": "Andrés Sanchez Ramos Gabaldon",
         "imgPath": "jaime_romero_calabrese.jpg",
-        "todo": "cambiar",
         "links": {
+          "github": "https://github.com/AndresNebrijano",
           "linkedin": "https://www.linkedin.com/in/andr%C3%A9s-sanchez-ramos-gabaldon/"
         }
       }
