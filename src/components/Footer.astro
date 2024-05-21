@@ -1,6 +1,6 @@
 ---
-import LogoNebrija from '@images/assets/logoNebrija.png'
-import LogoSolidarios from '@images/assets/logoSolidarios.png'
+import logoNebrija from '@images/assets/logoNebrija.png'
+import logoSolidarios from '@images/assets/logoSolidarios.png'
 import { Image } from 'astro:assets'
 import { getLangFromUrl, useTranslations } from 'src/i18n/utils'
 
@@ -9,10 +9,10 @@ const t = useTranslations(currentLang)
 ---
 
 <footer>
-  <Image src={LogoNebrija} alt={t('alt.nebrijaLogoImg')} id="imgNebrija" />
+  <Image src={logoNebrija} alt={t('alt.nebrijaLogoImg')} id="imgNebrija" />
   <div class="vertical-line"></div>
   <Image
-    src={LogoSolidarios}
+    src={logoSolidarios}
     alt={t('alt.solidariosLogoImg')}
     id="imgSolidarios"
   />

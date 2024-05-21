@@ -1,0 +1,174 @@
+---
+import { getLangFromUrl, useTranslations } from 'src/i18n/utils'
+import test from '@images/galery/test.jpg'
+import { Image } from 'astro:assets'
+import 'photoswipe/style.css'
+
+const currentLang = getLangFromUrl(Astro.url)
+const t = useTranslations(currentLang)
+
+// const images = import.meta.glob<{ default: ImageMetadata }>(
+//   '/src/images/galery/**/*.{png,jpg,jpeg}'
+// )
+---
+
+<section class="content">
+  <h2 id={t('nav.galery')}>{t('nav.galery')}</h2>
+  <div id="photos">
+    {
+      Array.from({ length: 10 }).map((_, idx, arr) => (
+        <a
+          data-pswp-width={test.width}
+          data-pswp-height={test.height}
+          href={test.src}
+          class={`${idx % 8 >= 4 ? '' : 'reverse'} ${arr.length % 4 !== 0 && arr.length - 1 - idx < arr.length % 4 ? `uncomplete-last-photos-${arr.length % 4}-${idx % 4}` : ''}`}>
+          <Image src={test} alt="smth" />
+        </a>
+      ))
+    }
+  </div>
+</section>
+
+<style>
+  section {
+    margin-top: 150px;
+  }
+
+  h2 {
+    font-size: 8rem;
+    font-weight: 400;
+    text-align: center;
+    margin: 0;
+  }
+
+  img {
+    object-fit: cover;
+    border-radius: 15px;
+    height: 100%;
+    width: 100%;
+  }
+
+  #photos {
+    grid-auto-flow: column;
+    gap: 20px;
+    margin-top: 100px;
+    display: grid;
+    grid-template-columns: repeat(10, 1fr);
+    grid-auto-rows: 140px;
+  }
+
+  a {
+    transition:
+      filter 0.2s ease-in-out,
+      transform 0.2s ease-in-out;
+    cursor: zoom-in;
+  }
+
+  a:hover {
+    transform: scale(1.05);
+    filter: drop-shadow(rgba(0, 0, 0, 0.2) 0px 5px 15px);
+  }
+
+  html[class='dark'] a:hover {
+    filter: drop-shadow(rgba(99, 99, 99, 0.2) 0px 5px 15px);
+  }
+
+  a:nth-child(2n) {
+    width: auto;
+    height: 140px;
+    grid-column: 7 / span 2;
+  }
+  a:nth-child(4n) {
+    width: auto;
+    height: 140px;
+    grid-column: 7 / 11;
+  }
+
+  a:nth-child(2n + 1) {
+    width: auto;
+    height: 140px;
+    grid-column: 9 / span 2;
+  }
+
+  a:nth-child(1),
+  a:nth-child(4n + 1) {
+    height: 300px;
+    width: auto;
+    grid-column: 1 / span 6;
+    grid-row: span 2;
+  }
+
+  .reverse:nth-child(2n) {
+    grid-column: 1 / span 2;
+  }
+
+  .reverse:nth-child(4n) {
+    grid-column: 1 / span 4;
+  }
+
+  .reverse:nth-child(2n + 1) {
+    grid-column: 3 / span 2;
+  }
+
+  .reverse:nth-child(1),
+  .reverse:nth-child(4n + 1) {
+    height: 300px;
+    grid-row: span 2;
+    grid-column: 5 / span 6;
+  }
+
+  .uncomplete-last-photos-1-0,
+  .uncomplete-last-photos-2-0,
+  .uncomplete-last-photos-2-1 {
+    height: 300px !important;
+  }
+
+  .uncomplete-last-photos-1-0 {
+    width: auto;
+    grid-column: 1 / span 10 !important;
+  }
+
+  .uncomplete-last-photos-2-0 {
+    grid-row: span 2;
+    grid-column: 1 / span 5 !important;
+  }
+
+  .uncomplete-last-photos-2-1 {
+    grid-row: span 2;
+    grid-column: 6 / span 5 !important;
+  }
+
+  .uncomplete-last-photos-3-1,
+  .uncomplete-last-photos-3-2 {
+    grid-column: 7 / span 4 !important;
+  }
+
+  .reverse.uncomplete-last-photos-3-1,
+  .reverse.uncomplete-last-photos-3-2 {
+    grid-column: 1 / span 4 !important;
+  }
+
+  @media (width <= 800px) {
+    #photos {
+      display: flex;
+      flex-direction: column;
+    }
+
+    #photos a {
+      height: 300px;
+    }
+  }
+</style>
+
+<script>
+  import PhotoSwipeLightbox from 'photoswipe/lightbox'
+
+  const lightbox = new PhotoSwipeLightbox({
+    gallery: '#photos',
+    children: 'a',
+    pswpModule: () => import('photoswipe'),
+    wheelToZoom: true
+  })
+
+  lightbox.init()
+</script>
