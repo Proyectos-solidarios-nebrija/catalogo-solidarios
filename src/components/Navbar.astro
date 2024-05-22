@@ -65,18 +65,18 @@ const translatePath = useTranslatedPath(currentLang)
     const selectedTheme = localStorage.getItem(LOCAL_STORAGE_THEME_KEY)
     const html = document.querySelector('html') as HTMLElement
 
+    const systemSettingDark = window.matchMedia('(prefers-color-scheme: dark)')
+
     // Set up the select theme
     if (selectedTheme === THEMES.dark) {
       html.classList.add('dark')
-    }
-
-    // Config the preferred theme
-    const systemSettingDark = window.matchMedia('(prefers-color-scheme: dark)')
-
-    if (systemSettingDark && !selectedTheme) {
-      setThemePreference(html, THEMES.dark)
-    } else if (!selectedTheme) {
-      setThemePreference(html, THEMES.light)
+    } else {
+      // Config the preferred theme
+      if (systemSettingDark) {
+        setThemePreference(html, THEMES.dark)
+      } else {
+        setThemePreference(html, THEMES.light)
+      }
     }
   })
 
