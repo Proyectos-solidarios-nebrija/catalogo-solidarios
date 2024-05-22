@@ -12,5 +12,10 @@ El videojuego Nebrija’s Adventure fue desarrollado en Unity para conmemorar el
 
 La idea inicial, propuesta por Antonio Otero, era crear un desafío divertido y participativo para los alumnos. ¡Dicho y hecho! La realización del proyecto resultó ser un verdadero reto para los participantes, quienes se vieron obligados a aprender nuevas tecnologías, como Unity. Contaron con el apoyo de Pablo Hermida, jefe del proyecto, quien impartió clases sobre los conceptos básicos, permitiendo que cada uno pudiera aplicar estos conocimientos en el desarrollo del juego.
 
+>ns si incluir esta parte, sino va a ser un poco repetitivo a lo que ya tienen e la pagina original
 Tras cuatro meses de trabajo, todos departamentos —diseño, programación, sonido y guion— colaboraron para sacar la mejor versión del juego y de ellos mismos. 
 No solo cumplieron con lo planeado y entregaron a tiempo, sino que también adaptaron el juego para múltiples plataformas, incluyendo Linux, Mac, Android y Windows.
+
+
+## Historia del videojuego
+> en proceso
