@@ -3,23 +3,24 @@ import { Image } from 'astro:assets'
 import { getLangFromUrl, useTranslations } from 'src/i18n/utils'
 import ChevronRight from './icons/ChevronRight.astro'
 
-const { yearStart, yearEnd, title, isLastProject, articleLink, imgPath } =
-  Astro.props
+interface Props {
+  yearStart: Date
+  yearEnd: Date
+  title: string
+  isLastProject: boolean
+  articleLink: string
+  img: {
+    src: string
+    width: number
+    heigth: number
+  }
+}
 
-const fullImgPath = `/src/images/projects/${imgPath}`
-const images = import.meta.glob<{ default: ImageMetadata }>(
-  '/src/images/projects/**/*.{png,jpg,jpeg}'
-)
-const image = images[fullImgPath]
+const { yearStart, yearEnd, title, isLastProject, articleLink, img } =
+  Astro.props
 
 const currentLang = getLangFromUrl(Astro.url)
 const t = useTranslations(currentLang)
-
-if (!image) {
-  throw new Error(
-    `"${fullImgPath}" does not exist in glob "/src/images/projects/**/*.{png,jpg,jpeg}"`
-  )
-}
 ---
 
 <li>
@@ -28,7 +29,9 @@ if (!image) {
       <h3 transition:name={`project-title-${title}`}>{title}</h3>
       <div class="project-container-image">
         <Image
-          src={image()}
+          src={img.src}
+          height={img.heigth}
+          width={img.width}
           alt={`${t('alt.projectImg')} ${title}`}
           transition:name={`project-img-${title}`}
         />
@@ -38,8 +41,8 @@ if (!image) {
   </a>
   <div class="year-container">
     <span transition:name={`project-year-${title}`}
-      >{yearStart} - <span class="year-end"
-        >{isLastProject ? t('timeline.present') : yearEnd}</span
+      >{yearStart.getFullYear()} - <span class="year-end"
+        >{isLastProject ? t('timeline.present') : yearEnd.getFullYear()}</span
       ></span
     >
     <div class="circle"></div>

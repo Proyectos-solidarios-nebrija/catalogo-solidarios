@@ -1,1 +1,2 @@
-export const cannonicalURL = 'https://proyectos-solidarios.nebrijanos.com' // TODO: Modify with the real URL
+export const domain = 'solidarios.nebrijanos.com'
+export const cannonicalURL = `https://${domain}`

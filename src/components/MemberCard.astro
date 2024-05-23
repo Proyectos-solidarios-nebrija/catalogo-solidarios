@@ -34,20 +34,22 @@ if (!image) {
     {isManager && <span>Encargado</span>}
   </div>
   <h3>{name}</h3>
-  <ul class="card-links">
-    {
-      Object.keys(links)
-        .sort()
-        .map((linkName) => (
-          <li>
-            <a href={links[linkName]} target="_blank">
-              {SOCIAL_ICONS_NAMES.github === linkName && <Github />}
-              {SOCIAL_ICONS_NAMES.linkedin === linkName && <LinkedIn />}
-            </a>
-          </li>
-        ))
-    }
-  </ul>
+  {
+    Object.keys(links).length > 0 && (
+      <ul class="card-links">
+        {Object.keys(links)
+          .sort()
+          .map((linkName) => (
+            <li>
+              <a href={links[linkName]} target="_blank">
+                {SOCIAL_ICONS_NAMES.github === linkName && <Github />}
+                {SOCIAL_ICONS_NAMES.linkedin === linkName && <LinkedIn />}
+              </a>
+            </li>
+          ))}
+      </ul>
+    )
+  }
 </li>
 
 <style>
@@ -83,6 +85,10 @@ if (!image) {
     align-items: center;
     gap: 20px;
     align-self: stretch;
+  }
+
+  .card:has(:not(:nth-child(3))) {
+    justify-content: normal;
   }
 
   .card-img img {

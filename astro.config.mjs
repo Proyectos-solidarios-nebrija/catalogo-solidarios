@@ -6,7 +6,7 @@ import sitemap from '@astrojs/sitemap'
 
 // https://astro.build/config
 export default defineConfig({
-  site: "https://proyectos-solidarios.nebrijanos.com",
+  site: 'https://solidarios.nebrijanos.com',
   devToolbar: {
     enabled: false
   },
