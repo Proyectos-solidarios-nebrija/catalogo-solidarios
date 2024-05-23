@@ -37,9 +37,13 @@ const t = useTranslations(currentLang)
       />
       <div class="header-title">
         <h1 transition:name={`project-title-${title}`}>{title}</h1>
-        <a href={webLink} target="_blank">
-          <Link />
-        </a>
+        {
+          webLink && (
+            <a href={webLink} target="_blank">
+              <Link />
+            </a>
+          )
+        }
       </div>
     </header>
     <slot />
