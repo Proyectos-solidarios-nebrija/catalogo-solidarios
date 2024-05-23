@@ -1,17 +1,25 @@
 ---
 import ChevronRight from '@components/icons/ChevronRight.astro'
 import BaseLayout from '@layouts/BaseLayout.astro'
+import {
+  getLangFromUrl,
+  useTranslatedPath,
+  useTranslations
+} from 'src/i18n/utils'
+
+const currentLang = getLangFromUrl(Astro.url)
+const t = useTranslations(currentLang)
+const translatePath = useTranslatedPath(currentLang)
 ---
 
 <BaseLayout>
   <header class="content">
     <div class="header-content">
-      <h1>No encontrado</h1>
+      <h1>{t('404.notFound')}</h1>
       <p>
-        La página que buscas no existe. Por favor, verifica la URL e intenta
-        nuevamente.
+        {t('404.desc')}
       </p>
-      <a href="/"><ChevronRight />Volver al inicio</a>
+      <a href={translatePath('/')}><ChevronRight />{t('404.back')}</a>
     </div>
     <h2>404</h2>
   </header>

@@ -20,7 +20,11 @@ export const ui = {
     'alt.projectImg': 'Foto del proyecto',
     'meta.desc':
       'Explora las solidarias que hemos creado en el instituto Nebrija, donde fusionamos educación, entretenimiento y solidaridad para beneficiar a la comunidad.',
-    'timeline.present': 'Presente'
+    'timeline.present': 'Presente',
+    '404.notFound': 'No encontrado',
+    '404.desc':
+      'La página que buscas no existe. Por favor, verifica la URL e intenta nuevamente.',
+    '404.back': 'Volver al inicio'
   },
   en: {
     'header.title': 'Solidarity Projects',
@@ -37,7 +41,11 @@ export const ui = {
     'alt.projectImg': 'Project photo',
     'meta.desc':
       'Explore the solidarity activities we have created at Nebrija High School, where we merge education, entertainment and solidarity to benefit the community',
-    'timeline.presente': 'Present'
+    'timeline.presente': 'Present',
+    '404.notFound': 'Not found',
+    '404.desc':
+      'The page you are looking for does not exist. Please check the URL and try again.',
+    '404.back': 'Back to home'
   }
 }
 export const routes = {
