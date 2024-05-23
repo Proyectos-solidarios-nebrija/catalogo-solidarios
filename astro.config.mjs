@@ -3,10 +3,11 @@ import mdx from '@astrojs/mdx'
 import { defaultLang, languages, showDefaultLang } from './src/i18n/ui'
 
 import sitemap from '@astrojs/sitemap'
+import { cannonicalURL } from '@constants/seo'
 
 // https://astro.build/config
 export default defineConfig({
-  site: 'https://solidarios.nebrijanos.com',
+  site: cannonicalURL,
   devToolbar: {
     enabled: false
   },
