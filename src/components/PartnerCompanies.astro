@@ -1,0 +1,67 @@
+---
+import { getLangFromUrl, useTranslations } from 'src/i18n/utils'
+import PartnerCompany from './PartnerCompany.astro'
+
+interface Company {
+  name: string
+  img: {
+    url: string
+    width: number
+    height: number
+    alt: string
+  }
+}
+
+interface Props {
+  companies: Company[]
+}
+
+const { companies } = Astro.props
+
+const currentLang = getLangFromUrl(Astro.url)
+const t = useTranslations(currentLang)
+---
+
+<section>
+  <h2>{t('post.partnerCompanies')}</h2>
+  <ul>
+    {companies.map(({ img, name }) => <PartnerCompany name={name} img={img} />)}
+  </ul>
+</section>
+
+<style>
+  /* TODO: 
+     * Adjust border between themes
+     * Add galery here
+     * Add hover effect
+     */
+
+  section {
+    margin-top: 100px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 100px;
+  }
+
+  ul {
+    position: relative;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: start;
+    gap: 50px;
+  }
+
+  h3 {
+    margin: 0;
+  }
+
+  @media (width <= 1200px) {
+    ul {
+      justify-content: center;
+    }
+  }
+</style>

@@ -2,6 +2,7 @@
 import BlogLayout from '@layouts/BlogLayout.astro'
 import { getProjects } from 'src/services/cms'
 import { getEnv } from 'src/helpers/getEnv'
+// import PartnerCompanies from '@components/PartnerCompanies.astro'
 
 const { CMS_URL } = getEnv()
 
@@ -32,4 +33,5 @@ const { url, height, width } = project_image
     width: width
   }}>
   <Fragment set:html={article_html} />
+  <!-- <PartnerCompanies /> -->
 </BlogLayout>
