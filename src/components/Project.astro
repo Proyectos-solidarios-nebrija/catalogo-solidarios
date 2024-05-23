@@ -4,8 +4,8 @@ import { getLangFromUrl, useTranslations } from 'src/i18n/utils'
 import ChevronRight from './icons/ChevronRight.astro'
 
 interface Props {
-  yearStart: Date
-  yearEnd: Date
+  dateStart: Date
+  dateEnd: Date
   title: string
   isLastProject: boolean
   articleLink: string
@@ -16,7 +16,7 @@ interface Props {
   }
 }
 
-const { yearStart, yearEnd, title, isLastProject, articleLink, img } =
+const { dateStart, dateEnd, title, isLastProject, articleLink, img } =
   Astro.props
 
 const currentLang = getLangFromUrl(Astro.url)
@@ -41,8 +41,8 @@ const t = useTranslations(currentLang)
   </a>
   <div class="year-container">
     <span transition:name={`project-year-${title}`}
-      >{yearStart.getFullYear()} - <span class="year-end"
-        >{isLastProject ? t('timeline.present') : yearEnd.getFullYear()}</span
+      >{dateStart.getFullYear()} - <span class="year-end"
+        >{isLastProject ? t('timeline.present') : dateEnd.getFullYear()}</span
       ></span
     >
     <div class="circle"></div>

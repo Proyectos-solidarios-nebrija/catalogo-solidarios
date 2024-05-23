@@ -1,4 +1,5 @@
 import { getEnv } from 'src/helpers/getEnv'
+import { defaultLang } from 'src/i18n/ui'
 
 const { CMS_URL } = getEnv()
 
@@ -14,9 +15,9 @@ export const getGallery = async () => {
   return null
 }
 
-export const getProjects = async () => {
+export const getProjects = async (locale = defaultLang) => {
   try {
-    const resp = await fetch(`${CMS_URL}/api/projects?limit=0`)
+    const resp = await fetch(`${CMS_URL}/api/projects?limit=0&locale${locale}`)
     const data = await resp.json()
     return data
   } catch (error) {

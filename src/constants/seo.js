@@ -1,1 +1,1 @@
-export const cannonicalURL = `https://${solidarios.nebrijanos.com}`
+export const cannonicalURL = 'https://solidarios.nebrijanos.com'

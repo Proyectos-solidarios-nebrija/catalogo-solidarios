@@ -25,20 +25,22 @@ projects.sort(
   <h2 id={t('nav.projects')}>{t('nav.projects')}</h2>
   <ol>
     {
-      projects.map(({ name, date_start, date_end, project_image }, idx) => (
-        <Project
-          yearStart={new Date(date_start)}
-          yearEnd={new Date(date_end)}
-          title={name}
-          img={{
-            src: CMS_URL + project_image.url,
-            heigth: project_image.height,
-            width: project_image.width
-          }}
-          isLastProject={idx === 0}
-          articleLink={`${translatePath('/proyectos')}/${name}`}
-        />
-      ))
+      projects.map(
+        ({ name, date_start, date_end, project_image, slug }, idx) => (
+          <Project
+            dateStart={new Date(date_start)}
+            dateEnd={new Date(date_end)}
+            title={name}
+            img={{
+              src: CMS_URL + project_image.url,
+              heigth: project_image.height,
+              width: project_image.width
+            }}
+            isLastProject={idx === 0}
+            articleLink={`${translatePath('/proyectos')}/${slug}`}
+          />
+        )
+      )
     }
   </ol>
 </main>

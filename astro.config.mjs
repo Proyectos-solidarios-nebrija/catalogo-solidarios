@@ -3,7 +3,7 @@ import mdx from '@astrojs/mdx'
 import { defaultLang, languages, showDefaultLang } from './src/i18n/ui'
 
 import sitemap from '@astrojs/sitemap'
-import { cannonicalURL } from '@constants/seo'
+import { cannonicalURL } from './src/constants/seo'
 
 // https://astro.build/config
 export default defineConfig({
