@@ -4,9 +4,9 @@ import BaseLayout from '@layouts/BaseLayout.astro'
 ---
 
 <BaseLayout>
-  <header>
+  <header class="content">
     <div class="header-content">
-      <h3>No encontrado</h3>
+      <h1>No encontrado</h1>
       <p>
         La página que buscas no existe. Por favor, verifica la URL e intenta
         nuevamente.
@@ -43,7 +43,7 @@ import BaseLayout from '@layouts/BaseLayout.astro'
     font-weight: 200;
   }
 
-  h3 {
+  h1 {
     font-size: 8rem;
     margin: 0;
   }
@@ -61,12 +61,20 @@ import BaseLayout from '@layouts/BaseLayout.astro'
     flex-flow: row nowrap;
     align-items: center;
   }
+
   a :global(svg) {
     height: 2.8rem;
     margin-right: 1rem;
     transition: all 0.3s ease;
   }
+
   a:hover :global(svg) {
     transform: translateX(0.5rem);
+  }
+
+  :global(footer) {
+    position: absolute;
+    width: 100%;
+    bottom: 0;
   }
 </style>
