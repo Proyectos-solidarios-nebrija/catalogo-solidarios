@@ -17,7 +17,7 @@ export const getGallery = async () => {
 
 export const getProjects = async (locale = defaultLang) => {
   try {
-    const resp = await fetch(`${CMS_URL}/api/projects?limit=0&locale${locale}`)
+    const resp = await fetch(`${CMS_URL}/api/projects?limit=0&locale=${locale}`)
     const data = await resp.json()
     return data
   } catch (error) {

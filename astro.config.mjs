@@ -8,6 +8,7 @@ import { cannonicalURL } from './src/constants/seo'
 // https://astro.build/config
 export default defineConfig({
   site: cannonicalURL,
+  output: "hybrid",
   devToolbar: {
     enabled: false
   },
