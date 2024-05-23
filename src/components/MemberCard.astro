@@ -1,37 +1,35 @@
 ---
-import type { ImageMetadata } from 'astro'
 import { Image } from 'astro:assets'
 import { SOCIAL_ICONS_NAMES } from '../constants/icons'
 import Github from './icons/Github.astro'
 import LinkedIn from './icons/Linkedin.astro'
 import { getLangFromUrl, useTranslations } from 'src/i18n/utils'
-const { name, imgPath, links, isManager } = Astro.props
+
+interface Props {
+  name: string
+  img: {
+    url: string
+  }
+  links: {
+    github?: string
+    linkedin?: string
+  }
+}
+
+const { name, img, links } = Astro.props
 
 const currentLang = getLangFromUrl(Astro.url)
 const t = useTranslations(currentLang)
-
-const fullImgPath = `/src/images/members/${imgPath}`
-const images = import.meta.glob<{ default: ImageMetadata }>(
-  '/src/images/members/**/*.{png,jpg,jpeg}'
-)
-const image = images[fullImgPath]
-
-if (!image) {
-  throw new Error(
-    `"${fullImgPath}" does not exist in glob "/src/images/members/**/*.{png,jpg,jpeg}"`
-  )
-}
 ---
 
 <li class="card">
   <div class="card-img">
     <Image
-      src={image()}
+      src={img.url}
       alt={`${t('alt.memberImg')} ${name}`}
       width={280}
       height={300}
     />
-    {isManager && <span>Encargado</span>}
   </div>
   <h3>{name}</h3>
   {
@@ -108,17 +106,6 @@ if (!image) {
     position: relative;
     overflow: hidden;
     width: 100%;
-  }
-
-  .card-img span {
-    position: absolute;
-    font-size: 2rem;
-    padding: 10px 30px;
-    background-color: var(--primary-color);
-    border-radius: 10px;
-    box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
-    bottom: -10px;
-    right: -10px;
   }
 
   .card-links {

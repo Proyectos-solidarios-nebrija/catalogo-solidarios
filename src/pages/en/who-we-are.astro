@@ -1,18 +1,21 @@
 ---
 import MemberCards from '@components/MemberCards.astro'
 import BaseLayout from '@layouts/BaseLayout.astro'
-import projects from 'src/data/projects.json'
+import { getProjects } from 'src/services/cms'
+
+const { docs: projects } = await getProjects()
+
+projects.sort(
+  (a, b) => new Date(b.date_start).getTime() - new Date(a.date_start).getTime()
+)
 ---
 
 <BaseLayout>
   <div class="projects content">
     <h1>Our teams</h1>
     {
-      Object.keys(projects).map((project) => (
-        <MemberCards
-          projectName={project}
-          members={projects[project].members}
-        />
+      projects.map(({ name, project_members }) => (
+        <MemberCards projectName={name} members={project_members} />
       ))
     }
   </div>
