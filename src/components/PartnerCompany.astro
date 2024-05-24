@@ -1,21 +1,19 @@
 ---
 import { Image } from 'astro:assets'
+import type { PhotoData } from 'src/types/types'
 
 interface Props {
   name: string
-  img: {
-    url: string
-    width: number
-    height: number
-    alt: string
-  }
+  img: PhotoData
 }
 
 const { name, img } = Astro.props
 ---
 
 <li>
-  <Image src={img.url} width={img.width} height={img.height} alt={img.alt} />
+  <a href={img.url} data-pswp-width={img.width} data-pswp-height={img.height}>
+    <Image src={img.url} width={img.width} height={img.height} alt={img.alt} />
+  </a>
   <h3>{name}</h3>
 </li>
 
@@ -32,6 +30,11 @@ const { name, img } = Astro.props
     height: 200px;
     object-fit: cover;
     margin: 0;
+  }
+
+  a {
+    cursor: zoom-in;
+    text-decoration: none;
   }
 
   li {

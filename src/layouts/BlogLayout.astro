@@ -3,14 +3,11 @@ import { Image } from 'astro:assets'
 import BaseLayout from './BaseLayout.astro'
 import Link from '../components/icons/Link.astro'
 import { getLangFromUrl, useTranslations } from 'src/i18n/utils'
+import type { PhotoData } from 'src/types/types'
 
 interface Props {
   title: string
-  img: {
-    src: string
-    width: number
-    height: number
-  }
+  img: PhotoData
   dateStart: Date
   dateEnd: Date
   webLink: string
@@ -29,10 +26,10 @@ const t = useTranslations(currentLang)
         {dateStart.getFullYear()}/{dateEnd.getFullYear()}
       </h2>
       <Image
-        src={img.src}
+        src={img.url}
         width={img.width}
         height={img.height}
-        alt={`${t('alt.projectImg')} ${title}`}
+        alt={img.alt}
         transition:name={`project-img-${title}`}
       />
       <div class="header-title">

@@ -1,8 +1,19 @@
 ---
 import BlogLayout from '@layouts/BlogLayout.astro'
+import PartnerCompanies from '@components/PartnerCompanies.astro'
 import { getProjects } from 'src/services/cms'
+import type { PartnerCompaniesData, PhotoData } from 'src/types/types'
 import { getEnv } from 'src/helpers/getEnv'
-// import PartnerCompanies from '@components/PartnerCompanies.astro'
+
+interface Props {
+  name: string
+  date_start: string
+  date_end: string
+  article_html: string
+  project_image: PhotoData
+  web_link: string
+  partner_companies: PartnerCompaniesData[]
+}
 
 const { CMS_URL } = getEnv()
 
@@ -17,9 +28,19 @@ export async function getStaticPaths() {
   return paths
 }
 
-const { name, date_start, date_end, article_html, project_image, web_link } =
-  Astro.props
-const { url, height, width } = project_image
+const {
+  name,
+  date_start,
+  date_end,
+  article_html,
+  project_image,
+  web_link,
+  partner_companies
+} = Astro.props
+
+const companies = partner_companies.map(
+  ({ partner_company }) => partner_company
+)
 ---
 
 <BlogLayout
@@ -28,10 +49,11 @@ const { url, height, width } = project_image
   dateEnd={new Date(date_end)}
   webLink={web_link}
   img={{
-    src: CMS_URL + url,
-    height: height,
-    width: width
+    url: CMS_URL + project_image.url,
+    width: project_image.width,
+    height: project_image.height,
+    alt: project_image.alt
   }}>
   <Fragment set:html={article_html} />
-  <!-- <PartnerCompanies /> -->
+  {companies.length > 0 && <PartnerCompanies companies={companies} />}
 </BlogLayout>

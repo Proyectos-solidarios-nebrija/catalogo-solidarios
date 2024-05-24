@@ -3,12 +3,12 @@ import { Image } from 'astro:assets'
 import { SOCIAL_ICONS_NAMES } from '../constants/icons'
 import Github from './icons/Github.astro'
 import LinkedIn from './icons/Linkedin.astro'
-import { getLangFromUrl, useTranslations } from 'src/i18n/utils'
 
 interface Props {
   name: string
   img: {
     url: string
+    alt: string
   }
   links: {
     github?: string
@@ -17,19 +17,11 @@ interface Props {
 }
 
 const { name, img, links } = Astro.props
-
-const currentLang = getLangFromUrl(Astro.url)
-const t = useTranslations(currentLang)
 ---
 
 <li class="card">
   <div class="card-img">
-    <Image
-      src={img.url}
-      alt={`${t('alt.memberImg')} ${name}`}
-      width={280}
-      height={300}
-    />
+    <Image src={img.url} alt={img.alt} width={280} height={300} />
   </div>
   <h3>{name}</h3>
   {

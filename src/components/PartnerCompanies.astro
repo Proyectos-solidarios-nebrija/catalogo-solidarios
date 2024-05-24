@@ -1,22 +1,16 @@
 ---
 import { getLangFromUrl, useTranslations } from 'src/i18n/utils'
 import PartnerCompany from './PartnerCompany.astro'
-
-interface Company {
-  name: string
-  img: {
-    url: string
-    width: number
-    height: number
-    alt: string
-  }
-}
+import { getEnv } from 'src/helpers/getEnv'
+import type { PartnerCompanyData } from 'src/types/types'
 
 interface Props {
-  companies: Company[]
+  companies: PartnerCompanyData[]
 }
 
 const { companies } = Astro.props
+
+const { CMS_URL } = getEnv()
 
 const currentLang = getLangFromUrl(Astro.url)
 const t = useTranslations(currentLang)
@@ -24,18 +18,24 @@ const t = useTranslations(currentLang)
 
 <section>
   <h2>{t('post.partnerCompanies')}</h2>
-  <ul>
-    {companies.map(({ img, name }) => <PartnerCompany name={name} img={img} />)}
+  <ul id="partner-companies">
+    {
+      companies.map(({ name, photo }) => (
+        <PartnerCompany
+          name={name}
+          img={{
+            url: CMS_URL + photo.url,
+            alt: photo.alt,
+            width: photo.width,
+            height: photo.height
+          }}
+        />
+      ))
+    }
   </ul>
 </section>
 
 <style>
-  /* TODO: 
-     * Adjust border between themes
-     * Add galery here
-     * Add hover effect
-     */
-
   section {
     margin-top: 100px;
     display: flex;
@@ -55,7 +55,8 @@ const t = useTranslations(currentLang)
     gap: 50px;
   }
 
-  h3 {
+  h2 {
+    font-weight: 500;
     margin: 0;
   }
 
@@ -65,3 +66,18 @@ const t = useTranslations(currentLang)
     }
   }
 </style>
+
+<script>
+  import PhotoSwipeLightbox from 'photoswipe/lightbox'
+
+  const lightbox = new PhotoSwipeLightbox({
+    gallery: '#partner-companies',
+    children: 'li a',
+    pswpModule: () => import('photoswipe'),
+    wheelToZoom: true
+  })
+
+  document.addEventListener('astro:page-load', () => {
+    lightbox.init()
+  })
+</script>

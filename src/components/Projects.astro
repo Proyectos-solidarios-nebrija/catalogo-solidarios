@@ -32,9 +32,10 @@ projects.sort(
             dateEnd={new Date(date_end)}
             title={name}
             img={{
-              src: CMS_URL + project_image.url,
-              heigth: project_image.height,
-              width: project_image.width
+              url: CMS_URL + project_image.url,
+              height: project_image.height,
+              width: project_image.width,
+              alt: project_image.alt
             }}
             isLastProject={idx === 0}
             articleLink={`${translatePath('/proyectos')}/${slug}`}
