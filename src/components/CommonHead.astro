@@ -6,7 +6,11 @@ import { ViewTransitions } from 'astro:transitions'
 const currentLang = getLangFromUrl(Astro.url)
 const t = useTranslations(currentLang)
 
-const { title = t('header.title') } = Astro.props
+interface Props {
+  title?: string
+}
+
+const { title = t('title') } = Astro.props
 ---
 
 <Head>

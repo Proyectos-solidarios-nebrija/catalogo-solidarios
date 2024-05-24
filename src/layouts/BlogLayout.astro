@@ -1,41 +1,46 @@
 ---
 import { Image } from 'astro:assets'
-import type { ImageMetadata } from 'astro'
 import BaseLayout from './BaseLayout.astro'
 import Link from '../components/icons/Link.astro'
 import { getLangFromUrl, useTranslations } from 'src/i18n/utils'
-const { title, imgPath, year, webLink } = Astro.props
+import type { PhotoData } from 'src/types/types'
+
+interface Props {
+  title: string
+  img: PhotoData
+  dateStart: Date
+  dateEnd: Date
+  webLink: string
+}
+
+const { title, img, dateStart, dateEnd, webLink } = Astro.props
 
 const currentLang = getLangFromUrl(Astro.url)
 const t = useTranslations(currentLang)
-
-const fullImgPath = `/src/images/projects/${imgPath}`
-const images = import.meta.glob<{ default: ImageMetadata }>(
-  '/src/images/projects/**/*.{png,jpg,jpeg}'
-)
-const image = images[fullImgPath]
-
-if (!image) {
-  throw new Error(
-    `"${fullImgPath}" does not exist in glob "/src/images/projects/**/*.{png,jpg,jpeg}"`
-  )
-}
 ---
 
-<BaseLayout title={`${t('header.title')} | ${title}`}>
+<BaseLayout title={`${t('title')} | ${title}`}>
   <div class="content">
     <header>
-      <h2 transition:name={`project-year-${title}`}>{year}</h2>
+      <h2 transition:name={`project-year-${title}`}>
+        {dateStart.getFullYear()}/{dateEnd.getFullYear()}
+      </h2>
       <Image
-        src={image()}
-        alt={`${t('alt.projectImg')} ${title}`}
+        src={img.url}
+        width={img.width}
+        height={img.height}
+        alt={img.alt}
         transition:name={`project-img-${title}`}
       />
       <div class="header-title">
         <h1 transition:name={`project-title-${title}`}>{title}</h1>
-        <a href={webLink} target="_blank">
-          <Link />
-        </a>
+        {
+          webLink && (
+            <a href={webLink} target="_blank">
+              <Link />
+            </a>
+          )
+        }
       </div>
     </header>
     <slot />

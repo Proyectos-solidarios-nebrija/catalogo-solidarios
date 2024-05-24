@@ -1,28 +1,35 @@
 ---
 import { getLangFromUrl, useTranslations } from 'src/i18n/utils'
-import test from '@images/gallery/test.jpg'
 import { Image } from 'astro:assets'
-import 'photoswipe/style.css'
+import { getGallery } from 'src/services/cms'
+import { getEnv } from 'src/helpers/getEnv'
+
+const { CMS_URL } = getEnv()
 
 const currentLang = getLangFromUrl(Astro.url)
 const t = useTranslations(currentLang)
 
-// const images = import.meta.glob<{ default: ImageMetadata }>(
-//   '/src/images/gallery/**/*.{png,jpg,jpeg}'
-// )
+const gallery = await getGallery()
+
+const docs = gallery?.docs
 ---
 
 <section class="content">
   <h2 id={t('nav.gallery')}>{t('nav.gallery')}</h2>
   <div id="photos">
     {
-      Array.from({ length: 10 }).map((_, idx, arr) => (
+      docs?.map(({ photo }, idx, arr) => (
         <a
-          data-pswp-width={test.width}
-          data-pswp-height={test.height}
-          href={test.src}
-          class={`${idx % 8 >= 4 ? '' : 'reverse'} ${arr.length % 4 !== 0 && arr.length - 1 - idx < arr.length % 4 ? `uncomplete-last-photos-${arr.length % 4}-${idx % 4}` : ''}`}>
-          <Image src={test} alt="smth" />
+          data-pswp-width={photo.width}
+          data-pswp-height={photo.height}
+          href={CMS_URL + photo.url}
+          class={`${idx % 8 < 4 ? '' : 'reverse'} ${arr.length % 4 !== 0 && arr.length - 1 - idx < arr.length % 4 ? `uncomplete-last-photos-${arr.length % 4}-${idx % 4}` : ''}`}>
+          <Image
+            src={CMS_URL + photo.url}
+            alt={photo.alt}
+            width={photo.width}
+            height={photo.height}
+          />
         </a>
       ))
     }
@@ -170,5 +177,7 @@ const t = useTranslations(currentLang)
     wheelToZoom: true
   })
 
-  lightbox.init()
+  document.addEventListener('astro:page-load', () => {
+    lightbox.init()
+  })
 </script>

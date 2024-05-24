@@ -1,0 +1,83 @@
+---
+import { getLangFromUrl, useTranslations } from 'src/i18n/utils'
+import PartnerCompany from './PartnerCompany.astro'
+import { getEnv } from 'src/helpers/getEnv'
+import type { PartnerCompanyData } from 'src/types/types'
+
+interface Props {
+  companies: PartnerCompanyData[]
+}
+
+const { companies } = Astro.props
+
+const { CMS_URL } = getEnv()
+
+const currentLang = getLangFromUrl(Astro.url)
+const t = useTranslations(currentLang)
+---
+
+<section>
+  <h2>{t('post.partnerCompanies')}</h2>
+  <ul id="partner-companies">
+    {
+      companies.map(({ name, photo }) => (
+        <PartnerCompany
+          name={name}
+          img={{
+            url: CMS_URL + photo.url,
+            alt: photo.alt,
+            width: photo.width,
+            height: photo.height
+          }}
+        />
+      ))
+    }
+  </ul>
+</section>
+
+<style>
+  section {
+    margin-top: 100px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 100px;
+  }
+
+  ul {
+    position: relative;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: start;
+    gap: 50px;
+  }
+
+  h2 {
+    font-weight: 500;
+    margin: 0;
+  }
+
+  @media (width <= 1200px) {
+    ul {
+      justify-content: center;
+    }
+  }
+</style>
+
+<script>
+  import PhotoSwipeLightbox from 'photoswipe/lightbox'
+
+  const lightbox = new PhotoSwipeLightbox({
+    gallery: '#partner-companies',
+    children: 'li a',
+    pswpModule: () => import('photoswipe'),
+    wheelToZoom: true
+  })
+
+  document.addEventListener('astro:page-load', () => {
+    lightbox.init()
+  })
+</script>

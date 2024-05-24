@@ -1,24 +1,60 @@
 ---
-import { getCollection } from 'astro:content'
 import BlogLayout from '@layouts/BlogLayout.astro'
+import PartnerCompanies from '@components/PartnerCompanies.astro'
+import { getProjects } from 'src/services/cms'
+import type { PartnerCompaniesData, PhotoData } from 'src/types/types'
+import { getEnv } from 'src/helpers/getEnv'
+import { languages } from 'src/i18n/ui'
+
+interface Props {
+  name: string
+  date_start: string
+  date_end: string
+  article_html: string
+  project_image: PhotoData
+  web_link: string
+  partner_companies: PartnerCompaniesData[]
+}
+
+const { CMS_URL } = getEnv()
 
 export async function getStaticPaths() {
-  const pages = await getCollection('proyectos', ({ id }) =>
-    id.startsWith('es/')
-  )
+  const { docs: projects } = await getProjects(languages.en)
 
-  const paths = pages.map((page) => {
-    const [, ...slug] = page.slug.split('/')
-    return { params: { slug: slug.join('/') || undefined }, props: page }
-  })
+  const paths = projects.map((project) => ({
+    params: { slug: project.slug },
+    props: project
+  }))
+
   return paths
 }
 
-const page = Astro.props
-const { title, imgPath, yearStart, yearEnd } = page.data
-const { Content } = await page.render()
+const {
+  name,
+  date_start,
+  date_end,
+  article_html,
+  project_image,
+  web_link,
+  partner_companies
+} = Astro.props
+
+const companies = partner_companies.map(
+  ({ partner_company }) => partner_company
+)
 ---
 
-<BlogLayout title={title} imgPath={imgPath} year={`${yearStart}/${yearEnd}`}>
-  <Content />
+<BlogLayout
+  title={name}
+  dateStart={new Date(date_start)}
+  dateEnd={new Date(date_end)}
+  webLink={web_link}
+  img={{
+    url: CMS_URL + project_image.url,
+    width: project_image.width,
+    height: project_image.height,
+    alt: project_image.alt
+  }}>
+  <Fragment set:html={article_html} />
+  {companies.length > 0 && <PartnerCompanies companies={companies} />}
 </BlogLayout>

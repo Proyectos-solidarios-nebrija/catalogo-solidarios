@@ -1,10 +1,19 @@
 ---
-import MemberCard from './MemberCard.astro'
-import Link from './icons/Link.astro'
+import MemberCard from '@components/MemberCard.astro'
+import Link from '@components/icons/Link.astro'
+import { getEnv } from 'src/helpers/getEnv'
+import type { ProjectMembers } from 'src/types/types'
+
+interface Props {
+  projectName: string
+  members: ProjectMembers[]
+}
+
 const { projectName, members } = Astro.props
+const { CMS_URL } = getEnv()
 ---
 
-<div class="content container">
+<div class="container">
   <div class="container-projectName">
     <h2 id={projectName}>{projectName}</h2>
     <a href={`#${projectName}`}>
@@ -13,9 +22,16 @@ const { projectName, members } = Astro.props
   </div>
   <ul class="container-members">
     {
-      members
-        ?.sort((el) => el.isManager)
-        .map((member) => <MemberCard {...member} />)
+      members.map(({ member }) => (
+        <MemberCard
+          name={member?.name}
+          img={{ url: CMS_URL + member.photo.url, alt: member.photo.alt }}
+          links={{
+            github: member?.github_link,
+            linkedin: member?.linkedin_link
+          }}
+        />
+      ))
     }
   </ul>
 </div>
