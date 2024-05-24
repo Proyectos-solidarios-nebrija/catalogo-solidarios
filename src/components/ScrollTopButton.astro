@@ -1,0 +1,70 @@
+---
+import ArrowUp from './icons/ArrowUp.astro'
+---
+
+<button class="back-top-btn hidden">
+  <ArrowUp />
+</button>
+
+<style>
+  .back-top-btn {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    width: 48px;
+    height: 48px;
+    background-color: var(--secondary-color);
+    box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: opacity 0.2s;
+  }
+
+  .back-top-btn :global(svg) {
+    color: var(--primary-color);
+    transition: transform 0.3s;
+  }
+
+  .back-top-btn.hidden {
+    opacity: 0;
+    pointer-events: none;
+  }
+
+  .back-top-btn:hover :global(svg) {
+    transform: translateY(-2px);
+  }
+
+  @media (width <= 800px) {
+    .back-top-btn {
+      width: 36px;
+      height: 36px;
+    }
+  }
+</style>
+
+<script>
+  document.addEventListener('astro:page-load', () => {
+    const backTopBtn = document.querySelector(
+      '.back-top-btn'
+    ) as HTMLButtonElement
+
+    window.addEventListener('scroll', () => {
+      if (window.scrollY > 100) {
+        backTopBtn.classList.remove('hidden')
+      } else {
+        backTopBtn.classList.add('hidden')
+      }
+    })
+
+    backTopBtn.addEventListener('click', () => {
+      window.scrollTo({
+        top: 0,
+        behavior: 'smooth'
+      })
+    })
+  })
+</script>
