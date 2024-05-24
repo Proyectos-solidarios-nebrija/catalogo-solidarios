@@ -26,3 +26,17 @@ export const getProjects = async (locale = defaultLang) => {
 
   return null
 }
+
+export const getTranslations = async (locale = defaultLang) => {
+  try {
+    const resp = await fetch(
+      `${CMS_URL}/api/translations?limit=0&locale=${locale}`
+    )
+    const data = await resp.json()
+    return data
+  } catch (error) {
+    console.error(error)
+  }
+
+  return null
+}

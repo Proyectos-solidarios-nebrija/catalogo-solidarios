@@ -19,7 +19,7 @@ const currentLang = getLangFromUrl(Astro.url)
 const t = useTranslations(currentLang)
 ---
 
-<BaseLayout title={`${t('header.title')} | ${title}`}>
+<BaseLayout title={`${t('title')} | ${title}`}>
   <div class="content">
     <header>
       <h2 transition:name={`project-year-${title}`}>

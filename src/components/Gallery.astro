@@ -18,7 +18,7 @@ const docs = gallery?.docs
   <h2 id={t('nav.gallery')}>{t('nav.gallery')}</h2>
   <div id="photos">
     {
-      docs?.map(({ photo, alt }, idx, arr) => (
+      docs?.map(({ photo }, idx, arr) => (
         <a
           data-pswp-width={photo.width}
           data-pswp-height={photo.height}
@@ -26,7 +26,7 @@ const docs = gallery?.docs
           class={`${idx % 8 < 4 ? '' : 'reverse'} ${arr.length % 4 !== 0 && arr.length - 1 - idx < arr.length % 4 ? `uncomplete-last-photos-${arr.length % 4}-${idx % 4}` : ''}`}>
           <Image
             src={CMS_URL + photo.url}
-            alt={alt ?? 'Test'}
+            alt={photo.alt}
             width={photo.width}
             height={photo.height}
           />
