@@ -2,9 +2,6 @@
 import { getLangFromUrl, useTranslations } from 'src/i18n/utils'
 import { Image } from 'astro:assets'
 import { getGallery } from 'src/services/cms'
-import { getEnv } from 'src/helpers/getEnv'
-
-const { CMS_URL } = getEnv()
 
 const currentLang = getLangFromUrl(Astro.url)
 const t = useTranslations(currentLang)
@@ -22,10 +19,10 @@ const docs = gallery?.docs
         <a
           data-pswp-width={photo.width}
           data-pswp-height={photo.height}
-          href={CMS_URL + photo.url}
+          href={photo.url}
           class={`${idx % 8 < 4 ? '' : 'reverse'} ${arr.length % 4 !== 0 && arr.length - 1 - idx < arr.length % 4 ? `uncomplete-last-photos-${arr.length % 4}-${idx % 4}` : ''}`}>
           <Image
-            src={CMS_URL + photo.url}
+            src={photo.url}
             alt={photo.alt}
             width={photo.width}
             height={photo.height}

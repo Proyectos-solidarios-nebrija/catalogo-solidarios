@@ -1,7 +1,6 @@
 ---
 import MemberCard from '@components/MemberCard.astro'
 import Link from '@components/icons/Link.astro'
-import { getEnv } from 'src/helpers/getEnv'
 import type { ProjectMembers } from 'src/types/types'
 
 interface Props {
@@ -10,7 +9,6 @@ interface Props {
 }
 
 const { projectName, members } = Astro.props
-const { CMS_URL } = getEnv()
 ---
 
 <div class="container">
@@ -25,7 +23,7 @@ const { CMS_URL } = getEnv()
       members.map(({ member }) => (
         <MemberCard
           name={member?.name}
-          img={{ url: CMS_URL + member.photo.url, alt: member.photo.alt }}
+          img={{ url: member.photo.url, alt: member.photo.alt }}
           links={{
             github: member?.github_link,
             linkedin: member?.linkedin_link

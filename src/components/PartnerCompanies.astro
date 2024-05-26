@@ -1,7 +1,6 @@
 ---
 import { getLangFromUrl, useTranslations } from 'src/i18n/utils'
 import PartnerCompany from './PartnerCompany.astro'
-import { getEnv } from 'src/helpers/getEnv'
 import type { PartnerCompanyData } from 'src/types/types'
 
 interface Props {
@@ -9,8 +8,6 @@ interface Props {
 }
 
 const { companies } = Astro.props
-
-const { CMS_URL } = getEnv()
 
 const currentLang = getLangFromUrl(Astro.url)
 const t = useTranslations(currentLang)
@@ -24,7 +21,7 @@ const t = useTranslations(currentLang)
         <PartnerCompany
           name={name}
           img={{
-            url: CMS_URL + photo.url,
+            url: photo.url,
             alt: photo.alt,
             width: photo.width,
             height: photo.height
