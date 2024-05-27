@@ -4,6 +4,7 @@ import PartnerCompanies from '@components/PartnerCompanies.astro'
 import { getProjects } from 'src/services/cms'
 import type { PartnerCompaniesData, PhotoData } from 'src/types/types'
 import { getEnv } from 'src/helpers/getEnv'
+import Gallery from '@components/Gallery.astro'
 
 interface Props {
   name: string
@@ -13,14 +14,19 @@ interface Props {
   project_image: PhotoData
   web_link: string
   partner_companies: PartnerCompaniesData[]
+  gallery: {
+    id: string
+    photo: PhotoData
+  }[]
 }
 
 const { CMS_URL } = getEnv()
 
 export async function getStaticPaths() {
-  const { docs: projects } = await getProjects()
+  const allProjects = await getProjects()
+  const projects = allProjects?.docs
 
-  const paths = projects.map((project) => ({
+  const paths = projects?.map((project) => ({
     params: { slug: project.slug },
     props: project
   }))
@@ -35,7 +41,8 @@ const {
   article_html,
   project_image,
   web_link,
-  partner_companies
+  partner_companies,
+  gallery
 } = Astro.props
 
 const companies = partner_companies.map(
@@ -55,5 +62,6 @@ const companies = partner_companies.map(
     alt: project_image.alt
   }}>
   <Fragment set:html={article_html} />
+  {gallery?.length > 0 && <Gallery gallery={gallery} />}
   {companies.length > 0 && <PartnerCompanies companies={companies} />}
 </BlogLayout>

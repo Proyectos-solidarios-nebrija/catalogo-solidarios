@@ -1,22 +1,19 @@
 ---
-import {
-  getLangFromUrl,
-  useTranslatedPath,
-  useTranslations
-} from 'src/i18n/utils'
+import { getLangFromUrl, useTranslations } from 'src/i18n/utils'
 import Project from './Project.astro'
 import { getProjects } from 'src/services/cms'
 import { getEnv } from 'src/helpers/getEnv'
+import { getRelativeLocaleUrl } from 'astro:i18n'
 
 const currentLang = getLangFromUrl(Astro.url)
 const t = useTranslations(currentLang)
-const translatePath = useTranslatedPath(currentLang)
 
 const { CMS_URL } = getEnv()
 
-const { docs: projects } = await getProjects()
+const allProjects = await getProjects()
+const projects = allProjects?.docs
 
-projects.sort(
+projects?.sort(
   (a, b) => new Date(b.date_start).getTime() - new Date(a.date_start).getTime()
 ) // Sort in descending order
 ---
@@ -25,7 +22,7 @@ projects.sort(
   <h2 id={t('nav.projects')}>{t('nav.projects')}</h2>
   <ol>
     {
-      projects.map(
+      projects?.map(
         ({ name, date_start, date_end, project_image, slug }, idx) => (
           <Project
             dateStart={new Date(date_start)}
@@ -38,7 +35,7 @@ projects.sort(
               alt: project_image.alt
             }}
             isLastProject={idx === 0}
-            articleLink={`${translatePath('/proyectos')}/${slug}`}
+            articleLink={getRelativeLocaleUrl(currentLang, `proyectos/${slug}`)}
           />
         )
       )

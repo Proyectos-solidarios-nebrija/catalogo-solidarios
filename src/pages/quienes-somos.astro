@@ -3,9 +3,10 @@ import MemberCards from '@components/MemberCards.astro'
 import BaseLayout from '@layouts/BaseLayout.astro'
 import { getProjects } from 'src/services/cms'
 
-const { docs: projects } = await getProjects()
+const allProjects = await getProjects()
+const projects = allProjects?.docs
 
-projects.sort(
+projects?.sort(
   (a, b) => new Date(b.date_start).getTime() - new Date(a.date_start).getTime()
 )
 ---
@@ -14,7 +15,7 @@ projects.sort(
   <div class="projects content">
     <h1>Nuestros equipos</h1>
     {
-      projects.map(({ name, project_members }) => (
+      projects?.map(({ name, project_members }) => (
         <MemberCards projectName={name} members={project_members} />
       ))
     }

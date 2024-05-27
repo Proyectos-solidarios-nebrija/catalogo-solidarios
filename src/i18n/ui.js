@@ -36,14 +36,3 @@ export const ui = {
     '404.back': 'Back to home'
   }
 }
-
-export const routes = {
-  es: {
-    'quienes-somos': 'quienes-somos',
-    proyectos: 'proyectos'
-  },
-  en: {
-    'quienes-somos': 'who-we-are',
-    proyectos: 'projects'
-  }
-}
