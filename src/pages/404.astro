@@ -1,15 +1,11 @@
 ---
 import ChevronRight from '@components/icons/ChevronRight.astro'
 import BaseLayout from '@layouts/BaseLayout.astro'
-import {
-  getLangFromUrl,
-  useTranslatedPath,
-  useTranslations
-} from 'src/i18n/utils'
+import { getRelativeLocaleUrl } from 'astro:i18n'
+import { getLangFromUrl, useTranslations } from 'src/i18n/utils'
 
 const currentLang = getLangFromUrl(Astro.url)
 const t = useTranslations(currentLang)
-const translatePath = useTranslatedPath(currentLang)
 ---
 
 <BaseLayout>
@@ -19,7 +15,9 @@ const translatePath = useTranslatedPath(currentLang)
       <p>
         {t('404.desc')}
       </p>
-      <a href={translatePath('/')}><ChevronRight />{t('404.back')}</a>
+      <a href={getRelativeLocaleUrl(currentLang, '/')}
+        ><ChevronRight />{t('404.back')}</a
+      >
     </div>
     <h2>404</h2>
   </header>

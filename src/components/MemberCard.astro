@@ -15,7 +15,6 @@ interface Props {
     linkedin?: string
   }
 }
-
 const { name, img, links } = Astro.props
 ---
 
@@ -25,7 +24,9 @@ const { name, img, links } = Astro.props
   </div>
   <h3>{name}</h3>
   {
-    Object.keys(links).length > 0 && (
+    Object.keys(links)
+      .map((key) => links[key])
+      .filter((el) => el).length > 0 && (
       <ul class="card-links">
         {Object.keys(links)
           .sort()
