@@ -1,33 +1,40 @@
 ---
 import Moon from '@components/icons/Moon.astro'
+import Sun from '@components/icons/Sun.astro'
 import LanguagePicker from '@components/LanguagePicker.astro'
 import logoNebrija from '@images/assets/logoNebrija.png'
 import { Image } from 'astro:assets'
-import {
-  getLangFromUrl,
-  useTranslatedPath,
-  useTranslations
-} from 'src/i18n/utils'
-import Sun from './icons/Sun.astro'
+import { getLangFromUrl, useTranslations } from 'src/i18n/utils'
+import { getRelativeLocaleUrl } from 'astro:i18n'
+import { removeTraillingSlash } from '../helpers/removeTraillingSlash'
 
 const currentLang = getLangFromUrl(Astro.url)
 const t = useTranslations(currentLang)
-const translatePath = useTranslatedPath(currentLang)
 ---
 
 <nav>
-  <a href={translatePath('/')} id="link-home">
+  <a href={getRelativeLocaleUrl(currentLang, '/')} id="link-home">
     <Image src={logoNebrija} alt={t('alt.nebrijaLogoImg')} width={70} />
   </a>
   <ul class="links">
     <li>
-      <a href={translatePath(`/#${t('nav.projects')}`)}>{t('nav.projects')}</a>
+      <a
+        href={removeTraillingSlash(
+          getRelativeLocaleUrl(currentLang, `#${t('nav.projects')}`)
+        )}>{t('nav.projects')}</a
+      >
     </li>
     <li>
-      <a href={translatePath(`/#${t('nav.gallery')}`)}>{t('nav.gallery')}</a>
+      <a
+        href={removeTraillingSlash(
+          getRelativeLocaleUrl(currentLang, `#${t('nav.gallery')}`)
+        )}>{t('nav.gallery')}</a
+      >
     </li>
     <li>
-      <a href={translatePath('/quienes-somos')}>{t('nav.whoWeAre')}</a>
+      <a href={getRelativeLocaleUrl(currentLang, 'quienes-somos')}
+        >{t('nav.whoWeAre')}</a
+      >
     </li>
     <li class="config">
       <button id="btn-theme-toggler">
@@ -45,6 +52,9 @@ const translatePath = useTranslatedPath(currentLang)
 
 <script>
   const LOCAL_STORAGE_THEME_KEY = 'theme'
+  const html = document.querySelector('html') as HTMLElement
+  const selectedTheme = localStorage.getItem(LOCAL_STORAGE_THEME_KEY)
+  const systemSettingDark = window.matchMedia('(prefers-color-scheme: dark)')
 
   const THEMES = {
     dark: 'dark',
@@ -61,31 +71,24 @@ const translatePath = useTranslatedPath(currentLang)
     }
   }
 
+  // Set up the select theme
+  if (selectedTheme === THEMES.dark || (systemSettingDark && !selectedTheme)) {
+    setThemePreference(html, THEMES.dark)
+  } else {
+    setThemePreference(html, THEMES.light)
+  }
+
   document.addEventListener('astro:after-swap', () => {
-    const selectedTheme = localStorage.getItem(LOCAL_STORAGE_THEME_KEY)
     const html = document.querySelector('html') as HTMLElement
-
-    const systemSettingDark = window.matchMedia('(prefers-color-scheme: dark)')
-
-    // Set up the select theme
-    if (selectedTheme === THEMES.dark) {
-      html.classList.add('dark')
-    } else {
-      // Config the preferred theme
-      if (systemSettingDark) {
-        setThemePreference(html, THEMES.dark)
-      } else {
-        setThemePreference(html, THEMES.light)
-      }
-    }
+    const selectedTheme = localStorage.getItem(LOCAL_STORAGE_THEME_KEY)
+    setThemePreference(html, selectedTheme)
   })
 
   document.addEventListener('astro:page-load', () => {
+    const html = document.querySelector('html') as HTMLElement
     const btnThemeToggler = document.querySelector(
       '#btn-theme-toggler'
     ) as HTMLButtonElement
-
-    const html = document.querySelector('html') as HTMLElement
 
     btnThemeToggler.addEventListener('click', () => {
       const currentTheme = localStorage.getItem(LOCAL_STORAGE_THEME_KEY)

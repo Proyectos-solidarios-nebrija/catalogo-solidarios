@@ -1,37 +1,44 @@
 ---
-import {
-  getLangFromUrl,
-  useTranslatedPath,
-  useTranslations
-} from 'src/i18n/utils'
+import { getLangFromUrl, useTranslations } from 'src/i18n/utils'
 import Project from './Project.astro'
-import { getCollection } from 'astro:content'
+import { getProjects } from 'src/services/cms'
+import { getEnv } from 'src/helpers/getEnv'
+import { getRelativeLocaleUrl } from 'astro:i18n'
 
 const currentLang = getLangFromUrl(Astro.url)
 const t = useTranslations(currentLang)
-const translatePath = useTranslatedPath(currentLang)
 
-const projects = await getCollection('proyectos', ({ id }) =>
-  id.startsWith(`${currentLang}/`)
-)
+const { CMS_URL } = getEnv()
 
-projects.sort((a, b) => b.data.yearStart - a.data.yearStart) // Sort in descending order
+const allProjects = await getProjects()
+const projects = allProjects?.docs
+
+projects?.sort(
+  (a, b) => new Date(b.date_start).getTime() - new Date(a.date_start).getTime()
+) // Sort in descending order
 ---
 
 <main>
   <h2 id={t('nav.projects')}>{t('nav.projects')}</h2>
   <ol>
     {
-      projects.map(({ data, slug }, idx) => (
-        <Project
-          yearStart={data.yearStart}
-          yearEnd={data.yearEnd}
-          title={data.title}
-          imgPath={data.imgPath}
-          isLastProject={idx === 0}
-          articleLink={`${translatePath('/proyectos')}/${slug.split('/')[1]}`}
-        />
-      ))
+      projects?.map(
+        ({ name, date_start, date_end, project_image, slug }, idx) => (
+          <Project
+            dateStart={new Date(date_start)}
+            dateEnd={new Date(date_end)}
+            title={name}
+            img={{
+              url: CMS_URL + project_image.url,
+              height: project_image.height,
+              width: project_image.width,
+              alt: project_image.alt
+            }}
+            isLastProject={idx === 0}
+            articleLink={getRelativeLocaleUrl(currentLang, `proyectos/${slug}`)}
+          />
+        )
+      )
     }
   </ol>
 </main>

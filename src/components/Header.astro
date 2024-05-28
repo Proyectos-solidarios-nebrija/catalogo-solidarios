@@ -8,9 +8,9 @@ const t = useTranslations(lang)
 ---
 
 <header>
-  <h1>{t('header.title')}</h1>
+  <h1>{t('title')}</h1>
   <div class="header-content">
-    <p>{t('header.desc')}</p>
+    <p>{t('description')}</p>
     <span>
       {
         courses.map((course, idx) => (
@@ -42,6 +42,7 @@ const t = useTranslations(lang)
     text-align: center;
     max-width: 10ch;
     margin: 0;
+    text-transform: capitalize;
   }
 
   .header-content {

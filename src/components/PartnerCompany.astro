@@ -1,0 +1,53 @@
+---
+import { Image } from 'astro:assets'
+import type { PhotoData } from 'src/types/types'
+
+interface Props {
+  name: string
+  img: PhotoData
+}
+
+const { name, img } = Astro.props
+---
+
+<li>
+  <a href={img.url} data-pswp-width={img.width} data-pswp-height={img.height}>
+    <Image src={img.url} width={img.width} height={img.height} alt={img.alt} />
+  </a>
+  <h3>{name}</h3>
+</li>
+
+<style>
+  h3 {
+    text-wrap: pretty;
+    font-size: 6rem;
+    margin: 0;
+    max-width: 10ch;
+  }
+
+  img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+    margin: 0;
+  }
+
+  a {
+    cursor: zoom-in;
+    text-decoration: none;
+  }
+
+  li {
+    width: 280px;
+    display: flex;
+    gap: 25px;
+    align-items: center;
+    flex-direction: column;
+  }
+
+  @media (width <= 800px) {
+    li {
+      width: 100%;
+    }
+  }
+</style>

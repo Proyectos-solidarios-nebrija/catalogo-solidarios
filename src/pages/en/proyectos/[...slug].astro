@@ -1,10 +1,11 @@
 ---
 import BlogLayout from '@layouts/BlogLayout.astro'
 import PartnerCompanies from '@components/PartnerCompanies.astro'
+import Gallery from '@components/Gallery.astro'
 import { getProjects } from 'src/services/cms'
 import type { PartnerCompaniesData, PhotoData } from 'src/types/types'
 import { getEnv } from 'src/helpers/getEnv'
-import Gallery from '@components/Gallery.astro'
+import { languages } from 'src/i18n/ui'
 
 interface Props {
   name: string
@@ -23,7 +24,7 @@ interface Props {
 const { CMS_URL } = getEnv()
 
 export async function getStaticPaths() {
-  const allProjects = await getProjects()
+  const allProjects = await getProjects(languages.en)
   const projects = allProjects?.docs
 
   const paths = projects?.map((project) => ({

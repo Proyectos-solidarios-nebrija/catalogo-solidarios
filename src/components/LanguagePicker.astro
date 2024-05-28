@@ -1,15 +1,12 @@
 ---
+import { getRelativeLocaleUrl } from 'astro:i18n'
 import { languages } from 'src/i18n/ui'
-import {
-  getLangFromUrl,
-  getRouteFromUrl,
-  useTranslatedPath
-} from 'src/i18n/utils'
+import { getLangFromUrl } from 'src/i18n/utils'
 
 const currentLang = getLangFromUrl(Astro.url)
-const translatePath = useTranslatedPath(currentLang)
 
-const route = getRouteFromUrl(Astro.url)
+// Get route withoute the language in the URL
+const route = Astro.url.pathname.replace(`/${currentLang}`, '')
 ---
 
 <ul>
@@ -18,7 +15,7 @@ const route = getRouteFromUrl(Astro.url)
       <>
         <li>
           <a
-            href={translatePath(`/${route ?? ''}`, lang)}
+            href={getRelativeLocaleUrl(lang, route)}
             style={currentLang === lang ? 'font-weight: 600;' : ''}>
             {label}
           </a>

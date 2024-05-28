@@ -1,18 +1,17 @@
 import { defineConfig } from 'astro/config'
-import mdx from '@astrojs/mdx'
 import { defaultLang, languages, showDefaultLang } from './src/i18n/ui'
 
 import sitemap from '@astrojs/sitemap'
+import { cannonicalURL } from './src/constants/seo'
 
 // https://astro.build/config
 export default defineConfig({
-  site: "https://proyectos-solidarios.nebrijanos.com",
+  site: cannonicalURL,
   devToolbar: {
     enabled: false
   },
   output: "server",
   integrations: [
-    mdx(),
     sitemap({
       i18n: {
         defaultLocale: defaultLang,

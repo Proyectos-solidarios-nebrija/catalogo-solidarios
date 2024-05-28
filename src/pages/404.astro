@@ -1,0 +1,86 @@
+---
+import ChevronRight from '@components/icons/ChevronRight.astro'
+import BaseLayout from '@layouts/BaseLayout.astro'
+import { getRelativeLocaleUrl } from 'astro:i18n'
+import { getLangFromUrl, useTranslations } from 'src/i18n/utils'
+
+const currentLang = getLangFromUrl(Astro.url)
+const t = useTranslations(currentLang)
+---
+
+<BaseLayout>
+  <header class="content">
+    <div class="header-content">
+      <h1>{t('404.notFound')}</h1>
+      <p>
+        {t('404.desc')}
+      </p>
+      <a href={getRelativeLocaleUrl(currentLang, '/')}
+        ><ChevronRight />{t('404.back')}</a
+      >
+    </div>
+    <h2>404</h2>
+  </header>
+</BaseLayout>
+
+<style>
+  header {
+    display: flex;
+    gap: 2rem;
+    flex-flow: row wrap;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .header-content {
+    flex: 2;
+    flex-grow: 2;
+    display: flex;
+    flex-flow: column wrap;
+  }
+
+  h2 {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex: 1;
+    flex-grow: 2;
+    font-size: 20rem;
+    font-weight: 200;
+  }
+
+  h1 {
+    font-size: 8rem;
+    margin: 0;
+  }
+
+  p {
+    font-size: 3rem;
+    margin: 0;
+  }
+
+  a {
+    font-size: 3rem;
+    font-weight: 500;
+    margin-top: 5rem;
+    display: flex;
+    flex-flow: row nowrap;
+    align-items: center;
+  }
+
+  a :global(svg) {
+    height: 2.8rem;
+    margin-right: 1rem;
+    transition: all 0.3s ease;
+  }
+
+  a:hover :global(svg) {
+    transform: translateX(0.5rem);
+  }
+
+  :global(footer) {
+    position: absolute;
+    width: 100%;
+    bottom: 0;
+  }
+</style>

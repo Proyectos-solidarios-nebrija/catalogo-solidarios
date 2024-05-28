@@ -1,8 +1,8 @@
 {
   "Met@emoción": {
     "imgPath": "",
-    "yearStart": "",
-    "yearEnd": "",
+    "dateStart": "",
+    "dateEnd": "",
     "members": [
       {
         "name": "Pablo Hermida Gómez",
@@ -84,8 +84,8 @@
   },
   "Nebrija's Adventure": {
     "imgPath": "",
-    "yearStart": "",
-    "yearEnd": "",
+    "dateStart": "",
+    "dateEnd": "",
     "members": [
       {
         "name": "Pablo Hermida Gómez",
@@ -194,8 +194,8 @@
   },
   "3Dom": {
     "imgPath": "",
-    "yearStart": "",
-    "yearEnd": "",
+    "dateStart": "",
+    "dateEnd": "",
     "members": [
       {
         "name": "Francisco Albiar Jimenez",

@@ -1,8 +1,13 @@
 ---
+import 'photoswipe/style.css'
 import Navbar from '@components/Navbar.astro'
 import CommonHead from '@components/CommonHead.astro'
 import Footer from '@components/Footer.astro'
-const { lang, title } = Astro.props
+import { getLangFromUrl } from 'src/i18n/utils'
+import ScrollTopButton from '@components/ScrollTopButton.astro'
+const { title } = Astro.props
+
+const lang = getLangFromUrl(Astro.url)
 ---
 
 <html lang={lang}>
@@ -11,6 +16,7 @@ const { lang, title } = Astro.props
     <div class="page-width">
       <Navbar />
       <slot />
+      <ScrollTopButton />
     </div>
     <Footer />
     <style is:global>
