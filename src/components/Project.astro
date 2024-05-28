@@ -29,7 +29,7 @@ const t = useTranslations(currentLang)
           src={img.url}
           height={img.height}
           width={img.width}
-          alt={img.alt}
+          alt={img.alt ?? ''}
           transition:name={`project-img-${title}`}
         />
         <ChevronRight />

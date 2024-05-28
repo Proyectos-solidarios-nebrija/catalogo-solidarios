@@ -1,10 +1,11 @@
 ---
 import BlogLayout from '@layouts/BlogLayout.astro'
 import PartnerCompanies from '@components/PartnerCompanies.astro'
-import { getProjects } from 'src/services/cms'
+import Gallery from '@components/Gallery.astro'
+import { getProject } from 'src/services/cms'
 import type { PartnerCompaniesData, PhotoData } from 'src/types/types'
 import { getEnv } from 'src/helpers/getEnv'
-import Gallery from '@components/Gallery.astro'
+import { languages } from 'src/i18n/ui'
 
 interface Props {
   name: string
@@ -22,16 +23,12 @@ interface Props {
 
 const { CMS_URL } = getEnv()
 
-export async function getStaticPaths() {
-  const allProjects = await getProjects()
-  const projects = allProjects?.docs
+const { slug } = Astro.params
 
-  const paths = projects?.map((project) => ({
-    params: { slug: project.slug },
-    props: project
-  }))
+const project = await getProject(slug, languages.en)
 
-  return paths
+if (project.docs.length === 0) {
+  return Astro.redirect('/404')
 }
 
 const {
@@ -43,9 +40,9 @@ const {
   web_link,
   partner_companies,
   gallery
-} = Astro.props
+} = project.docs[0]
 
-const companies = partner_companies.map(
+const companies = partner_companies?.map(
   ({ partner_company }) => partner_company
 )
 ---
@@ -56,10 +53,10 @@ const companies = partner_companies.map(
   dateEnd={new Date(date_end)}
   webLink={web_link}
   img={{
-    url: CMS_URL + project_image.url,
-    width: project_image.width,
-    height: project_image.height,
-    alt: project_image.alt
+    url: CMS_URL + project_image?.url,
+    width: project_image?.width,
+    height: project_image?.height,
+    alt: project_image?.alt
   }}>
   <Fragment set:html={article_html} />
   {gallery?.length > 0 && <Gallery gallery={gallery} />}

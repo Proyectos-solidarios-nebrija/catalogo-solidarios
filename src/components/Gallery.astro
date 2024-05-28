@@ -30,7 +30,7 @@ const t = useTranslations(currentLang)
           class={`${idx % 8 < 4 ? '' : 'reverse'} ${arr.length % 4 !== 0 && arr.length - 1 - idx < arr.length % 4 ? `uncomplete-last-photos-${arr.length % 4}-${idx % 4}` : ''}`}>
           <Image
             src={CMS_URL + photo.url}
-            alt={photo.alt}
+            alt={photo.alt ?? ''}
             width={photo.width}
             height={photo.height}
           />

@@ -2,15 +2,19 @@
 import MemberCards from '@components/MemberCards.astro'
 import BaseLayout from '@layouts/BaseLayout.astro'
 import { getProjects } from 'src/services/cms'
+import { getLangFromUrl, useTranslations } from 'src/i18n/utils'
 
 const { docs: projects } = await getProjects()
 
-projects.sort(
+const currentLang = getLangFromUrl(Astro.url)
+const t = useTranslations(currentLang)
+
+projects?.sort(
   (a, b) => new Date(b.date_start).getTime() - new Date(a.date_start).getTime()
 )
 ---
 
-<BaseLayout>
+<BaseLayout title={`${t('title')} | Who we are?`}>
   <div class="projects content">
     <h1>Our teams</h1>
     {

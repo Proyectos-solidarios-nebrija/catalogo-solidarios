@@ -27,6 +27,20 @@ export const getProjects = async (locale = defaultLang) => {
   return null
 }
 
+export const getProject = async (slug, locale = defaultLang) => {
+  try {
+    const resp = await fetch(
+      `${CMS_URL}/api/projects?where[slug][equals]=${slug}&locale=${locale}`
+    )
+    const data = await resp.json()
+    return data
+  } catch (error) {
+    console.error(error)
+  }
+
+  return null
+}
+
 export const getTranslations = async (locale = defaultLang) => {
   try {
     const resp = await fetch(
