@@ -10,6 +10,7 @@ export default defineConfig({
   devToolbar: {
     enabled: false
   },
+  output: "server",
   integrations: [
     sitemap({
       i18n: {

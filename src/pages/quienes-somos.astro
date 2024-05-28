@@ -2,6 +2,10 @@
 import MemberCards from '@components/MemberCards.astro'
 import BaseLayout from '@layouts/BaseLayout.astro'
 import { getProjects } from 'src/services/cms'
+import { getLangFromUrl, useTranslations } from 'src/i18n/utils'
+
+const currentLang = getLangFromUrl(Astro.url)
+const t = useTranslations(currentLang)
 
 const allProjects = await getProjects()
 const projects = allProjects?.docs
@@ -11,7 +15,7 @@ projects?.sort(
 )
 ---
 
-<BaseLayout>
+<BaseLayout title={`${t('title')} | ¿Quiénes somos?`}>
   <div class="projects content">
     <h1>Nuestros equipos</h1>
     {
