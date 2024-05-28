@@ -12,7 +12,12 @@ const { name, img } = Astro.props
 
 <li>
   <a href={img.url} data-pswp-width={img.width} data-pswp-height={img.height}>
-    <Image src={img.url} width={img.width} height={img.height} alt={img.alt} />
+    <Image
+      src={img.url}
+      width={img.width}
+      height={img.height}
+      alt={img.alt ?? ''}
+    />
   </a>
   <h3>{name}</h3>
 </li>

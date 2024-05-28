@@ -6,6 +6,11 @@ import { ViewTransitions } from 'astro:transitions'
 const currentLang = getLangFromUrl(Astro.url)
 const t = useTranslations(currentLang)
 
+const localeCode = {
+  es: 'es_ES',
+  en: 'en_US'
+}
+
 interface Props {
   title?: string
 }
@@ -15,11 +20,6 @@ const { title = t('title') } = Astro.props
 const ogTitle = title.replace(`${t('title')} | `, '')
 
 const ogUrlImg = `${Astro.url.origin}/api/og.png?text=${ogTitle}&lang=${currentLang}&subtitle=${ogTitle !== title}`
-
-const localeCode = {
-  es: 'es_ES',
-  en: 'en_US'
-}
 ---
 
 <Head>

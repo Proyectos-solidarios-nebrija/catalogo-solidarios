@@ -20,7 +20,7 @@ const { name, img, links } = Astro.props
 
 <li class="card">
   <div class="card-img">
-    <Image src={img.url} alt={img.alt} width={280} height={300} />
+    <Image src={img.url} alt={img.alt ?? ''} width={280} height={300} />
   </div>
   <h3>{name}</h3>
   {
