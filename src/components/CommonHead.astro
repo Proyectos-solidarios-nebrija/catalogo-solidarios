@@ -7,6 +7,15 @@ const currentLang = getLangFromUrl(Astro.url)
 const t = useTranslations(currentLang)
 
 const { title = t('header.title') } = Astro.props
+
+const ogTitle = title.replace(`${t('header.title')} | `, '')
+
+const ogUrlImg = `${Astro.url.origin}/api/og.png?text=${ogTitle}&lang=${currentLang}&subtitle=${ogTitle !== title}`
+
+const localeCode = {
+  es: 'es_ES',
+  en: 'en_US'
+}
 ---
 
 <Head>
@@ -24,6 +33,19 @@ const { title = t('header.title') } = Astro.props
     content="nebrija, fp, fp nebrija, proyectos solidarios, dam, daw, asir, solidarity projects, metaemocion, nebrijas adventure, 3dom"
   />
   <meta name="description" content={t('meta.desc')} />
+
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content={title} />
+  <meta name="twitter:description" content={t('meta.desc')} />
+  <meta name="twitter:image" content={ogUrlImg} />
+
+  <meta property="og:image" content={ogUrlImg} />
+  <meta property="og:title" content={title} />
+  <meta property="og:description" content={t('meta.desc')} />
+  <meta property="og:url" content={Astro.url} />
+  <meta property="og:site_name" content={title} />
+  <meta property="og:type" content="website" />
+  <meta property="og:locale" content={localeCode[currentLang]} />
 
   <ViewTransitions />
 </Head>

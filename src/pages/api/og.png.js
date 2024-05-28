@@ -10,11 +10,8 @@ const langTitles = {
 
 export const GET = async ({ url }) => {
   const ogText = url.searchParams.get('text')
-  let lang = url.searchParams.get('lang')
-
-  if (!lang) {
-    lang = 'es'
-  }
+  const lang = url.searchParams.get('lang') ?? 'es'
+  const enableSubtitle = url.searchParams.get('subtitle') === 'true'
 
   if (!ogText) {
     return new Response('Not Found', { status: 404 })
@@ -25,9 +22,9 @@ export const GET = async ({ url }) => {
   )
 
   const markup = html(`
-    <div style="width: 100%; height: 100%; display: flex; align-items: center; justify-content: center; font-weight: 600; font-family: "Monserrat"; color: #31363f; flex-direction: column; gap: 25px; background-color: #eee;">
-      <h1 style="font-size: 86px; text-align: center; text-transform: capitalize; margin: 0; padding: 0;">${ogText}</h1>
-      <h2 style="font-size: 36px; opacity: 0.8;">${langTitles[lang]}</h2>
+    <div style="width: 100%; height: 100%; display: flex; align-items: center; justify-content: center; font-weight: 600; font-family: "Monserrat"; color: #31363f; flex-direction: column; gap: 25px; background-color: #eee; background-image: radial-gradient(circle at 25px 25px, lightgray 2%, transparent 0%), radial-gradient(circle at 75px 75px, lightgray 2%, transparent 0%); background-size: 100px 100px;">
+      <h1 style="font-size: 86px; text-align: center; margin: 0; padding: 0;">${ogText}</h1>
+      ${enableSubtitle ? `<h2 style="font-size: 36px; opacity: 0.8;">${langTitles[lang]}</h2>` : ''}
     </div>
     <img src="${url.origin}/images/favicon.png" style="position: absolute; width: 100px; top: 40px; left: 40px; margin: 0; padding: 0;" />
   `)

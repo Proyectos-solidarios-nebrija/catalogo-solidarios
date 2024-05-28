@@ -2,9 +2,13 @@
 import MemberCards from '@components/MemberCards.astro'
 import BaseLayout from '@layouts/BaseLayout.astro'
 import projects from 'src/data/projects.json'
+import { getLangFromUrl, useTranslations } from 'src/i18n/utils'
+
+const currentLang = getLangFromUrl(Astro.url)
+const t = useTranslations(currentLang)
 ---
 
-<BaseLayout>
+<BaseLayout title={`${t('title')} | ¿Quiénes somos?`}>
   <div class="projects">
     {
       Object.keys(projects).map((project) => (
