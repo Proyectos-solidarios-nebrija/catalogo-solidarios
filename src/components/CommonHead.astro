@@ -17,7 +17,7 @@ interface Props {
 
 const { title = t('title') } = Astro.props
 
-const ogTitle = title.replace(`${t('title')} | `, '')
+const ogTitle = title?.replace(`${t('title')} | `, '')
 
 const ogUrlImg = `${Astro.url.origin}/api/og.png?text=${ogTitle}&lang=${currentLang}&subtitle=${ogTitle !== title}`
 ---

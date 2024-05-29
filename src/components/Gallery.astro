@@ -22,7 +22,7 @@ const t = useTranslations(currentLang)
   <h2 id={t('nav.gallery')}>{t('nav.gallery')}</h2>
   <div id="photos">
     {
-      gallery.map(({ photo }, idx, arr) => (
+      gallery?.map(({ photo }, idx, arr) => (
         <a
           data-pswp-width={photo.width}
           data-pswp-height={photo.height}
