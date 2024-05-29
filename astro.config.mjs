@@ -1,9 +1,9 @@
-import { defineConfig } from 'astro/config';
-import { defaultLang, languages, showDefaultLang } from './src/i18n/ui';
-import sitemap from '@astrojs/sitemap';
-import { cannonicalURL } from './src/constants/seo';
+import { defineConfig } from 'astro/config'
+import { defaultLang, languages, showDefaultLang } from './src/i18n/ui'
+import sitemap from '@astrojs/sitemap'
+import { cannonicalURL } from './src/constants/seo'
 
-import node from "@astrojs/node";
+import node from '@astrojs/node'
 
 // https://astro.build/config
 export default defineConfig({
@@ -11,16 +11,18 @@ export default defineConfig({
   devToolbar: {
     enabled: false
   },
-  output: "server",
-  integrations: [sitemap({
-    i18n: {
-      defaultLocale: defaultLang,
-      locales: {
-        en: 'en-US',
-        es: 'es-ES'
+  output: 'server',
+  integrations: [
+    sitemap({
+      i18n: {
+        defaultLocale: defaultLang,
+        locales: {
+          en: 'en-US',
+          es: 'es-ES'
+        }
       }
-    }
-  })],
+    })
+  ],
   i18n: {
     defaultLocale: defaultLang,
     locales: Object.keys(languages),
@@ -29,6 +31,6 @@ export default defineConfig({
     }
   },
   adapter: node({
-    mode: "standalone"
+    mode: 'standalone'
   })
-});
+})

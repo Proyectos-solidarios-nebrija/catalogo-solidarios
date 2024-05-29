@@ -6,7 +6,7 @@ import Galery from '@components/Gallery.astro'
 import { getGallery } from 'src/services/cms'
 
 const galleryDocs = await getGallery()
-const gallery = galleryDocs.docs
+const gallery = galleryDocs?.docs
 ---
 
 <BaseLayout>
