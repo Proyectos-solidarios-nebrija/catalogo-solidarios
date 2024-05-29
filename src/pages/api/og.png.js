@@ -1,4 +1,3 @@
-import fs from 'node:fs/promises'
 import satori from 'satori'
 import { html } from 'satori-html'
 import sharp from 'sharp'
@@ -17,9 +16,17 @@ export const GET = async ({ url }) => {
     return new Response('Not Found', { status: 404 })
   }
 
-  const monserratData = await fs.readFile(
-    './public/fonts/montserrat-latin-600-normal.ttf'
-  )
+  let fontBuffer
+
+  try {
+    const font = await fetch(
+      `${url.origin}/fonts/montserrat-latin-600-normal.ttf`
+    )
+    fontBuffer = await font.arrayBuffer()
+  } catch (error) {
+    console.log(error)
+    return new Response('Internal Server Error', { status: 500 })
+  }
 
   const markup = html(`
     <div style="width: 100%; height: 100%; display: flex; align-items: center; justify-content: center; font-weight: 600; font-family: "Monserrat"; color: #31363f; flex-direction: column; gap: 25px; background-color: #eee; background-image: radial-gradient(circle at 25px 25px, lightgray 2%, transparent 0%), radial-gradient(circle at 75px 75px, lightgray 2%, transparent 0%); background-size: 100px 100px;">
@@ -35,7 +42,7 @@ export const GET = async ({ url }) => {
     fonts: [
       {
         name: 'Montserrat',
-        data: monserratData,
+        data: Buffer.from(fontBuffer),
         weight: 'normal',
         style: 'normal'
       }
