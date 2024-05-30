@@ -10,6 +10,7 @@ const t = useTranslations(currentLang)
 
 <BaseLayout>
   <header class="content">
+    <h2>404</h2>
     <div class="header-content">
       <h1>{t('404.notFound')}</h1>
       <p>
@@ -19,7 +20,6 @@ const t = useTranslations(currentLang)
         ><ChevronRight />{t('404.back')}</a
       >
     </div>
-    <h2>404</h2>
   </header>
 </BaseLayout>
 
@@ -30,11 +30,11 @@ const t = useTranslations(currentLang)
     flex-flow: row wrap;
     justify-content: space-between;
     align-items: center;
+    margin-top: 150px;
   }
 
   .header-content {
     flex: 2;
-    flex-grow: 2;
     display: flex;
     flex-flow: column wrap;
   }
@@ -45,7 +45,6 @@ const t = useTranslations(currentLang)
     justify-content: center;
     align-items: center;
     flex: 1;
-    flex-grow: 2;
     font-size: 20rem;
     font-weight: 200;
   }

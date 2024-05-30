@@ -48,6 +48,10 @@ const t = useTranslations(currentLang)
 </BaseLayout>
 
 <style is:global>
+  header {
+    margin-bottom: 75px;
+  }
+
   .content header h2 {
     text-align: center;
     font-weight: 500;
@@ -76,7 +80,7 @@ const t = useTranslations(currentLang)
     margin: 0;
   }
 
-  .content img {
+  .content > img {
     box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
     margin: 50px auto;
     border-radius: 20px;
@@ -116,6 +120,9 @@ const t = useTranslations(currentLang)
   h6 {
     font-weight: 400;
     text-align: center;
+    max-width: 25ch;
+    margin: 75px auto;
+    line-height: 6.5rem;
   }
 
   h1,
@@ -141,8 +148,10 @@ const t = useTranslations(currentLang)
 
   ul,
   ol,
-  p {
+  p,
+  blockquote {
     text-wrap: pretty;
+    line-height: 4.5rem;
     font-size: 3rem;
   }
 

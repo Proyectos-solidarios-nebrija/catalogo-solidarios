@@ -45,14 +45,18 @@ const t = useTranslations(currentLang)
     gap: 100px;
   }
 
-  ul {
-    position: relative;
+  #partner-companies {
     padding: 0;
     margin: 0;
-    display: flex;
-    flex-wrap: wrap;
     align-items: start;
     gap: 50px;
+    display: grid;
+    width: 100%;
+    grid-template-columns: repeat(6, 1fr);
+  }
+
+  #partner-companies :global(li) {
+    grid-column: span 3;
   }
 
   h2 {
