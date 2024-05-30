@@ -54,14 +54,16 @@ const t = useTranslations(currentLang)
   const LOCAL_STORAGE_THEME_KEY = 'theme'
   const html = document.querySelector('html') as HTMLElement
   const selectedTheme = localStorage.getItem(LOCAL_STORAGE_THEME_KEY)
-  const systemSettingDark = window.matchMedia('(prefers-color-scheme: dark)')
+  const systemSettingDark = window.matchMedia(
+    '(prefers-color-scheme: dark)'
+  ).matches
 
   const THEMES = {
     dark: 'dark',
     light: 'light'
   }
 
-  const setThemePreference = (html, theme) => {
+  const setThemePreference = (theme) => {
     if (theme === THEMES.dark) {
       localStorage.setItem(LOCAL_STORAGE_THEME_KEY, THEMES.dark)
       html.classList.add(THEMES.dark)
@@ -73,19 +75,17 @@ const t = useTranslations(currentLang)
 
   // Set up the select theme
   if (selectedTheme === THEMES.dark || (systemSettingDark && !selectedTheme)) {
-    setThemePreference(html, THEMES.dark)
+    setThemePreference(THEMES.dark)
   } else {
-    setThemePreference(html, THEMES.light)
+    setThemePreference(THEMES.light)
   }
 
   document.addEventListener('astro:after-swap', () => {
-    const html = document.querySelector('html') as HTMLElement
     const selectedTheme = localStorage.getItem(LOCAL_STORAGE_THEME_KEY)
-    setThemePreference(html, selectedTheme)
+    setThemePreference(selectedTheme)
   })
 
   document.addEventListener('astro:page-load', () => {
-    const html = document.querySelector('html') as HTMLElement
     const btnThemeToggler = document.querySelector(
       '#btn-theme-toggler'
     ) as HTMLButtonElement
@@ -95,9 +95,9 @@ const t = useTranslations(currentLang)
       const isDarkTheme = currentTheme === THEMES.dark
 
       if (isDarkTheme) {
-        setThemePreference(html, THEMES.light)
+        setThemePreference(THEMES.light)
       } else {
-        setThemePreference(html, THEMES.dark)
+        setThemePreference(THEMES.dark)
       }
     })
   })

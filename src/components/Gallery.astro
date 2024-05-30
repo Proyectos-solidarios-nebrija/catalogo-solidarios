@@ -5,20 +5,21 @@ import { getEnv } from 'src/helpers/getEnv'
 import type { PhotoData } from 'src/types/types'
 
 interface Props {
+  className?: string
   gallery: {
     id: string
     photo: PhotoData
   }[]
 }
 
-const { gallery } = Astro.props
+const { gallery, className } = Astro.props
 const { CMS_URL } = getEnv()
 
 const currentLang = getLangFromUrl(Astro.url)
 const t = useTranslations(currentLang)
 ---
 
-<section class="content">
+<section class={className}>
   <h2 id={t('nav.gallery')}>{t('nav.gallery')}</h2>
   <div id="photos">
     {
@@ -42,6 +43,10 @@ const t = useTranslations(currentLang)
 
 <style>
   section {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
     margin-top: 100px;
   }
 
