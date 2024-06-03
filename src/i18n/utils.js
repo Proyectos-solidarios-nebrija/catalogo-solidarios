@@ -9,8 +9,10 @@ export function useTranslations(lang) {
   }
 }
 
-export function loadRemoteTranslations() {
-  Object.keys(languages).forEach(async (lang) => {
+export async function loadRemoteTranslations() {
+  const languagesArr = Object.keys(languages)
+
+  for (const lang of languagesArr) {
     const translations = await getTranslations(lang)
     const translationsObject = translations?.docs?.reduce(
       (acc, { key, value }) => ({
@@ -24,7 +26,7 @@ export function loadRemoteTranslations() {
       ...ui[lang],
       ...translationsObject
     }
-  })
+  }
 }
 
 export function getLangFromUrl(url) {
