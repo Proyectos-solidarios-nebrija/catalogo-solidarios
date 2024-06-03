@@ -24,10 +24,8 @@ const t = useTranslations(currentLang)
         <PartnerCompany
           name={name}
           img={{
-            url: CMS_URL + photo.url,
-            alt: photo.alt,
-            width: photo.width,
-            height: photo.height
+            ...photo,
+            url: CMS_URL + photo?.url
           }}
         />
       ))
@@ -67,6 +65,12 @@ const t = useTranslations(currentLang)
   @media (width <= 1200px) {
     ul {
       justify-content: center;
+    }
+  }
+
+  @media (width <= 800px) {
+    #partner-companies :global(li) {
+      grid-column: span 6;
     }
   }
 </style>

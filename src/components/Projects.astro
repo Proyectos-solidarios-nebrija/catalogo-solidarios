@@ -25,14 +25,13 @@ projects?.sort(
       projects?.map(
         ({ name, date_start, date_end, project_image, slug }, idx) => (
           <Project
+            slug={slug}
             dateStart={new Date(date_start)}
             dateEnd={new Date(date_end)}
             title={name}
             img={{
-              url: CMS_URL + project_image.url,
-              height: project_image.height,
-              width: project_image.width,
-              alt: project_image.alt
+              ...project_image,
+              url: CMS_URL + project_image?.url
             }}
             isLastProject={idx === 0}
             articleLink={getRelativeLocaleUrl(currentLang, `proyectos/${slug}`)}

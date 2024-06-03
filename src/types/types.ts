@@ -3,6 +3,8 @@ export interface PhotoData {
   url: string
   width: number
   height: number
+  mimeType: string
+  thumb?: PhotoData
 }
 
 export interface ProjectMember {
