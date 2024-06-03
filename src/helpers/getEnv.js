@@ -1,4 +1,4 @@
 export const getEnv = () => ({
-  CMS_URL: process.env.CMS_URL,
-  ...import.meta.env
+  ...import.meta.env,
+  CMS_URL: process.env.CMS_URL || import.meta.env.CMS_URL
 })

@@ -6,6 +6,7 @@ import type { PhotoData } from 'src/types/types'
 
 interface Props {
   dateStart: Date
+  slug: string
   dateEnd: Date
   title: string
   isLastProject: boolean
@@ -13,7 +14,7 @@ interface Props {
   img: PhotoData
 }
 
-const { dateStart, dateEnd, title, isLastProject, articleLink, img } =
+const { dateStart, dateEnd, title, isLastProject, articleLink, img, slug } =
   Astro.props
 
 const currentLang = getLangFromUrl(Astro.url)
@@ -23,21 +24,21 @@ const t = useTranslations(currentLang)
 <li>
   <a href={articleLink}>
     <div class="project-container">
-      <h3 transition:name={`project-title-${title}`}>{title}</h3>
+      <h3 transition:name={`project-title-${slug}`}>{title}</h3>
       <div class="project-container-image">
         <Image
           src={img.url}
           height={img.height}
           width={img.width}
           alt={img.alt ?? ''}
-          transition:name={`project-img-${title}`}
+          transition:name={`project-img-${slug}`}
         />
         <ChevronRight />
       </div>
     </div>
   </a>
   <div class="year-container">
-    <span transition:name={`project-year-${title}`}
+    <span transition:name={`project-year-${slug}`}
       >{dateStart.getFullYear()} - <span class="year-end"
         >{isLastProject ? t('timeline.present') : dateEnd.getFullYear()}</span
       ></span

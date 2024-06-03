@@ -11,6 +11,7 @@ interface Props {
   date_start: string
   date_end: string
   article_html: string
+  slug: string
   project_image: PhotoData
   web_link: string
   partner_companies: PartnerCompaniesData[]
@@ -38,7 +39,8 @@ const {
   project_image,
   web_link,
   partner_companies,
-  gallery
+  gallery,
+  slug: projectSlug
 } = project.docs[0]
 
 const companies = partner_companies?.map(
@@ -51,11 +53,10 @@ const companies = partner_companies?.map(
   dateStart={new Date(date_start)}
   dateEnd={new Date(date_end)}
   webLink={web_link}
+  slug={projectSlug}
   img={{
-    url: CMS_URL + project_image?.url,
-    width: project_image?.width,
-    height: project_image?.height,
-    alt: project_image?.alt
+    ...project_image,
+    url: CMS_URL + project_image?.url
   }}>
   <Fragment set:html={article_html} />
   {gallery?.length > 0 && <Gallery gallery={gallery} />}

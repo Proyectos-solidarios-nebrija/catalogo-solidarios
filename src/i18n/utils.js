@@ -1,6 +1,8 @@
 import { getTranslations } from 'src/services/cms'
 import { ui, defaultLang, languages } from './ui'
 
+export const showDefaultLang = false
+
 export function useTranslations(lang) {
   return function t(key) {
     return ui[lang]?.[key] || ui[defaultLang]?.[key]

@@ -1,8 +1,12 @@
 ---
+import { getLangFromUrl, useTranslations } from 'src/i18n/utils'
 import ArrowUp from './icons/ArrowUp.astro'
+
+const currentLang = getLangFromUrl(Astro.url)
+const t = useTranslations(currentLang)
 ---
 
-<button class="back-top-btn hidden">
+<button class="back-top-btn hidden" aria-label={t('aria.backToTop')}>
   <ArrowUp />
 </button>
 

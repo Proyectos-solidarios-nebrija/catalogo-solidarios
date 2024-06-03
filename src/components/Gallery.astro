@@ -25,15 +25,38 @@ const t = useTranslations(currentLang)
     {
       gallery?.map(({ photo }, idx, arr) => (
         <a
-          data-pswp-width={photo.width}
-          data-pswp-height={photo.height}
+          data-pswp-width={
+            photo.mimeType.includes('video/') ? photo.thumb?.width : photo.width
+          }
+          data-pswp-height={
+            photo.mimeType.includes('video/')
+              ? photo.thumb?.height
+              : photo.height
+          }
           href={CMS_URL + photo.url}
+          target="_blank"
+          data-pswp-type={photo.mimeType.includes('video/') ? 'video' : 'image'}
           class={`${idx % 8 < 4 ? '' : 'reverse'} ${arr.length % 4 !== 0 && arr.length - 1 - idx < arr.length % 4 ? `uncomplete-last-photos-${arr.length % 4}-${idx % 4}` : ''}`}>
           <Image
-            src={CMS_URL + photo.url}
-            alt={photo.alt ?? ''}
-            width={photo.width}
-            height={photo.height}
+            src={
+              CMS_URL +
+              (photo.mimeType.includes('video/') ? photo.thumb?.url : photo.url)
+            }
+            alt={
+              (photo.mimeType.includes('video/')
+                ? photo.thumb?.url
+                : photo.alt) ?? ''
+            }
+            width={
+              photo.mimeType.includes('video/')
+                ? photo.thumb?.width
+                : photo.width
+            }
+            height={
+              photo.mimeType.includes('video/')
+                ? photo.thumb?.height
+                : photo.height
+            }
           />
         </a>
       ))
@@ -178,6 +201,7 @@ const t = useTranslations(currentLang)
 
 <script>
   import PhotoSwipeLightbox from 'photoswipe/lightbox'
+  import PhotoSwipeVideoPlugin from 'photoswipe-video-plugin'
 
   const lightbox = new PhotoSwipeLightbox({
     gallery: '#photos',
@@ -185,6 +209,8 @@ const t = useTranslations(currentLang)
     pswpModule: () => import('photoswipe'),
     wheelToZoom: true
   })
+
+  new PhotoSwipeVideoPlugin(lightbox, {})
 
   document.addEventListener('astro:page-load', () => {
     lightbox.init()

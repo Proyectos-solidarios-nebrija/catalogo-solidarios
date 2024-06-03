@@ -25,7 +25,7 @@ const { CMS_URL } = getEnv()
       members?.map(({ member }) => (
         <MemberCard
           name={member?.name}
-          img={{ url: CMS_URL + member?.photo.url, alt: member?.photo.alt }}
+          img={{ ...member.photo, url: CMS_URL + member?.photo.url }}
           links={{
             github: member?.github_link,
             linkedin: member?.linkedin_link
