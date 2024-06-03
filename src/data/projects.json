@@ -266,5 +266,77 @@
         }
       }
     ]
+  },
+  "Proyecto 24/25": {
+    "imgPath": "",
+    "yearStart": "",
+    "yearEnd": "",
+    "members": [
+      {
+        "name": "Hugo Boyano Escoz",
+        "imgPath": "",
+        "links": {
+          "github": "https://github.com/Waxer59",
+          "linkedin": "https://www.linkedin.com/in/hugo-boyano-escoz/"
+        }
+      },
+      {
+        "name": "Beatriz Moreno Martín",
+        "imgPath": "",
+        "links": {
+          "github": "https://github.com/beamm536",
+          "linkedin": "https://www.linkedin.com/in/beatriz-moreno-martin/"
+        }
+      },
+      {
+        "name": "Diego Herrera Redondo",
+        "imgPath": "",
+        "links": {
+          "github": "https://github.com/Diegxherrera",
+          "linkedin": "https://www.linkedin.com/in/diegxherrera/"
+        }
+      },
+      {
+        "name": "Ángel Garcia Beltrán",
+        "imgPath": "",
+        "links": {
+          "github": "https://github.com/Paman00",
+          "linkedin": "https://www.linkedin.com/in/angel-garcia-beltran/"
+        }
+      },
+      {
+        "name": "Alba Castilla Mackin",
+        "imgPath": "",
+        "links": {
+          "github": "https://github.com/AlbaCastilla",
+          "linkedin": "https://www.linkedin.com/in/alba-castilla-mackin/"
+        }
+      },
+      {
+        "name": "Pedro Martinez Igual",
+        "imgPath": "",
+        "links": {
+          "github": "https://github.com/Pedromrtzz",
+          "linkedin": "https://www.linkedin.com/in/pedro-martinez-igual/"
+        }
+      },
+      {
+        "name": "Marcos Fernandez Núñez",
+        "imgPath": "",
+        "links": {
+          "github": "https://github.com/mfernandez69",
+          "linkedin": "https://www.linkedin.com/in/marcos-fernandez-nu%C3%B1ez/"
+        }
+      },
+      {
+        "name": "Rafael Montes",
+        "imgPath": "",
+        "links": {
+          "github": "https://github.com/RMontesJ",
+          "linkedin": "https://www.linkedin.com/in/rafaelmontesjimenez/"
+        }
+      },
+
+    ]
   }
 }
