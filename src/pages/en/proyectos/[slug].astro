@@ -1,5 +1,5 @@
 ---
-import BlogLayout from '@layouts/BlogLayout.astro'
+import ProjectLayout from '@layouts/ProjectLayout.astro'
 import PartnerCompanies from '@components/PartnerCompanies.astro'
 import Gallery from '@components/Gallery.astro'
 import { getProject } from 'src/services/cms'
@@ -49,7 +49,7 @@ const companies = partner_companies?.map(
 )
 ---
 
-<BlogLayout
+<ProjectLayout
   title={name}
   dateStart={new Date(date_start)}
   dateEnd={new Date(date_end)}
@@ -62,4 +62,4 @@ const companies = partner_companies?.map(
   <Fragment set:html={article_html} />
   {gallery?.length > 0 && <Gallery gallery={gallery} />}
   {companies.length > 0 && <PartnerCompanies companies={companies} />}
-</BlogLayout>
+</ProjectLayout>

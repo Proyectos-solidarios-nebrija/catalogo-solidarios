@@ -7,6 +7,12 @@ export interface PhotoData {
   thumb?: PhotoData
 }
 
+export interface SingleNews {
+  name: string
+  date: Date
+  image: PhotoData
+}
+
 export interface ProjectMember {
   id: number
   name: string
