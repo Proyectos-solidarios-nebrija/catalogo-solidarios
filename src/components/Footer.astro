@@ -1,5 +1,4 @@
 ---
-import logoNebrija from '../images/assets/logoNebrija.png'
 import logoSolidarios from '../images/assets/logoSolidarios.webp'
 import { Image } from 'astro:assets'
 import { getLangFromUrl, useTranslations } from 'src/i18n/utils'
@@ -9,7 +8,11 @@ const t = useTranslations(currentLang)
 ---
 
 <footer>
-  <Image src={logoNebrija} alt={t('alt.nebrijaLogoImg')} id="imgNebrija" />
+  <img
+    src="/images/logoNebrija.png"
+    alt={t('alt.nebrijaLogoImg')}
+    id="imgNebrija"
+  />
   <div class="vertical-line"></div>
   <Image
     src={logoSolidarios}
@@ -40,16 +43,18 @@ const t = useTranslations(currentLang)
     background-color: var(--secondary-color);
   }
 
-  img {
-    height: 10rem;
+  #imgNebrija {
+    height: 45px;
     width: auto;
   }
 
   html[class='dark'] #imgNebrija {
-    filter: invert(1);
+    filter: invert(0.5) brightness(2);
   }
 
   #imgSolidarios {
+    height: 65px;
+    width: 65px;
     border-radius: 15px;
   }
 

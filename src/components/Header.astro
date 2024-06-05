@@ -1,9 +1,7 @@
 ---
 import ChevronDown from '@components/icons/ChevronDown.astro'
-import LogoNebrijaFp from '../images/assets/logoNebrijafp.png'
 import { courses } from '@constants/courses'
 import { useTranslations, getLangFromUrl } from 'src/i18n/utils'
-import { Image } from 'astro:assets'
 
 const lang = getLangFromUrl(Astro.url)
 const t = useTranslations(lang)
@@ -13,12 +11,6 @@ const t = useTranslations(lang)
   <h1>{t('title')}</h1>
   <div class="header-content">
     <p>{t('description')}</p>
-    <Image
-      id="nebrijaFpLogo"
-      src={LogoNebrijaFp}
-      alt={t('alt.nebrijaLogoImg')}
-      width={250}
-    />
     <span>
       {
         courses.map((course, idx) => (
@@ -77,16 +69,6 @@ const t = useTranslations(lang)
   strong {
     text-transform: uppercase;
     font-weight: 600;
-  }
-
-  #nebrijaFpLogo {
-    width: 90%;
-    height: auto;
-    max-width: 250px;
-  }
-
-  html[class='dark'] #nebrijaFpLogo {
-    filter: invert(0.5) brightness(2);
   }
 
   .header-content-scroll {
