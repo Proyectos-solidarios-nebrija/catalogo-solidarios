@@ -33,7 +33,7 @@ export const GET = async ({ url }) => {
       <h1 style="font-size: 86px; text-align: center; margin: 0; padding: 0;">${ogText}</h1>
       ${enableSubtitle ? `<h2 style="font-size: 36px; opacity: 0.8;">${langTitles[lang]}</h2>` : ''}
     </div>
-    <img src="${url.origin}/images/favicon.png" style="position: absolute; width: 100px; top: 40px; left: 40px; margin: 0; padding: 0;" />
+    <img src="${url.origin}/images/logoNebrija.png" style="position: absolute; height: 55px; top: 40px; left: 40px; margin: 0; padding: 0;" />
   `)
 
   const svg = await satori(markup, {
