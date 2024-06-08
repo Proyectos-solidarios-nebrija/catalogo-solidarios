@@ -38,6 +38,10 @@ const t = useTranslations(currentLang)
         >{t('nav.whoWeAre')}</a
       >
     </li>
+    <li>
+      <a href={getRelativeLocaleUrl(currentLang, 'noticias')}>{t('nav.news')}</a
+      >
+    </li>
     <li class="config">
       <button aria-label={t('aria.switchTheme')} id="btn-theme-toggler">
         <span id="theme-toggler-dark-icon">
@@ -111,8 +115,8 @@ const t = useTranslations(currentLang)
     flex-direction: row;
     align-items: center;
     justify-content: space-between;
-    margin-top: 50px;
-    margin-bottom: 100px;
+    margin-top: 25px;
+    margin-bottom: 50px;
   }
 
   #link-home {

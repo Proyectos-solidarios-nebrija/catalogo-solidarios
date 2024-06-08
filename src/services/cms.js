@@ -41,6 +41,32 @@ export const getProject = async (slug, locale = defaultLang) => {
   return null
 }
 
+export const getNews = async (locale = defaultLang) => {
+  try {
+    const resp = await fetch(`${CMS_URL}/api/news?limit=0&locale=${locale}`)
+    const data = await resp.json()
+    return data
+  } catch (error) {
+    console.error(error)
+  }
+
+  return null
+}
+
+export const getSingleNews = async (slug, locale = defaultLang) => {
+  try {
+    const resp = await fetch(
+      `${CMS_URL}/api/news?where[slug][equals]=${slug}&locale=${locale}`
+    )
+    const data = await resp.json()
+    return data
+  } catch (error) {
+    console.error(error)
+  }
+
+  return null
+}
+
 export const getTranslations = async (locale = defaultLang) => {
   try {
     const resp = await fetch(

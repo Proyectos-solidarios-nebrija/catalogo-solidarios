@@ -1,0 +1,25 @@
+---
+import News from '@components/News.astro'
+import BaseLayout from '@layouts/BaseLayout.astro'
+import { getLangFromUrl, useTranslations } from 'src/i18n/utils'
+import { getNews } from 'src/services/cms'
+
+const currentLang = getLangFromUrl(Astro.url)
+const t = useTranslations(currentLang)
+
+const news = await getNews()
+---
+
+<BaseLayout title={`${t('title')} | ${t('nav.news')}`}>
+  <h1>{t('nav.news')}</h1>
+  <News news={news?.docs} />
+</BaseLayout>
+
+<style>
+  h1 {
+    font-size: 10rem;
+    text-align: center;
+    font-weight: 400;
+    margin: 0;
+  }
+</style>

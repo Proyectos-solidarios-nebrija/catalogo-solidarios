@@ -1,0 +1,193 @@
+---
+import { Image } from 'astro:assets'
+import BaseLayout from './BaseLayout.astro'
+import { getLangFromUrl, useTranslations } from 'src/i18n/utils'
+import type { PhotoData } from 'src/types/types'
+import { getEnv } from 'src/helpers/getEnv'
+
+interface Props {
+  title: string
+  slug: string
+  img: PhotoData
+  date: string
+}
+
+const { title, img, slug, date } = Astro.props
+
+const currentLang = getLangFromUrl(Astro.url)
+const t = useTranslations(currentLang)
+const { CMS_URL } = getEnv()
+---
+
+<BaseLayout title={`${t('nav.news')} | ${title}`}>
+  <div class="content">
+    <header>
+      <Image
+        src={CMS_URL + img.url}
+        width={img.width}
+        height={img.height}
+        alt={img.alt ?? ''}
+        transition:name={`news-image-${slug}-${date}`}
+      />
+      <div class="header-title">
+        <h1 transition:name={`news-title-${slug}-${date}`}>{title}</h1>
+        <span transition:name={`news-date-${slug}-${date}`}
+          >{new Date(date).toLocaleDateString()}</span
+        >
+      </div>
+    </header>
+    <slot />
+  </div>
+</BaseLayout>
+
+<style is:global>
+  header {
+    margin-bottom: 75px;
+  }
+
+  .content header h2 {
+    text-align: center;
+    font-weight: 500;
+  }
+
+  .content header {
+    display: flex;
+    flex-direction: column;
+    gap: 50px;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .content header h2 {
+    margin: 0;
+    font-weight: 400;
+    font-size: 8rem;
+  }
+
+  .content header img {
+    box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+    width: 100%;
+    object-fit: cover;
+    border-radius: 15px;
+    height: 375px;
+    margin: 0;
+  }
+
+  .content > img {
+    box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+    margin: 50px auto;
+    border-radius: 20px;
+    object-fit: cover;
+    height: 500px;
+    width: 100%;
+  }
+
+  .header-title {
+    display: flex;
+    flex-direction: column;
+    gap: 25px;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .header-title span {
+    font-weight: 400;
+    font-size: 4rem;
+    opacity: 0.7;
+  }
+
+  .header-title h1 {
+    margin: 0;
+  }
+
+  .header-title svg {
+    height: 48px;
+    width: 48px;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    font-weight: 400;
+    text-align: center;
+    max-width: 20ch;
+    margin: 75px auto;
+  }
+
+  h1,
+  h2 {
+    font-size: 10rem;
+    line-height: 10rem;
+  }
+
+  h3 {
+    font-size: 8rem;
+    line-height: 8rem;
+  }
+
+  h5,
+  h4 {
+    font-size: 6rem;
+    line-height: 6rem;
+  }
+
+  h6 {
+    font-size: 4rem;
+    line-height: 4rem;
+  }
+
+  ul,
+  ol,
+  p,
+  blockquote {
+    text-wrap: pretty;
+    line-height: 4.5rem;
+    font-size: 3rem;
+  }
+
+  blockquote {
+    margin-left: 0;
+    padding-left: 20px;
+    border-left: 5px solid var(--secondary-color);
+  }
+
+  blockquote p {
+    opacity: 0.7;
+  }
+
+  @media (width <= 800px) {
+    h1,
+    h2 {
+      font-size: 7rem;
+      line-height: 7rem;
+    }
+
+    h3 {
+      font-size: 6rem;
+      line-height: 6rem;
+    }
+
+    h5,
+    h4 {
+      font-size: 4rem;
+      line-height: 4rem;
+    }
+
+    h6 {
+      font-size: 2rem;
+      line-height: 2rem;
+    }
+
+    .header-title {
+      display: flex;
+      gap: 25px;
+      flex-direction: row;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: center;
+    }
+  }
+</style>
