@@ -2,8 +2,6 @@
 import Moon from '@components/icons/Moon.astro'
 import Sun from '@components/icons/Sun.astro'
 import LanguagePicker from '@components/LanguagePicker.astro'
-import logoNebrija from '../images/assets/logoNebrija.png'
-import { Image } from 'astro:assets'
 import { getLangFromUrl, useTranslations } from 'src/i18n/utils'
 import { getRelativeLocaleUrl } from 'astro:i18n'
 import { removeTraillingSlash } from '../helpers/removeTraillingSlash'
@@ -14,7 +12,11 @@ const t = useTranslations(currentLang)
 
 <nav>
   <a href={getRelativeLocaleUrl(currentLang, '/')} id="link-home">
-    <Image src={logoNebrija} alt={t('alt.nebrijaLogoImg')} width={70} />
+    <img
+      src="/images/logoNebrija.png"
+      alt={t('alt.nebrijaLogoImg')}
+      height={55}
+    />
   </a>
   <ul class="links">
     <li>
@@ -118,11 +120,18 @@ const t = useTranslations(currentLang)
   }
 
   #link-home {
-    transition: transform 0.2s ease-in-out;
+    transition:
+      filter 0.3s ease,
+      transform 0.3s ease;
   }
 
   #link-home:hover {
     transform: scale(1.1);
+    filter: drop-shadow(rgba(0, 0, 0, 0.2) 0px 5px 15px);
+  }
+
+  html[class='dark'] #link-home:hover {
+    filter: drop-shadow(rgba(99, 99, 99, 0.2) 0px 5px 15px);
   }
 
   #link-home:active {
@@ -137,6 +146,7 @@ const t = useTranslations(currentLang)
     flex-direction: column;
     gap: 15px;
     padding: 0;
+    margin: 0;
   }
 
   .links :global(a) {
@@ -171,12 +181,10 @@ const t = useTranslations(currentLang)
   }
 
   img {
-    width: 60px;
-    height: auto;
   }
 
   html[class='dark'] img {
-    filter: invert(1);
+    filter: invert(0.5) brightness(2);
   }
 
   html #theme-toggler-light-icon {
@@ -219,7 +227,7 @@ const t = useTranslations(currentLang)
     }
 
     img {
-      width: 40px;
+      height: 35px;
     }
   }
 </style>
