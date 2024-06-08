@@ -1,0 +1,23 @@
+---
+import Gallery from '@components/Gallery.astro'
+import NewsLayout from '@layouts/NewsLayout.astro'
+import { languages } from 'src/i18n/ui'
+import { getSingleNews } from 'src/services/cms'
+
+const { slug } = Astro.params
+const singleNewsDocs = await getSingleNews(slug, languages.en)
+
+const {
+  image,
+  date,
+  gallery,
+  article_html,
+  slug: article_slug,
+  name
+} = singleNewsDocs?.docs[0]
+---
+
+<NewsLayout img={image} date={date} slug={article_slug} title={name}>
+  <Fragment set:html={article_html} />
+  {gallery?.length > 0 && <Gallery gallery={gallery} />}
+</NewsLayout>
