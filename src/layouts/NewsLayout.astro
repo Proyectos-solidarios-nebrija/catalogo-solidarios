@@ -3,32 +3,37 @@ import { Image } from 'astro:assets'
 import BaseLayout from './BaseLayout.astro'
 import { getLangFromUrl, useTranslations } from 'src/i18n/utils'
 import type { PhotoData } from 'src/types/types'
+import { getEnv } from 'src/helpers/getEnv'
 
 interface Props {
   title: string
   slug: string
   img: PhotoData
-  date: Date
+  date: string
 }
 
 const { title, img, slug, date } = Astro.props
 
 const currentLang = getLangFromUrl(Astro.url)
 const t = useTranslations(currentLang)
+const { CMS_URL } = getEnv()
 ---
 
-<BaseLayout title={`${t('title')} | ${title}`}>
+<BaseLayout title={`${t('nav.news')} | ${title}`}>
   <div class="content">
     <header>
       <Image
-        src={img.url}
+        src={CMS_URL + img.url}
         width={img.width}
         height={img.height}
         alt={img.alt ?? ''}
-        transition:name={`news-imge-${slug}-${date}`}
+        transition:name={`news-image-${slug}-${date}`}
       />
       <div class="header-title">
         <h1 transition:name={`news-title-${slug}-${date}`}>{title}</h1>
+        <span transition:name={`news-date-${slug}-${date}`}
+          >{new Date(date).toLocaleDateString()}</span
+        >
       </div>
     </header>
     <slot />
@@ -78,18 +83,21 @@ const t = useTranslations(currentLang)
   }
 
   .header-title {
-    position: relative;
     display: flex;
+    flex-direction: column;
+    gap: 25px;
+    justify-content: center;
     align-items: center;
+  }
+
+  .header-title span {
+    font-weight: 400;
+    font-size: 4rem;
+    opacity: 0.7;
   }
 
   .header-title h1 {
     margin: 0;
-  }
-
-  #webLink {
-    position: absolute;
-    right: -80px;
   }
 
   .header-title svg {
@@ -171,11 +179,6 @@ const t = useTranslations(currentLang)
     h6 {
       font-size: 2rem;
       line-height: 2rem;
-    }
-
-    #webLink {
-      right: 0;
-      position: relative;
     }
 
     .header-title {

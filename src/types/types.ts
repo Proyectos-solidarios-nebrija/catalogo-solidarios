@@ -9,7 +9,8 @@ export interface PhotoData {
 
 export interface SingleNews {
   name: string
-  date: Date
+  date: string
+  slug: string
   image: PhotoData
 }
 

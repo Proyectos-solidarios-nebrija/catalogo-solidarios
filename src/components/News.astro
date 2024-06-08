@@ -1,31 +1,36 @@
 ---
 import Image from 'astro/components/Image.astro'
+import { getRelativeLocaleUrl } from 'astro:i18n'
 import { getEnv } from 'src/helpers/getEnv'
+import { getLangFromUrl } from 'src/i18n/utils'
 import type { SingleNews } from 'src/types/types'
 
 interface Props {
   news: SingleNews[]
 }
 
+const currentLang = getLangFromUrl(Astro.url)
 const { news } = Astro.props
-
 const { CMS_URL } = getEnv()
 ---
 
 <ol class="content">
   {
-    news.map(({ image, date, name }) => (
+    news.map(({ image, date, name, slug }) => (
       <li>
-        <a href="#">
+        <a href={getRelativeLocaleUrl(currentLang, `/noticias/${slug}`)}>
           <Image
+            transition:name={`news-image-${slug}-${date}`}
             src={CMS_URL + image.url}
             alt={image.alt}
             width={image.width}
             height={image.height}
           />
           <div class="title-container">
-            <h3>{name}</h3>
-            <span>{date.toLocaleDateString()}</span>
+            <h3 transition:name={`news-title-${slug}-${date}`}>{name}</h3>
+            <span transition:name={`news-date-${slug}-${date}`}>
+              {new Date(date).toLocaleDateString()}
+            </span>
           </div>
         </a>
       </li>
@@ -51,25 +56,24 @@ const { CMS_URL } = getEnv()
     padding: 0;
     width: 100%;
     display: grid;
-    grid-auto-rows: 150px;
     column-gap: 45px;
     row-gap: 25px;
     grid-template-columns: repeat(12, 1fr);
   }
 
   ol li {
-    grid-column: 1 / 13;
+    grid-column: span 6;
   }
 
   ol li img {
-    width: 250px;
-    height: 100%;
+    width: 100%;
+    height: 250px;
   }
 
   a {
     text-decoration: none;
     justify-content: flex-start;
-    flex-direction: row;
+    flex-direction: column;
     height: 100%;
   }
 
@@ -80,7 +84,6 @@ const { CMS_URL } = getEnv()
 
   ol li:nth-child(1) a {
     flex-direction: column;
-    justify-content: space-between;
   }
 
   ol li:nth-child(1) img {
@@ -93,6 +96,7 @@ const { CMS_URL } = getEnv()
   }
 
   ol li:nth-child(n + 2):nth-child(-n + 4) a {
+    flex-direction: row;
     justify-content: space-between;
   }
 
@@ -114,7 +118,7 @@ const { CMS_URL } = getEnv()
     flex-direction: column;
   }
 
-  ol li:not(:has(:nth-child(2))) {
+  ol li:only-child {
     grid-column: span 12;
   }
 
@@ -156,5 +160,30 @@ const { CMS_URL } = getEnv()
       filter 0.2s ease-in-out,
       transform 0.2s ease-in-out;
     border-radius: 15px;
+  }
+
+  @media (width <= 800px) {
+    ol li:nth-child(1) img {
+      height: 250px;
+    }
+
+    ol {
+      display: flex;
+      flex-direction: column;
+    }
+
+    ol li:nth-child(n + 2):nth-child(-n + 4) a {
+      flex-direction: column;
+      justify-content: normal;
+    }
+
+    ol li:nth-child(n + 2):nth-child(-n + 4) a img {
+      width: 100%;
+      height: 250px;
+    }
+
+    ol li:nth-child(n + 2):nth-child(-n + 4) a h3 {
+      font-size: 8rem;
+    }
   }
 </style>
