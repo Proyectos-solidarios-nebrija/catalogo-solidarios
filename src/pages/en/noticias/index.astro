@@ -1,29 +1,19 @@
 ---
 import News from '@components/News.astro'
 import BaseLayout from '@layouts/BaseLayout.astro'
+import { languages } from 'src/i18n/ui'
 import { getLangFromUrl, useTranslations } from 'src/i18n/utils'
+import { getNews } from 'src/services/cms'
 
 const currentLang = getLangFromUrl(Astro.url)
 const t = useTranslations(currentLang)
+
+const news = await getNews(languages.en)
 ---
 
 <BaseLayout title={`${t('title')} | ${t('nav.news')}`}>
   <h1>{t('nav.news')}</h1>
-  <News
-    news={[
-      {
-        image: {
-          alt: 'Logo 3Dom',
-          url: '/media/3DOM_logocalidad(1).webp',
-          mimeType: 'image/webp',
-          width: 1500,
-          height: 800
-        },
-        date: new Date(),
-        name: 'Testing this'
-      }
-    ]}
-  />
+  <News news={news?.docs} />
 </BaseLayout>
 
 <style>
