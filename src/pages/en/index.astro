@@ -3,6 +3,7 @@ import BaseLayout from '@layouts/BaseLayout.astro'
 import Header from '@components/Header.astro'
 import Proyects from '@components/Projects.astro'
 import Galery from '@components/Gallery.astro'
+import LatestNews from '@components/LatestNews.astro'
 import { getGallery } from 'src/services/cms'
 
 const galleryDocs = await getGallery()
@@ -11,6 +12,7 @@ const gallery = galleryDocs?.docs
 
 <BaseLayout>
   <Header />
+  <LatestNews />
   <Proyects />
-  <Galery gallery={gallery} />
+  <Galery gallery={gallery} className="content" />
 </BaseLayout>

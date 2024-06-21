@@ -14,7 +14,7 @@ const { news } = Astro.props
 const { CMS_URL } = getEnv()
 ---
 
-<ol class="content">
+<ol>
   {
     news
       .sort(({ date: dateA }, { date: dateB }) => {
@@ -56,8 +56,8 @@ const { CMS_URL } = getEnv()
   }
 
   ol {
+    margin: 0;
     list-style: none;
-    margin-top: 100px;
     padding: 0;
     width: 100%;
     display: grid;
@@ -91,34 +91,38 @@ const { CMS_URL } = getEnv()
     flex-direction: column;
   }
 
+  ol li:nth-of-type(3):nth-child(1) a {
+    gap: 75px;
+  }
+
   ol li:nth-child(1) img {
     height: 325px;
     width: 100%;
   }
 
-  ol li:nth-child(n + 2):nth-child(-n + 4) {
+  ol li:nth-child(n + 2):nth-child(-n + 3) {
     grid-column: 8 / 13;
   }
 
-  ol li:nth-child(n + 2):nth-child(-n + 4) a {
-    flex-direction: row;
+  ol li:nth-child(n + 2):nth-child(-n + 3) a {
+    flex-direction: column;
     justify-content: space-between;
   }
 
-  ol li:nth-child(n + 2):nth-child(-n + 4) a img {
+  ol li:nth-child(n + 2):nth-child(-n + 3) a img {
     height: 150px;
-    width: 150px;
+    width: 100%;
   }
 
-  ol li:nth-child(n + 2):nth-child(-n + 4) a h3 {
+  ol li:nth-child(n + 2):nth-child(-n + 3) a h3 {
     font-size: 5rem;
   }
 
-  ol li:nth-child(n + 2):nth-child(-n + 4) a span {
+  ol li:nth-child(n + 2):nth-child(-n + 3) a span {
     font-size: 4rem;
   }
 
-  ol li:nth-child(n + 2):nth-child(-n + 4) a .title-container {
+  ol li:nth-child(n + 2):nth-child(-n + 3) a .title-container {
     display: flex;
     flex-direction: column;
   }
@@ -175,6 +179,7 @@ const { CMS_URL } = getEnv()
     ol {
       display: flex;
       flex-direction: column;
+      gap: 50px;
     }
 
     ol li:nth-child(n + 2):nth-child(-n + 4) a {
