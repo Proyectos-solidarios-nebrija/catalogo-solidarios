@@ -16,29 +16,25 @@ const { CMS_URL } = getEnv()
 
 <ol>
   {
-    news
-      .sort(({ date: dateA }, { date: dateB }) => {
-        return new Date(dateB).getDate() - new Date(dateA).getDate()
-      })
-      .map(({ image, date, name, slug }) => (
-        <li>
-          <a href={getRelativeLocaleUrl(currentLang, `/noticias/${slug}`)}>
-            <Image
-              transition:name={`news-image-${slug}-${date}`}
-              src={CMS_URL + image.url}
-              alt={image.alt}
-              width={image.width}
-              height={image.height}
-            />
-            <div class="title-container">
-              <h3 transition:name={`news-title-${slug}-${date}`}>{name}</h3>
-              <span transition:name={`news-date-${slug}-${date}`}>
-                {new Date(date).toLocaleDateString()}
-              </span>
-            </div>
-          </a>
-        </li>
-      ))
+    news.map(({ image, date, name, slug }) => (
+      <li>
+        <a href={getRelativeLocaleUrl(currentLang, `/noticias/${slug}`)}>
+          <Image
+            transition:name={`news-image-${slug}-${date}`}
+            src={CMS_URL + image.url}
+            alt={image.alt}
+            width={image.width}
+            height={image.height}
+          />
+          <div class="title-container">
+            <h3 transition:name={`news-title-${slug}-${date}`}>{name}</h3>
+            <span transition:name={`news-date-${slug}-${date}`}>
+              {new Date(date).toLocaleDateString()}
+            </span>
+          </div>
+        </a>
+      </li>
+    ))
   }
 </ol>
 
