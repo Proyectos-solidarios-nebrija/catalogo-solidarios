@@ -22,7 +22,9 @@ export const ui = {
       'La página que buscas no existe. Por favor, verifica la URL e intenta nuevamente.',
     '404.back': 'Volver al inicio',
     'aria.switchTheme': 'Cambiar tema',
-    'aria.backToTop': 'Volver al inicio de la página'
+    'aria.backToTop': 'Volver al inicio de la página',
+    latestNews: 'Últimas noticias',
+    'latestNews.seeMore': 'Ver más'
   },
   en: {
     'alt.nebrijaLogoImg': 'Nebrija vocational training institute logo',
@@ -39,6 +41,8 @@ export const ui = {
       'The page you are looking for does not exist. Please check the URL and try again.',
     '404.back': 'Back to home',
     'aria.switchTheme': 'Switch theme',
-    'aria.backToTop': 'Back to top of page'
+    'aria.backToTop': 'Back to top of page',
+    latestNews: 'Latest news',
+    'latestNews.seeMore': 'See more'
   }
 }

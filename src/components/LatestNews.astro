@@ -1,0 +1,93 @@
+---
+import { getLangFromUrl, useTranslations } from 'src/i18n/utils'
+import { getRelativeLocaleUrl } from 'astro:i18n'
+import ChevronRight from './icons/ChevronRight.astro'
+import News from '@components/News.astro'
+import { getNews } from 'src/services/cms'
+
+const NEWS_LIMIT = 3
+
+const currentLang = getLangFromUrl(Astro.url)
+const t = useTranslations(currentLang)
+
+const news = await getNews(currentLang, NEWS_LIMIT)
+---
+
+<section class="latest-news">
+  <h2>{t('latestNews')}</h2>
+  <div class="news content">
+    <News news={news?.docs} />
+  </div>
+  <a href={getRelativeLocaleUrl(currentLang, 'noticias')} class="news-seeMore"
+    ><span>{t('latestNews.seeMore')}</span> <ChevronRight /></a
+  >
+</section>
+
+<style>
+  h2 {
+    font-size: 8rem;
+    font-weight: 400;
+    text-align: center;
+    margin: 0;
+  }
+
+  section {
+    margin-top: 150px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .news-seeMore {
+    margin-top: 50px;
+  }
+
+  ol {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+
+  .news {
+    margin-top: 100px;
+  }
+
+  a {
+    font-size: 4rem;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    text-decoration: none;
+  }
+
+  a span {
+    text-decoration: none;
+    position: relative;
+  }
+
+  a:hover span::before {
+    transform-origin: 0% 50%;
+    transform: scale3d(1, 1, 1);
+  }
+
+  a span::before {
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 1px;
+    background: currentColor;
+    top: 100%;
+    left: 0;
+    pointer-events: none;
+    transform-origin: 100% 50%;
+    transform: scale3d(0, 1, 1);
+    transition: transform 0.3s;
+  }
+
+  .latest-news a :global(svg) {
+    stroke-width: 1px;
+  }
+</style>

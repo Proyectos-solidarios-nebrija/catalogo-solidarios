@@ -13,7 +13,9 @@ const news = await getNews(languages.en)
 
 <BaseLayout title={`${t('title')} | ${t('nav.news')}`}>
   <h1>{t('nav.news')}</h1>
-  <News news={news?.docs} />
+  <div class="news content">
+    <News news={news?.docs} />
+  </div>
 </BaseLayout>
 
 <style>
@@ -22,5 +24,9 @@ const news = await getNews(languages.en)
     text-align: center;
     font-weight: 400;
     margin: 0;
+  }
+
+  .news {
+    margin-top: 100px;
   }
 </style>

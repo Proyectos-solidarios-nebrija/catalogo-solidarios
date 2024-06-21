@@ -41,9 +41,11 @@ export const getProject = async (slug, locale = defaultLang) => {
   return null
 }
 
-export const getNews = async (locale = defaultLang) => {
+export const getNews = async (locale = defaultLang, limit = 0) => {
   try {
-    const resp = await fetch(`${CMS_URL}/api/news?limit=0&locale=${locale}`)
+    const resp = await fetch(
+      `${CMS_URL}/api/news?limit=${limit}&locale=${locale}&sort=-date`
+    )
     const data = await resp.json()
     return data
   } catch (error) {
