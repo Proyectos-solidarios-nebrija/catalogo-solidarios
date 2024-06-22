@@ -6,6 +6,7 @@
       "@components/*": ["src/components/*"],
       "@layouts/*": ["src/layouts/*"],
       "@constants/*": ["src/constants/*"],
+      "@icons/*": ["src/components/icons/*"],
     },
     "plugins": [
       {

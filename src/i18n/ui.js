@@ -24,7 +24,11 @@ export const ui = {
     'aria.switchTheme': 'Cambiar tema',
     'aria.backToTop': 'Volver al inicio de la página',
     latestNews: 'Últimas noticias',
-    'latestNews.seeMore': 'Ver más'
+    'latestNews.seeMore': 'Ver más',
+    'newsletter.title': '¿Quieres enterarte de todo?',
+    'neswletter.description':
+      'Suscríbete a nuestra newsletter y enterate de todo lo que ocurre',
+    'newsletter.mailPlaceholder': 'tucorreo@correo.com'
   },
   en: {
     'alt.nebrijaLogoImg': 'Nebrija vocational training institute logo',
@@ -43,6 +47,9 @@ export const ui = {
     'aria.switchTheme': 'Switch theme',
     'aria.backToTop': 'Back to top of page',
     latestNews: 'Latest news',
-    'latestNews.seeMore': 'See more'
+    'latestNews.seeMore': 'See more',
+    'newsletter.title': 'Want to know more?',
+    'neswletter.description': 'Subscribe to our newsletter to know more',
+    'newsletter.mailPlaceholder': 'yourmail@mail.com'
   }
 }
