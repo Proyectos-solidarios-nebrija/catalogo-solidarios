@@ -1,0 +1,16 @@
+---
+import { getLangFromUrl, useTranslations } from 'src/i18n/utils'
+import SendHorizontal from '@icons/SendHorizontal.astro'
+
+const lang = getLangFromUrl(Astro.url)
+const t = useTranslations(lang)
+---
+
+<section>
+  <h2>{t('newsletter.title')}</h2>
+  <p>{t('newsletter.description')}</p>
+  <div class="input-container">
+    <input type="text" placeholder={t('newsletter.mailPlaceholder')} />
+    <button><SendHorizontal /></button>
+  </div>
+</section>
