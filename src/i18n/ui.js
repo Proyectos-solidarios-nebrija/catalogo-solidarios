@@ -4,7 +4,7 @@ export const languages = {
 }
 
 export const showDefaultLang = false
-export const defaultLang = 'es'
+export const defaultLang = languages.es
 
 export const ui = {
   es: {
@@ -26,9 +26,11 @@ export const ui = {
     latestNews: 'Últimas noticias',
     'latestNews.seeMore': 'Ver más',
     'newsletter.title': '¿Quieres enterarte de todo?',
-    'neswletter.description':
-      'Suscríbete a nuestra newsletter y enterate de todo lo que ocurre',
-    'newsletter.mailPlaceholder': 'tucorreo@correo.com'
+    'newsletter.description':
+      '¡Suscríbete a nuestra newsletter y enterate de todas las novedades!',
+    'newsletter.mailPlaceholder': 'tucorreo@correo.com',
+    'newsletter.success': 'Correo enviado',
+    'newsletter.error': 'Error al suscribir'
   },
   en: {
     'alt.nebrijaLogoImg': 'Nebrija vocational training institute logo',
@@ -49,7 +51,10 @@ export const ui = {
     latestNews: 'Latest news',
     'latestNews.seeMore': 'See more',
     'newsletter.title': 'Want to know more?',
-    'neswletter.description': 'Subscribe to our newsletter to know more',
-    'newsletter.mailPlaceholder': 'yourmail@mail.com'
+    'newsletter.description':
+      'Subscribe to our newsletter and find out all the latest news!',
+    'newsletter.mailPlaceholder': 'yourmail@mail.com',
+    'newsletter.success': 'E-mail sent',
+    'newsletter.error': 'Error subscribing'
   }
 }

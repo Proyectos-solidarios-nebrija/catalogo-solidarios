@@ -20,7 +20,9 @@
     "photoswipe-video-plugin": "^1.0.2",
     "satori": "0.10.13",
     "satori-html": "0.3.2",
-    "sharp": "0.33.4"
+    "sharp": "0.33.4",
+    "toastify-js": "^1.12.0",
+    "zod": "^3.23.8"
   },
   "devDependencies": {
     "@typescript-eslint/eslint-plugin": "7.9.0",
