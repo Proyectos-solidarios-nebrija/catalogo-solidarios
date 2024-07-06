@@ -1,0 +1,132 @@
+---
+import { getLangFromUrl, useTranslations } from 'src/i18n/utils'
+import SendHorizontal from '@icons/SendHorizontal.astro'
+
+const lang = getLangFromUrl(Astro.url)
+const t = useTranslations(lang)
+
+const messages = {
+  success: t('newsletter.success'),
+  error: t('newsletter.error')
+}
+---
+
+<section class="content">
+  <h2>{t('newsletter.title')}</h2>
+  <p>{t('newsletter.description')}</p>
+  <div class="input-container">
+    <input
+      id="input-email"
+      type="email"
+      placeholder={t('newsletter.mailPlaceholder')}
+    />
+    <button
+      id="btn-subscribe"
+      data-success={messages.success}
+      data-error={messages.error}><SendHorizontal /></button
+    >
+  </div>
+</section>
+
+<script>
+  import Toastify from 'toastify-js'
+
+  const TOAST_DURATION = 2000 // ms
+
+  const btnSubscribe = document.querySelector(
+    '#btn-subscribe'
+  ) as HTMLButtonElement
+  const inputEmail = document.querySelector('#input-email') as HTMLInputElement
+
+  const successToast = createToast(btnSubscribe.dataset.success)
+  const errorToast = createToast(btnSubscribe.dataset.error)
+
+  btnSubscribe.addEventListener('click', async () => {
+    const response = await fetch('/api/suscribe', {
+      method: 'POST',
+      body: JSON.stringify({
+        email: inputEmail.value
+      })
+    })
+
+    const data = await response.json()
+
+    if (data.error) {
+      errorToast.showToast()
+    } else {
+      successToast.showToast()
+    }
+  })
+
+  function createToast(text) {
+    return Toastify({
+      text,
+      gravity: 'bottom',
+      duration: TOAST_DURATION,
+      close: true,
+      style: {
+        background: 'var(--secondary-color)',
+        fontSize: '3rem',
+        boxShadow: 'rgba(149, 157, 165, 0.2) 0px 8px 24px',
+        color: 'var(--primary-color)',
+        fontWeight: 500,
+        borderRadius: '5px'
+      }
+    })
+  }
+</script>
+
+<style>
+  section {
+    margin-top: 100px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 50px;
+  }
+
+  .input-container {
+    display: flex;
+    gap: 0;
+    max-width: 600px;
+    width: 90%;
+    height: 50px;
+  }
+
+  input[type='email'] {
+    outline: none;
+    border: none;
+    width: 200%;
+    border-radius: 5px 0 0 5px;
+    background-color: var(--opacity-color);
+    font-size: 4rem;
+    color: var(--secondary-color);
+    padding-left: 15px;
+  }
+
+  button {
+    border: none;
+    outline: none;
+    padding: 0 10px;
+    height: 100%;
+    border-radius: 0 5px 5px 0;
+    background-color: var(--secondary-color);
+    cursor: pointer;
+  }
+
+  .input-container button :global(svg) {
+    color: var(--primary-color);
+  }
+
+  p {
+    font-size: 4rem;
+    text-align: center;
+  }
+
+  h2 {
+    font-size: 8rem;
+    font-weight: 400;
+    text-align: center;
+    margin: 0;
+  }
+</style>

@@ -1,8 +1,10 @@
 ---
 import 'photoswipe/style.css'
+import 'toastify-js/src/toastify.css'
 import Navbar from '@components/Navbar.astro'
 import CommonHead from '@components/CommonHead.astro'
 import Footer from '@components/Footer.astro'
+import Newsletter from '@components/Newsletter.astro'
 import { getLangFromUrl, loadRemoteTranslations } from 'src/i18n/utils'
 import ScrollTopButton from '@components/ScrollTopButton.astro'
 
@@ -22,6 +24,7 @@ await loadRemoteTranslations()
       <slot />
       <ScrollTopButton />
     </div>
+    <Newsletter />
     <Footer />
     <style is:global>
       @font-face {
@@ -44,11 +47,17 @@ await loadRemoteTranslations()
       :root {
         --primary-color: #eeeeee;
         --secondary-color: #31363f;
+        --opacity-color: #00000005;
       }
 
       .dark:root {
         --primary-color: #222324;
         --secondary-color: #fff6e0;
+        --opacity-color: #00000026;
+      }
+
+      .toastify button {
+        color: var(--primary-color);
       }
 
       .content {
