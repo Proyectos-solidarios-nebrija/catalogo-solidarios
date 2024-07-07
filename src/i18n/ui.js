@@ -25,7 +25,7 @@ export const ui = {
     'aria.backToTop': 'Volver al inicio de la página',
     latestNews: 'Últimas noticias',
     'latestNews.seeMore': 'Ver más',
-    'newsletter.title': '¿Quieres enterarte de todo?',
+    'newsletter.title': '¿Quieres estar al tanto?',
     'newsletter.description':
       '¡Suscríbete a nuestra newsletter y enterate de todas las novedades!',
     'newsletter.mailPlaceholder': 'tucorreo@correo.com',
