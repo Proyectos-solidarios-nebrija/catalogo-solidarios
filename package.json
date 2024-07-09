@@ -22,7 +22,8 @@
     "satori-html": "0.3.2",
     "sharp": "0.33.4",
     "toastify-js": "^1.12.0",
-    "zod": "^3.23.8"
+    "zod": "^3.23.8",
+    "typescript": "5.4.5"
   },
   "devDependencies": {
     "@typescript-eslint/eslint-plugin": "7.9.0",
@@ -38,8 +39,7 @@
     "husky": "9.0.11",
     "lint-staged": "15.2.2",
     "prettier": "3.2.5",
-    "prettier-plugin-astro": "0.13.0",
-    "typescript": "^5.4.5"
+    "prettier-plugin-astro": "0.13.0"
   },
   "lint-staged": {
     "src/**/*.{js,astro}": [
