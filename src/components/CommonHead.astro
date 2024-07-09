@@ -3,6 +3,9 @@ import { Head } from 'astro-capo'
 import { cannonicalURL } from '@constants/seo'
 import { getLangFromUrl, useTranslations } from 'src/i18n/utils'
 import { ViewTransitions } from 'astro:transitions'
+
+const SEPARATION_CHARACTER = ' | '
+
 const currentLang = getLangFromUrl(Astro.url)
 const t = useTranslations(currentLang)
 
@@ -17,8 +20,7 @@ interface Props {
 
 const { title = t('title') } = Astro.props
 
-const ogTitle = title?.replace(`${t('title')} | `, '')
-
+const ogTitle = title.split(SEPARATION_CHARACTER).pop()
 const ogUrlImg = `${Astro.url.origin}/api/og.png?text=${ogTitle}&lang=${currentLang}&subtitle=${ogTitle !== title}`
 ---
 
